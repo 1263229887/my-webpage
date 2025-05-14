@@ -22,11 +22,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
         
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-        }
+        /* .bento-grid is now handled by Tailwind classes grid grid-cols-12 gap-4 md:gap-6 */
         
         .tesla-red {
             color: var(--tesla-red);
@@ -36,11 +32,7 @@
             background-color: var(--tesla-red);
         }
         
-        .mega-text {
-            font-size: 10rem;
-            font-weight: 800;
-            line-height: 0.9;
-        }
+        /* .mega-text is now handled by Tailwind classes like text-7xl md:text-8xl lg:text-[10rem] font-extrabold leading-[0.9] */
         
         .highlight-gradient {
             background: linear-gradient(135deg, var(--tesla-red), var(--tesla-red-20));
@@ -86,21 +78,21 @@
 <body>
     <!-- Hero Section -->
     <section class="scroll-section relative overflow-hidden">
-        <div class="bento-grid container mx-auto px-4 py-24">
-            <div class="col-span-12 flex flex-col items-center justify-center text-center mb-16">
-                <h1 class="text-7xl md:text-9xl font-bold mb-4">川湘味觅 <span class="tesla-red">聚</span></h1>
+        <div class="grid grid-cols-12 gap-4 md:gap-6 container mx-auto px-4 py-16 md:py-24">
+            <div class="col-span-12 flex flex-col items-center justify-center text-center mb-12 md:mb-16">
+                <h1 class="text-5xl md:text-7xl lg:text-9xl font-bold mb-4">川湘味觅 <span class="tesla-red">聚</span></h1>
                 <p class="en-text text-gray-400 mb-4">SICHUAN & HUNAN CUISINE MEETUP</p>
                 <div class="w-20 h-1 bg-tesla-red"></div>
-                <p class="mt-8 text-xl max-w-2xl">三地交汇，寻觅深圳最佳川湘美食，品味麻辣鲜香的完美邂逅</p>
+                <p class="mt-8 text-lg md:text-xl max-w-2xl">三地交汇，寻觅深圳最佳川湘美食，品味麻辣鲜香的完美邂逅</p>
             </div>
             
-            <div class="col-span-12 md:col-span-8 lg:col-span-5 thin-border rounded-2xl p-8 card">
+            <div class="col-span-12 md:col-span-8 lg:col-span-5 thin-border rounded-2xl p-6 md:p-8 card">
                 <div class="flex items-center mb-6">
                     <div class="rounded-full bg-tesla-red p-3 mr-4">
                         <i class="fas fa-map-marker-alt text-white"></i>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold">华强北</h3>
+                        <h3 class="text-xl md:text-2xl font-bold">华强北</h3>
                         <p class="en-text text-gray-400">HUAQIANGBEI</p>
                     </div>
                 </div>
@@ -112,34 +104,34 @@
                 </div>
             </div>
             
-            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col">
-                <div class="thin-border rounded-2xl p-6 card mb-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">上川 <span class="en-text tesla-red">SHANGCHUAN</span></h3>
+            <div class="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col gap-4 md:gap-6">
+                <div class="thin-border rounded-2xl p-4 md:p-6 card flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">上川 <span class="en-text tesla-red">SHANGCHUAN</span></h3>
                     <p class="text-sm text-gray-400">宝安区</p>
                     <div class="route-line my-3"></div>
                     <p class="text-sm">乘坐地铁12号线到南山站，换乘11号线到岗厦北站，再换乘2号线到华强北站</p>
-                    <p class="text-lg font-bold mt-2">约46分钟</p>
+                    <p class="text-md md:text-lg font-bold mt-2">约46分钟</p>
                 </div>
                 
-                <div class="thin-border rounded-2xl p-6 card flex-grow">
-                    <h3 class="text-xl font-bold mb-2">园岭 <span class="en-text tesla-red">YUANLING</span></h3>
+                <div class="thin-border rounded-2xl p-4 md:p-6 card flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">园岭 <span class="en-text tesla-red">YUANLING</span></h3>
                     <p class="text-sm text-gray-400">福田区</p>
                     <div class="route-line my-3"></div>
                     <p class="text-sm">乘坐地铁9号线到红岭北站，换乘7号线到华强北站</p>
-                    <p class="text-lg font-bold mt-2">约19分钟</p>
+                    <p class="text-md md:text-lg font-bold mt-2">约19分钟</p>
                 </div>
             </div>
             
-            <div class="col-span-12 md:col-span-12 lg:col-span-4 thin-border rounded-2xl p-6 card">
-                <h3 class="text-xl font-bold mb-2">民治 <span class="en-text tesla-red">MINZHI</span></h3>
+            <div class="col-span-12 md:col-span-12 lg:col-span-4 thin-border rounded-2xl p-4 md:p-6 card">
+                <h3 class="text-lg md:text-xl font-bold mb-2">民治 <span class="en-text tesla-red">MINZHI</span></h3>
                 <p class="text-sm text-gray-400">龙华区</p>
                 <div class="route-line my-3"></div>
                 <p class="text-sm">乘坐地铁5号线到深圳北站，换乘4号线到市民中心站，再换乘2号线到华强北站</p>
-                <p class="text-lg font-bold mt-2">约36分钟</p>
-                <div class="mt-8 w-full h-32 rounded-lg overflow-hidden relative">
+                <p class="text-md md:text-lg font-bold mt-2">约36分钟</p>
+                <div class="mt-6 md:mt-8 w-full h-32 md:h-40 rounded-lg overflow-hidden relative">
                     <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fphoto.16pic.com%2F00%2F04%2F33%2F16pic_433425_b.jpg&refer=http%3A%2F%2Fphoto.16pic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1687165379&t=c2288fa85fa02ec14bed262d64f507d9" alt="地铁路线图" class="w-full h-full object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
-                        <span class="text-sm">深圳地铁路线示意</span>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-2 md:p-4">
+                        <span class="text-xs md:text-sm">深圳地铁路线示意</span>
                     </div>
                 </div>
             </div>
@@ -152,26 +144,26 @@
 
     <!-- Restaurants Section -->
     <section class="scroll-section">
-        <div class="container mx-auto px-4 py-24">
-            <div class="mb-16 text-center">
-                <h2 class="text-6xl font-bold mb-2">精选 <span class="tesla-red">餐厅</span></h2>
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="mb-12 md:mb-16 text-center">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-2">精选 <span class="tesla-red">餐厅</span></h2>
                 <p class="en-text text-gray-400">SELECTED RESTAURANTS</p>
                 <div class="w-20 h-1 bg-tesla-red mx-auto mt-4"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- 餐厅1 -->
                 <div class="thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-64 overflow-hidden">
+                    <div class="h-56 md:h-64 overflow-hidden">
                         <img src="https://aos-comment.amap.com/B0HD57HOYZ/comment/064791d37aea470dda82e90268d08c9c_2048_2048_80.jpg" alt="费大厨辣椒炒肉" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6">
+                    <div class="p-4 md:p-6">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-2xl font-bold">费大厨辣椒炒肉</h3>
-                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold">4.7分</div>
+                            <h3 class="text-xl md:text-2xl font-bold">费大厨辣椒炒肉</h3>
+                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold text-sm">4.7分</div>
                         </div>
                         <p class="text-sm text-gray-400 mb-3">茂业天地店 · 人均¥79</p>
-                        <p class="mb-4">湘菜经典，以正宗的做法呈现家乡味道，辣椒炒肉是招牌。</p>
+                        <p class="text-sm md:text-base mb-4">湘菜经典，以正宗的做法呈现家乡味道，辣椒炒肉是招牌。</p>
                         <div class="flex gap-2 mb-4 flex-wrap">
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">辣椒炒肉</span>
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">剁椒鱼头</span>
@@ -179,7 +171,7 @@
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">外婆菜</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-400">华强北路2009号茂业天地F8层</span>
+                            <span class="text-xs md:text-sm text-gray-400">华强北路2009号茂业天地F8层</span>
                             <i class="fas fa-arrow-right tesla-red"></i>
                         </div>
                     </div>
@@ -187,16 +179,16 @@
                 
                 <!-- 餐厅2 -->
                 <div class="thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-64 overflow-hidden">
+                    <div class="h-56 md:h-64 overflow-hidden">
                         <img src="http://store.is.autonavi.com/showpic/ee6483ece64eea58a12a4ef8a8c10a7b" alt="农耕记·湖南土菜" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6">
+                    <div class="p-4 md:p-6">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-2xl font-bold">农耕记·湖南土菜</h3>
-                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold">4.4分</div>
+                            <h3 class="text-xl md:text-2xl font-bold">农耕记·湖南土菜</h3>
+                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold text-sm">4.4分</div>
                         </div>
                         <p class="text-sm text-gray-400 mb-3">茂业天地店 · 人均¥80</p>
-                        <p class="mb-4">传统湘菜，口味地道，环境舒适，适合朋友聚餐。</p>
+                        <p class="text-sm md:text-base mb-4">传统湘菜，口味地道，环境舒适，适合朋友聚餐。</p>
                         <div class="flex gap-2 mb-4 flex-wrap">
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">长沙口味虾</span>
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">干锅牛肉</span>
@@ -204,7 +196,7 @@
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">腊味合蒸</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-400">华强北路2009号茂业天地F9层</span>
+                            <span class="text-xs md:text-sm text-gray-400">华强北路2009号茂业天地F9层</span>
                             <i class="fas fa-arrow-right tesla-red"></i>
                         </div>
                     </div>
@@ -212,16 +204,16 @@
                 
                 <!-- 餐厅3 -->
                 <div class="thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-64 overflow-hidden">
+                    <div class="h-56 md:h-64 overflow-hidden">
                         <img src="https://aos-comment.amap.com/B0IUX7DXIJ/comment/248781829fe6f67aafe7b9ae1f03eff9_2048_2048_80.jpg" alt="知椒·地道湘菜" class="w-full h-full object-cover">
                     </div>
-                    <div class="p-6">
+                    <div class="p-4 md:p-6">
                         <div class="flex justify-between items-center mb-3">
-                            <h3 class="text-2xl font-bold">知椒·地道湘菜</h3>
-                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold">4.6分</div>
+                            <h3 class="text-xl md:text-2xl font-bold">知椒·地道湘菜</h3>
+                            <div class="bg-tesla-red px-2 py-1 rounded text-white font-bold text-sm">4.6分</div>
                         </div>
                         <p class="text-sm text-gray-400 mb-3">华强北店 · 新派湘菜</p>
-                        <p class="mb-4">现代风格的湘菜餐厅，食材新鲜，创新菜品丰富。</p>
+                        <p class="text-sm md:text-base mb-4">现代风格的湘菜餐厅，食材新鲜，创新菜品丰富。</p>
                         <div class="flex gap-2 mb-4 flex-wrap">
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">椒香小公鸡</span>
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">毛氏红烧肉</span>
@@ -229,7 +221,7 @@
                             <span class="px-2 py-1 bg-black border border-gray-800 rounded-full text-xs">手工馓子</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-400">深南中路2070号中电广场D座夹一层</span>
+                            <span class="text-xs md:text-sm text-gray-400">深南中路2070号中电广场D座夹一层</span>
                             <i class="fas fa-arrow-right tesla-red"></i>
                         </div>
                     </div>
@@ -240,138 +232,138 @@
 
     <!-- Dishes Section -->
     <section class="scroll-section">
-        <div class="container mx-auto px-4 py-24">
-            <div class="mb-16 text-center">
-                <h2 class="text-6xl font-bold mb-2">经典 <span class="tesla-red">菜品</span></h2>
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="mb-12 md:mb-16 text-center">
+                <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-2">经典 <span class="tesla-red">菜品</span></h2>
                 <p class="en-text text-gray-400">CLASSIC DISHES</p>
                 <div class="w-20 h-1 bg-tesla-red mx-auto mt-4"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
                 <!-- 菜品1 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img1.baidu.com/it/u=1700918997,1341190486&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333" alt="辣椒炒肉" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">辣椒炒肉</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">辣椒炒肉</h3>
                         <p class="text-sm text-gray-400 mb-2">湖南经典家常菜</p>
-                        <p class="text-sm mb-3">以青椒、二荆条辣椒爆炒瘦肉，香辣下饭，湘菜代表作。</p>
+                        <p class="text-xs md:text-sm mb-3">以青椒、二荆条辣椒爆炒瘦肉，香辣下饭，湘菜代表作。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥48</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品2 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img0.baidu.com/it/u=2154985342,3750799902&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500" alt="剁椒鱼头" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">剁椒鱼头</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">剁椒鱼头</h3>
                         <p class="text-sm text-gray-400 mb-2">湘菜名片</p>
-                        <p class="text-sm mb-3">以剁碎的红椒与胖头鱼蒸制，鲜辣结合，口感丰富。</p>
+                        <p class="text-xs md:text-sm mb-3">以剁碎的红椒与胖头鱼蒸制，鲜辣结合，口感丰富。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥88</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品3 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img1.baidu.com/it/u=3010678195,365053627&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500" alt="水煮鱼" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">水煮鱼</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">水煮鱼</h3>
                         <p class="text-sm text-gray-400 mb-2">川菜代表</p>
-                        <p class="text-sm mb-3">鲜嫩鱼片配以花椒、辣椒等香料煮制，麻辣鲜香。</p>
+                        <p class="text-xs md:text-sm mb-3">鲜嫩鱼片配以花椒、辣椒等香料煮制，麻辣鲜香。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥78</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品4 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img0.baidu.com/it/u=518682589,2826261513&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=375" alt="麻婆豆腐" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">麻婆豆腐</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">麻婆豆腐</h3>
                         <p class="text-sm text-gray-400 mb-2">川菜经典</p>
-                        <p class="text-sm mb-3">嫩豆腐与肉末烹制，麻辣鲜香，口感丰富。</p>
+                        <p class="text-xs md:text-sm mb-3">嫩豆腐与肉末烹制，麻辣鲜香，口感丰富。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥38</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品5 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img2.baidu.com/it/u=2583054342,3421566576&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=333" alt="回锅肉" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">回锅肉</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">回锅肉</h3>
                         <p class="text-sm text-gray-400 mb-2">川菜家常</p>
-                        <p class="text-sm mb-3">先煮后炒的猪肉，与青椒、蒜苗同炒，香气四溢。</p>
+                        <p class="text-xs md:text-sm mb-3">先煮后炒的猪肉，与青椒、蒜苗同炒，香气四溢。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥58</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品6 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img1.baidu.com/it/u=2950845447,4276588530&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500" alt="糖醋里脊" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">糖醋里脊</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">糖醋里脊</h3>
                         <p class="text-sm text-gray-400 mb-2">经典中式菜品</p>
-                        <p class="text-sm mb-3">酥脆外皮包裹嫩滑猪里脊，搭配甜酸口感，老少皆宜。</p>
+                        <p class="text-xs md:text-sm mb-3">酥脆外皮包裹嫩滑猪里脊，搭配甜酸口感，老少皆宜。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥48</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品7 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img1.baidu.com/it/u=2717605803,1902140955&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=375" alt="口水鸡" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">口水鸡</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">口水鸡</h3>
                         <p class="text-sm text-gray-400 mb-2">川菜冷菜</p>
-                        <p class="text-sm mb-3">鸡肉嫩滑，特色麻辣酱汁浇在上面，香辣爽口。</p>
+                        <p class="text-xs md:text-sm mb-3">鸡肉嫩滑，特色麻辣酱汁浇在上面，香辣爽口。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥48</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★☆</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 菜品8 -->
                 <div class="dish-card thin-border rounded-2xl overflow-hidden card">
-                    <div class="h-48 overflow-hidden">
+                    <div class="h-40 md:h-48 overflow-hidden">
                         <img src="https://img0.baidu.com/it/u=363252128,1916389243&fm=253&fmt=auto&app=138&f=JPEG?w=713&h=500" alt="干锅牛肉" class="w-full h-full object-cover">
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-bold mb-1">干锅牛肉</h3>
+                        <h3 class="text-lg md:text-xl font-bold mb-1">干锅牛肉</h3>
                         <p class="text-sm text-gray-400 mb-2">湘菜热门菜品</p>
-                        <p class="text-sm mb-3">铁锅干香牛肉，配以青红椒和各种香料爆炒，香辣过瘾。</p>
+                        <p class="text-xs md:text-sm mb-3">铁锅干香牛肉，配以青红椒和各种香料爆炒，香辣过瘾。</p>
                         <div class="flex items-center justify-between">
                             <span class="tesla-red font-bold">¥98</span>
-                            <span class="text-sm bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
+                            <span class="text-xs bg-black border border-gray-800 px-2 py-1 rounded-full">推荐指数 ★★★★★</span>
                         </div>
                     </div>
                 </div>
@@ -381,21 +373,21 @@
 
     <!-- Map and Conclusion Section -->
     <section class="scroll-section">
-        <div class="container mx-auto px-4 py-24">
-            <div class="bento-grid">
-                <div class="col-span-12 md:col-span-7 thin-border rounded-2xl overflow-hidden card relative" style="height: 480px;">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="grid grid-cols-12 gap-4 md:gap-6">
+                <div class="col-span-12 md:col-span-7 thin-border rounded-2xl overflow-hidden card relative h-72 md:h-96 lg:h-[480px]">
                     <img src="https://webapi.amap.com/maps?v=1.4.15&key=92648eec3697c248b77bb391c32bb3a0&size=750*500&scale=2&zoom=15&center=114.086,22.545&markers=mid,0xFF0000,A:114.086116,22.545632|mid,0xFF0000,B:114.086251,22.545689|mid,0xFF0000,C:114.088057,22.541031" alt="地图" class="w-full h-full object-cover">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
-                        <h3 class="text-2xl font-bold mb-2">华强北美食地图</h3>
-                        <p class="text-sm">A: 农耕记·湖南土菜 | B: 费大厨辣椒炒肉 | C: 知椒·地道湘菜</p>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-bold mb-2">华强北美食地图</h3>
+                        <p class="text-xs md:text-sm">A: 农耕记·湖南土菜 | B: 费大厨辣椒炒肉 | C: 知椒·地道湘菜</p>
                     </div>
                 </div>
                 
-                <div class="col-span-12 md:col-span-5 flex flex-col gap-6">
-                    <div class="thin-border rounded-2xl p-8 card h-1/2">
-                        <div class="mega-text tesla-red">3</div>
-                        <h3 class="text-2xl font-bold mb-4">地点推荐</h3>
-                        <ul class="space-y-3">
+                <div class="col-span-12 md:col-span-5 flex flex-col gap-4 md:gap-6">
+                    <div class="thin-border rounded-2xl p-6 md:p-8 card flex-grow">
+                        <div class="text-6xl md:text-7xl lg:text-[10rem] font-extrabold leading-[0.9] tesla-red">3</div>
+                        <h3 class="text-xl md:text-2xl font-bold mb-4">地点推荐</h3>
+                        <ul class="space-y-2 md:space-y-3 text-sm md:text-base">
                             <li class="flex items-center">
                                 <i class="fas fa-check-circle tesla-red mr-2"></i>
                                 <span>华强北茂业天地，8-9楼有两家优质川湘菜餐厅</span>
@@ -411,20 +403,20 @@
                         </ul>
                     </div>
                     
-                    <div class="thin-border rounded-2xl p-8 card bg-gradient-to-br from-black to-black h-1/2 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-48 h-48 bg-tesla-red opacity-10 rounded-full -mr-16 -mt-16"></div>
+                    <div class="thin-border rounded-2xl p-6 md:p-8 card bg-gradient-to-br from-black to-black flex-grow relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-tesla-red opacity-10 rounded-full -mr-12 -mt-12 md:-mr-16 md:-mt-16"></div>
                         <div class="relative z-10">
-                            <h3 class="text-2xl font-bold mb-4">最终推荐</h3>
-                            <p class="mb-6">综合考虑交通和餐厅质量，推荐选择<span class="tesla-red font-bold">茂业天地的费大厨辣椒炒肉</span>作为聚餐地点。</p>
-                            <div class="flex items-center space-x-2">
+                            <h3 class="text-xl md:text-2xl font-bold mb-4">最终推荐</h3>
+                            <p class="mb-4 md:mb-6 text-sm md:text-base">综合考虑交通和餐厅质量，推荐选择<span class="tesla-red font-bold">茂业天地的费大厨辣椒炒肉</span>作为聚餐地点。</p>
+                            <div class="flex items-center space-x-2 text-sm md:text-base">
                                 <i class="fas fa-star tesla-red"></i>
                                 <span>评分最高: 4.7分</span>
                             </div>
-                            <div class="flex items-center space-x-2 mt-2">
+                            <div class="flex items-center space-x-2 mt-2 text-sm md:text-base">
                                 <i class="fas fa-subway tesla-red"></i>
                                 <span>地铁直达，位于华强北核心区</span>
                             </div>
-                            <div class="flex items-center space-x-2 mt-2">
+                            <div class="flex items-center space-x-2 mt-2 text-sm md:text-base">
                                 <i class="fas fa-utensils tesla-red"></i>
                                 <span>正宗川湘风味，价格适中</span>
                             </div>
@@ -460,4 +452,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
