@@ -3,169 +3,175 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>深圳程序员技术交流群2.0🐶🐶 - 群聊周报 V5 (06.11-06.17 Data)</title>
+    <title>深圳程序员技术交流群3.0 - 群聊周报 V6 (06.19-06.23 Data)</title>
     <script src="https://cdn.tailwindcss.com/3.4.3"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.2.10/motion.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
       body {
-        background-color: #f9fafb; /* Light gray background */
-        color: #11182c; /* Dark gray text */
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-          sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+        background-color: #0d1117; /* Dark background */
+        color: #c9d1d9; /* Light text */
+        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+          Arial, sans-serif;
         overflow-x: hidden;
       }
-      .text-tesla-red {
-        color: #e31937;
-      }
-      .bg-tesla-red {
-        background-color: #e31937;
-      }
-      .border-tesla-red {
-        border-color: #e31937;
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
       }
 
+      .text-cyber-cyan { color: #22d3ee; }
+      .bg-cyber-cyan { background-color: #22d3ee; }
+      .border-cyber-cyan { border-color: #22d3ee; }
+      .text-cyber-magenta { color: #f472b6; }
+      .bg-cyber-magenta { background-color: #f472b6; }
+      .border-cyber-magenta { border-color: #f472b6; }
+
       .bento-card {
-        background-color: #ffffff; /* White card */
+        background-color: rgba(31, 41, 55, 0.5); /* Semi-transparent dark card */
         border-radius: 16px;
         padding: 2rem;
-        border: 1px solid #e5e7eb; /* Lighter border */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+        border: 1px solid rgba(107, 114, 128, 0.2); /* Subtle border */
+        box-shadow: 0 0 15px rgba(34, 211, 238, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         overflow: hidden;
         position: relative;
-        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
       }
       .bento-card:hover {
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 10px rgba(244, 114, 182, 0.1);
+        border-color: rgba(34, 211, 238, 0.4);
       }
       .bento-card::before {
         content: '';
         position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+        top: 0; right: 0; bottom: 0; left: 0;
         z-index: -1;
-        margin: -1px; /* To create an outer border effect */
+        margin: -1px;
         border-radius: inherit;
-        background: linear-gradient(135deg, rgba(227, 25, 55, 0.25), rgba(227, 25, 55, 0.05), rgba(227, 25, 55, 0.25));
-        background-size: 300% 300%; /* Increased size for smoother animation */
-        animation: gradientShift 8s ease infinite; /* Slower, smoother animation */
-        opacity: 0.7;
+        background: radial-gradient(circle at var(--x) var(--y), rgba(34, 211, 238, 0.25), rgba(34, 211, 238, 0.05), transparent 40%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
       }
-
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+      .bento-card:hover::before {
+        opacity: 1;
       }
 
       .topic-title-cn {
-        font-size: 2rem;
-        line-height: 2.5rem;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.75rem;
+        line-height: 2.25rem;
         font-weight: 700;
-        color: #e31937; /* Tesla Red for titles */
+        color: #22d3ee; /* Cyber Cyan */
+        text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
       }
       .topic-title-en {
         font-size: 0.8rem;
-        color: #6b7280; /* Medium gray subtitle */
+        color: #9ca3af; /* Lighter gray subtitle */
         margin-top: 0.25rem;
         text-transform: uppercase;
-        letter-spacing: 0.075em;
+        letter-spacing: 0.1em;
       }
       .section-label {
         font-size: 0.9rem;
         font-weight: 600;
-        color: #d62828; /* Slightly darker red for labels on white */
+        color: #f472b6; /* Cyber Magenta */
         margin-bottom: 0.25rem;
         display: block;
       }
       .content-text {
-        color: #374151; /* Darker content text */
+        color: #d1d5db; /* Lighter content text */
         line-height: 1.7;
         font-size: 0.95rem;
       }
       .participant-tag {
-        background-color: rgba(227, 25, 55, 0.1);
-        color: #b91c1c; /* Darker red text */
+        background-color: rgba(34, 211, 238, 0.1);
+        color: #a5f3fc;
         padding: 0.25rem 0.6rem;
         border-radius: 9999px;
         font-size: 0.8rem;
         margin-right: 0.4rem;
         margin-bottom: 0.4rem;
         display: inline-block;
-        border: 1px solid rgba(227, 25, 55, 0.2);
+        border: 1px solid rgba(34, 211, 238, 0.2);
         transition: all 0.2s ease-in-out;
       }
       .participant-tag:hover {
-        background-color: rgba(227, 25, 55, 0.2);
-        color: #a01515; 
+        background-color: rgba(34, 211, 238, 0.2);
+        color: #fff;
         transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-shadow: 0 0 5px #22d3ee;
       }
       .evaluation-text {
         font-style: normal;
-        color: #4b5563; /* Dark gray evaluation text */
-        border-left: 3px solid #e31937;
+        color: #e5e7eb;
+        border-left: 3px solid #22d3ee;
         padding-left: 1rem;
         margin-top: 0.75rem;
-        background-color: rgba(227, 25, 55, 0.04); /* Very light red bg */
+        background-color: rgba(34, 211, 238, 0.08); /* Very light cyan bg */
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
         border-radius: 0 8px 8px 0;
       }
-      .fire-icon {
-        color: #e31937;
-        opacity: 0.8;
-        margin-left: 0.25rem;
-      }
-      .fire-icon i {
-         transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
-      }
-      .topic-title-cn:hover .fire-icon i {
-        transform: scale(1.15);
-        color: #bf1a2f; /* Darker Tesla Red */
-      }
       .card-hr {
-        border-color: #e5e7eb; /* Lighter HR */
+        border-color: rgba(107, 114, 128, 0.2); /* Darker HR */
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
       }
       .speaker-bar-bg {
-        background-color: #e5e7eb; /* Light gray bar bg */
+        background-color: #374151; /* Dark gray bar bg */
         height: 10px;
         border-radius: 5px;
         overflow: hidden;
         margin-top: 0.25rem;
       }
       .speaker-bar-fill {
-        background-color: #e31937;
+        background: linear-gradient(90deg, #f472b6, #22d3ee); /* Magenta to Cyan gradient */
         height: 100%;
         border-radius: 5px;
-        transition: width 0.5s ease-in-out;
+        transition: width 0.8s ease-in-out;
       }
       .stat-number-large {
         font-size: 4.5rem;
         font-weight: 800;
         line-height: 1;
-        color: #e31937;
-        text-shadow: none; /* Removed shadow for light theme */
+        color: #22d3ee;
+        text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
       }
       .keyword-tag {
-        background-color: rgba(227, 25, 55, 0.08);
-        color: #c72f2f;
+        background-color: rgba(244, 114, 182, 0.1);
+        color: #f9a8d4;
         padding: 0.3rem 0.7rem;
         border-radius: 8px;
         font-size: 0.9rem;
         margin: 0.25rem;
         display: inline-block;
-        border: 1px solid rgba(227, 25, 55, 0.15);
+        border: 1px solid rgba(244, 114, 182, 0.2);
         transition: all 0.2s ease-in-out;
       }
       .keyword-tag:hover {
-        background-color: rgba(227, 25, 55, 0.15);
-        color: #a01515;
+        background-color: rgba(244, 114, 182, 0.2);
+        color: #fce7f3;
         transform: scale(1.05);
+        text-shadow: 0 0 5px #f472b6;
+      }
+      .main-title {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid rgba(34, 211, 238, 0.75);
+        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: rgba(34, 211, 238, 0.75); }
       }
     </style>
   </head>
@@ -177,12 +183,11 @@
         :initial="{ opacity: 0, y: 30 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.6, delay: 0.1 }"
-        whileHover={{ scale: 1.02 }}
       >
-        <h2 class="topic-title-cn text-tesla-red">深圳程序员技术交流群周报 (06.11 - 06.17)</h2>
-        <p class="topic-title-en">SHENZHEN PROGRAMMERS TECHNICAL EXCHANGE GROUP WEEKLY (JUNE 11TH - 17TH)</p>
+        <h2 class="topic-title-cn text-cyber-cyan main-title">深圳程序员技术交流群周报 (06.19 - 06.23)</h2>
+        <p class="topic-title-en">SHENZHEN PROGRAMMERS TECHNICAL EXCHANGE GROUP WEEKLY (JUNE 19TH - 23RD)</p>
         <p class="content-text mt-4 text-base md:text-lg">
-          本周群聊在<strong class="text-gray-900 font-semibold">“抓马”与温情</strong>的交织中，呈现了一幅当代程序员社群的生动浮世绘。周二（06.11），<strong class="text-gray-900 font-semibold">群主“宇宙第一hr”(小红)的戏剧性退群与回归</strong>，如同一场行为艺术，瞬间点燃了群内气氛，成为全周最令人津津乐道的“大瓜”。此事件不仅引发了权力真空期的短暂狂欢，更开启了贯穿全周的<strong class="text-gray-900 font-semibold">“亲密关系大讨论”</strong>。从婚姻的意义、生育的责任，到恋爱中的情绪价值与边界感，群友们以极大的热情投入到这场情感思辨中，展现了当代青年在个人幸福与社会期待间的挣扎与思考。职场方面，<strong class="text-gray-900 font-semibold">对裁员、内卷、外包困境的吐槽与焦虑</strong>是永恒的背景音，而关于“年终奖”的讨论则精准地触动了打工人的敏感神经。在温情与关怀层面，<strong class="text-gray-900 font-semibold">“金华”突发性耳聋的健康事件</strong>，让群聊从插科打诨模式迅速切换至“赛博会诊”，群友们的关心与建议汇聚成一股暖流。此外，技术交流、旅游分享、美食诱惑、沙雕表情包等多元内容穿插其间，共同构筑了一个<strong class="text-gray-900 font-semibold">既能“开车”又能思辨，既能吃瓜又能送暖</strong>的，充满生命力的社群空间。
+          本周的群聊，是一部交织着<strong class="text-cyber-cyan font-semibold">“职场残酷物语”</strong>与<strong class="text-cyber-magenta font-semibold">“赛博温情”</strong>的现实主义大片。周三，“前端当保安”老哥的真实经历，将“程序员尽头是保安”的段子血淋淋地照进现实，引发了群内对职业出路与生存底线的深刻共鸣。对<strong class="text-gray-100 font-semibold">加班、通勤、外包困境</strong>的吐槽，如同永不间断的背景BGM，精准地描绘了当代打工人的集体焦虑。然而，戏剧性从未缺席：周三晚，<strong class="text-cyber-cyan font-semibold">“小白君”因言语冲突将“银华（金华）”一脚踢出群聊</strong>，上演了一出权力交替下的“快意恩仇”，为严肃的职场讨论注入了熟悉的“抓马”味道。情感与生活层面，<strong class="text-cyber-magenta font-semibold">“暖暖”分享的家庭变故</strong>，让群聊瞬间从调侃模式切换至深度共情，群友们对“生老病死”、“丁克养老”等终极议题的探讨，展现了社群的温暖与厚度。而贯穿全周的<strong class="text-gray-100 font-semibold">明星八卦、怀旧动漫、潮玩吐槽</strong>，以及对“捞女游戏”的好奇，则为这幅沉重的浮世绘增添了轻松的亮色，共同构筑了一个<strong class="text-gray-100 font-semibold">既能仰望星空又能脚踏实地，既能直面惨淡又能插科打诨</strong>的，充满韧性的数字家园。
         </p>
       </motion.div>
 
@@ -190,83 +195,111 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         <motion.div
-          class="bento-card md:col-span-2 lg:col-span-3" 
+          class="bento-card"
           :initial="{ opacity: 0, y: 20 }"
           :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-          whileHover={{ scale: 1.02 }}
+          :transition="{ duration: 0.5, delay: 0.2 }"
         >
           <h2 class="topic-title-cn">
-            1️⃣ 本周大戏：群主的退位风暴 & 权力真空期的狂欢
-            <span class="fire-icon"
-              ><i class="fas fa-crown"></i><i class="fas fa-door-open"></i><i class="fas fa-bomb"></i
-            ></span>
+            1️⃣ 前端当保安：从段子到现实
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-user-shield"></i><i class="fas fa-moon"></i><i class="fas fa-hand-holding-dollar"></i>
+            </span>
           </h2>
-          <p class="topic-title-en">THE MAIN EVENT: THE OWNER'S DEPARTURE & THE POWER VACUUM CARNIVAL (JUNE 11TH)</p>
+          <p class="topic-title-en">FROM JOKE TO REALITY: THE FRONT-END DEV AS A SECURITY GUARD</p>
           <hr class="card-hr" />
           <div>
-            <span class="section-label">核心人物：</span><span class="participant-tag">宇宙第一hr (小红)</span> <span class="participant-tag">AAA建材王哥</span><br>
+            <span class="section-label">核心人物：</span><span class="participant-tag">前端当保安</span><br>
             <span class="section-label mt-2">关键参与者：</span>
             <div class="flex flex-wrap">
-             <span class="participant-tag">鸭鸭</span> <span class="participant-tag">青木（群薪资地花板）</span> <span class="participant-tag">金华</span> <span class="participant-tag">六号技师</span> <span class="participant-tag">纯情蟑螂火辣辣</span> <span class="participant-tag">那个老卢</span> <span class="participant-tag">灵魂写手</span>
+             <span class="participant-tag">六号技师</span> <span class="participant-tag">靓仔</span> <span class="participant-tag">暖暖</span> <span class="participant-tag">小白君</span> <span class="participant-tag">非凡哥</span>
             </div>
           </div>
           <div class="mt-4">
             <span class="section-label">时间：</span>
-            <span class="content-text">06.11 17:31 - 19:43</span>
+            <span class="content-text">06.19 上午</span>
           </div>
           <p class="section-label mt-4">过程：</p>
           <p class="content-text">
-            周二下午，因一句“把你踢出去”的玩笑话，群主“宇宙第一hr”竟真的以“满足你们就是”的姿态退群，引爆了本周最精彩的群内大戏。
-            <ul class="list-disc list-inside ml-4 mt-2 space-y-2">
-              <li><strong>权力真空期狂欢</strong>：群主之位自动转让给“AAA建材王哥”，群内瞬间进入“无政府状态”。群友们高呼“小红不在，表弟可以说了”，纷纷要求新群主“加大力度”，发黄图、拉新人，气氛瞬间活跃到顶点。</li>
-              <li><strong>“大赦天下”</strong>：在新群主治下，之前因“涉黄”被踢的律师“那个老卢”被“六号技师”重新邀请入群，实现了“三进三出”的壮举。群友还提议拉回“星火哥”、“家乐”等已退群成员。</li>
-              <li><strong>小白“称王”</strong>：小红退群后，“纯情蟑螂火辣辣”开玩笑称“山中无小红，小白称大王”，并短暂扮演起“秩序维护者”的角色，试图“禁止”大家发黄图。</li>
-              <li><strong>王者归来</strong>：19:43，在“灵魂写手”的邀请下，“宇宙第一hr”重新加入群聊，并改名“小红君👻”。群内气氛恢复正常，大家纷纷欢迎“新群友”，并调侃她发红包。群主之位也在次日和平交还。</li>
-            </ul>
+            周三上午，群友“前端当保安”透露自己真的去当了保安，并准备月底离职，瞬间引爆了群聊。他揭示了这份工作的残酷现实：<strong class="text-cyber-cyan">工资低（日薪100出头）、屁事多、罚款重（动辄200）</strong>，远非网上传言的“少走四十年弯路”的美差。这位拥有6年前端经验、29岁的程序员，因“没钱吃饭”而选择放下身段，引发了群友的集体共情与唏嘘。大家从最初的调侃 disbelief，转为对现实的感慨：“养活自己比什么都重要”。
           </p>
           <p class="section-label mt-4">评价：</p>
           <p class="evaluation-text">
-            今日的绝对核心事件，充满了戏剧性和娱乐性。群主的突然退群和回归，不仅是一次个人情绪的表达，更像一场大型的行为艺术，激发了群成员在“权力真空”下的集体狂欢。整个过程充分展现了群内成员关系的亲密与复杂，以及社群强大的自愈和调节能力。
+            本周最具现实冲击力的话题。它将一个网络梗活生生地呈现在群友面前，戳破了关于“退路”的幻想，深刻反映了当前就业市场的严峻与个体生存的艰难。这场讨论充满了对尊严、生计与选择的思考，是社群作为“社会切片”功能的绝佳体现。
           </p>
         </motion.div>
-
+        
         <motion.div
           class="bento-card"
           :initial="{ opacity: 0, y: 20 }"
           :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.1 }}"
-          whileHover={{ scale: 1.02 }}
+          :transition="{ duration: 0.5, delay: 0.25 }"
         >
           <h2 class="topic-title-cn">
-            2️⃣ 脆皮打工人的赛博门诊
-            <span class="fire-icon"
-              ><i class="fas fa-user-injured"></i><i class="fas fa-stethoscope"></i><i class="fas fa-pills"></i
-            ></span>
+            2️⃣ 小白之怒：一脚踢飞金华
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-user-slash"></i><i class="fas fa-gavel"></i><i class="fas fa-bomb"></i>
+            </span>
           </h2>
-          <p class="topic-title-en">CYBER-CLINIC FOR THE "CRISPY" WORKERS</p>
+          <p class="topic-title-en">XIAOBAI'S WRATH: KICKING OUT JINHUA</p>
           <hr class="card-hr" />
           <div>
-            <span class="section-label">病友们：</span>
+            <span class="section-label">核心人物：</span><span class="participant-tag">小白君</span> <span class="participant-tag">金华 (银华)</span><br>
+            <span class="section-label mt-2">围观群众：</span>
             <div class="flex flex-wrap">
-              <span class="participant-tag">金华</span>
-              <span class="participant-tag">纯情蟑螂火辣辣</span>
-              <span class="participant-tag">小红君👻</span>
-              <span class="participant-tag">磊子</span>
-              <span class="participant-tag">十哥</span>
+              <span class="participant-tag">皇帝</span> <span class="participant-tag">91杜金华</span> <span class="participant-tag">不锈钢华</span> <span class="participant-tag">灵魂写手</span> <span class="participant-tag">我/双</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <span class="section-label">时间：</span>
+            <span class="content-text">06.19 17:53 - 18:15</span>
+          </div>
+          <p class="section-label mt-4">过程：</p>
+          <p class="content-text">
+            周三傍晚，群内爆发了一场“权力的游戏”。起因是“小白君”与“金华”在闲聊中就“世界上最好看的人”产生口角，“金华”一句“不应该是你爹吗”的玩笑彻底点燃了“小白君”的怒火。在回敬一句“是你爹！是你祖宗八辈儿”和“傻x”后，“小白君”动用管理员权限，果断将“金华”移出群聊，并直言“早就看他不顺眼，今天撞我枪口上，公报私仇了”。此举引发群内短暂震惊，随后“91杜金华”在次日将“金华”重新拉回，事件和平落幕。
+          </p>
+          <p class="section-label mt-4">评价：</p>
+          <p class="evaluation-text">
+            一场由玩笑话升级的突发性群内冲突，充分展现了管理员“公器私用”的快意恩仇。事件虽小，但过程极具戏剧性，暴露了群友间亲密关系下的真实情绪和“权力”的任性。这是本周最刺激的“抓马”时刻。
+          </p>
+        </motion.div>
+        
+        <motion.div
+          class="bento-card"
+          :initial="{ opacity: 0, y: 20 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
+          :transition="{ duration: 0.5, delay: 0.3 }"
+        >
+          <h2 class="topic-title-cn">
+            3️⃣ 职场众生相：卷、躺与求生
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-briefcase"></i><i class="fas fa-bed"></i><i class="fas fa-person-running"></i>
+            </span>
+          </h2>
+          <p class="topic-title-en">THE CORPORATE SPECTRUM: GRIND, CHILL & SURVIVE</p>
+          <hr class="card-hr" />
+          <div>
+            <span class="section-label">吐槽主力：</span>
+            <div class="flex flex-wrap">
+              <span class="participant-tag">虾华</span> <span class="participant-tag">暖暖</span> <span class="participant-tag">皇帝</span> <span class="participant-tag">小白君</span> <span class="participant-tag">不锈钢华</span>
             </div>
           </div>
           <div class="mt-4">
             <span class="section-label">时间段：</span>
-            <span class="content-text">06.14 - 06.16</span>
+            <span class="content-text">贯穿全周</span>
           </div>
           <p class="section-label mt-4">过程：</p>
           <p class="content-text">
-            本周群聊化身线上诊室，集中爆发了对“脆皮”身体状况的讨论。周五晚，“金华”在健身后突发耳聋耳鸣，紧急就医并直播病情，最终确诊“突发性耳聋”，引发全群关注。群友们从插科打诨模式秒切关心模式。此事也引出了一系列健康焦虑：小红分享了男友“磊子”运动受伤的“脆皮”状态；“纯情蟑螂火辣辣”在办公室突发眩晕；“十哥”感叹年纪轻轻一身病。大家就医院选择、治疗方案（针灸 vs 西医）、病耻感等进行了深入交流。
+            本周职场话题依然是焦虑与无奈的主旋律。
+            <ul class="list-disc list-inside ml-4 mt-2 space-y-2 content-text">
+                <li><strong class="text-cyber-cyan">卷不动了</strong>：“虾华”和“暖暖”因通勤时间过长（来回2.5小时）和无休止的加班而身心俱疲，纷纷动了“摆烂等被裁”的念头。</li>
+                <li><strong class="text-cyber-cyan">新工作的坑</strong>：“皇帝（小红）”入职新公司，第一天就被要求下班后对需求，同事100多个需求待对接到深夜，让她“刚入职就想跑路”。</li>
+                <li><strong class="text-cyber-cyan">奇葩招聘</strong>：“小白君”分享了boss直聘上的各种奇葩招聘，如“得过诺贝尔奖优先”、“20岁以下30年经验”，甚至有骗人去做“不正当行业”的陷阱。</li>
+            </ul>
           </p>
           <p class="section-label mt-4">评价：</p>
           <p class="evaluation-text">
-            “脆皮”已经成为当代年轻人的共同标签。此次集体“问诊”真实地反映了高压工作下的健康焦虑。群友间的相互关心和建议，使得冰冷的屏幕充满了人情味，是社群支持功能的最佳体现。
+            群聊是当代职场人的情绪垃圾桶和信息交换站。从996的疲惫，到职场PUA的愤怒，再到对未来的迷茫，群友们的分享构成了“打工人宇宙”的真实写照，充满了强烈的共鸣。
           </p>
         </motion.div>
 
@@ -275,37 +308,33 @@
           :initial="{ opacity: 0, y: 20 }"
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.5, delay: 0.15 }"
-          whileHover={{ scale: 1.02 }}
         >
           <h2 class="topic-title-cn">
-            3️⃣ 婚恋观大辩论
-            <span class="fire-icon"
-              ><i class="fas fa-ring"></i><i class="fas fa-baby-carriage"></i><i class="fas fa-question"></i
-            ></span>
+            4️⃣ "钞能力"传说：李总的商业帝国
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-sack-dollar"></i><i class="fas fa-chart-line"></i><i class="fas fa-crown"></i>
+            </span>
           </h2>
-          <p class="topic-title-en">THE GREAT DEBATE ON LOVE & MARRIAGE</p>
+          <p class="topic-title-en">LEGEND OF "CASH POWER": MR. LI'S BUSINESS EMPIRE</p>
           <hr class="card-hr" />
           <div>
-            <span class="section-label">辩手：</span>
+            <span class="section-label">核心人物：</span><span class="participant-tag">测试乙木. (李总)</span><br>
+            <span class="section-label mt-2">围观群众：</span>
             <div class="flex flex-wrap">
-              <span class="participant-tag">陈先生</span>
-              <span class="participant-tag">晚卿^_^</span>
-              <span class="participant-tag">暖暖</span>
-              <span class="participant-tag">宇宙第一hr</span>
-              <span class="participant-tag">全体群友</span>
+              <span class="participant-tag">小白君</span> <span class="participant-tag">鸭鸭</span> <span class="participant-tag">我/双</span> <span class="participant-tag">精华（群薪资地花板）</span>
             </div>
           </div>
           <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.13, 06.16 (高峰)</span>
+            <span class="section-label">时间：</span>
+            <span class="content-text">06.19 - 06.21</span>
           </div>
           <p class="section-label mt-4">过程：</p>
           <p class="content-text">
-            本周后半段，群内爆发了关于婚恋和生育的激烈大讨论。“陈先生”分享了自己和女友“不想结婚，但想要孩子”的独特状态，引发了关于婚姻意义的探讨。“晚卿”则表达了对婚姻的排斥和对单身生娃的向往（但因经济条件所限），而“暖暖”和“小红”则分享了各自恋爱中的甜蜜与烦恼。群友们围绕“先孕后婚”、“丁克”、“催婚压力”、“生育责任”等话题展开了唇枪舌战，观点从传统到前卫，交锋异常精彩。
+             继上周之后，“李总”的“钞能力”传说继续上演。周三上午，他晒出一张当日销售额高达<strong class="text-cyber-cyan">73万</strong>的截图，并淡定表示“昨天服务器干冒烟了”，瞬间引爆全场。群友们纷纷膜拜，高呼“Li, please 带带 me”、“师妹错失大腿”，并迅速制作了“我最崇拜的人：李总”的新表情包。此后，“李总”又在周五晒出“又爆单了”的截图，其强大的赚钱能力与群内普遍的职场焦虑形成鲜明对比，成为一道独特的风景线。
           </p>
           <p class="section-label mt-4">评价：</p>
           <p class="evaluation-text">
-            一场关于现代亲密关系的全方位头脑风暴。讨论的深度和广度都堪称本周之最，展现了群友们在个人幸福、家庭责任和社会期待之间的复杂思考。这不仅是八卦，更是对生活方式的严肃探索。
+            李总是群内的“都市传说”和“财神爷”。他的成功为充满“班味”的群聊提供了一种另类的想象和精神寄托。围绕他的讨论，充满了敬仰、调侃和对财富的向往，是群聊中最具爽感的环节。
           </p>
         </motion.div>
         
@@ -314,37 +343,33 @@
           :initial="{ opacity: 0, y: 20 }"
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.5, delay: 0.2 }"
-          whileHover={{ scale: 1.02 }}
         >
           <h2 class="topic-title-cn">
-            4️⃣ 职场风云：裁员与求生
-            <span class="fire-icon"
-              ><i class="fas fa-user-slash"></i><i class="fas fa-handshake-slash"></i><i class="fas fa-search-dollar"></i
-            ></span>
+            5️⃣ 家庭、婚恋与人生的沉重一课
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-house-crack"></i><i class="fas fa-heart-crack"></i><i class="fas fa-book-dead"></i>
+            </span>
           </h2>
-          <p class="topic-title-en">CORPORATE DRAMA: LAYOFFS & SURVIVAL</p>
+          <p class="topic-title-en">A HEAVY LESSON ON FAMILY, LOVE & LIFE</p>
           <hr class="card-hr" />
           <div>
-            <span class="section-label">参与者：</span>
+            <span class="section-label">分享者：</span><span class="participant-tag">暖暖</span><br>
+            <span class="section-label mt-2">参与者：</span>
             <div class="flex flex-wrap">
-              <span class="participant-tag">金华</span>
-              <span class="participant-tag">拱虾米的佩奇</span>
-              <span class="participant-tag">宇宙第一hr</span>
-              <span class="participant-tag">杨笑笑</span>
-              <span class="participant-tag">青木（群薪资地花板）</span>
+              <span class="participant-tag">虾华</span> <span class="participant-tag">小白君</span> <span class="participant-tag">测试转保安</span> <span class="participant-tag">全体群友</span>
             </div>
           </div>
           <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.14, 06.17 (高峰)</span>
+            <span class="section-label">时间：</span>
+            <span class="content-text">06.19 上午</span>
           </div>
           <p class="section-label mt-4">过程：</p>
           <p class="content-text">
-            本周的职场话题充满了“寒气”。周五，“金华”透露其公司的八年老外包同事被裁，引发群内对外包岗位稳定性的担忧。周一，“拱虾米的佩奇”因公司未发年终奖而开始更新简历，将裁员焦虑推向高潮。与此同时，群主“小红”持续更新其在武汉的求职困境，表示许多岗位要求苛刻（如全能型HR、年龄限制），甚至外包岗也提高了门槛。这些事件与日常的公司吐槽（如老板巡逻、新员工被火速开除）交织，描绘了一幅严峻的职场生存图景。
+            本周群内上演了温情与沉重交织的一幕。周三上午，“暖暖”分享了家中遭遇的变故：年过八旬的爷爷（爹爹）吞安眠药自杀，虽暂无生命危险，但此事叠加父母闹离婚，让她备受打击。她坦言“今年对我来说挺难的”，并感慨“养儿并不防老”。这一沉重话题让群聊气氛瞬间凝重，群友们纷纷表达关心，并由此展开了对“丁克”、“老人养老”、“生老病死”等人生终极议题的深入探讨。
           </p>
           <p class="section-label mt-4">评价：</p>
           <p class="evaluation-text">
-            真实、残酷且充满共鸣。群聊成为了职场人交换“伤痛文学”的树洞，通过信息共享和相互慰藉，群友们在不确定的环境中抱团取暖，共同抵御外部世界的寒意。
+            一次极其深刻和沉重的生活剖白。它超越了日常的插科打诨，触及了每个人都无法回避的家庭与生命议题。群友们的共情与思考，展现了社群作为情感支持共同体的强大能量，是本周最具深度和温度的时刻。
           </p>
         </motion.div>
         
@@ -353,200 +378,33 @@
           :initial="{ opacity: 0, y: 20 }"
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.5, delay: 0.25 }"
-          whileHover={{ scale: 1.02 }}
         >
           <h2 class="topic-title-cn">
-            5️⃣ 全员变“华”：一场头像引发的集体狂欢
-            <span class="fire-icon"
-              ><i class="fas fa-theater-masks"></i><i class="fas fa-users"></i><i class="fas fa-id-card"></i
-            ></span>
+            6️⃣ 俊宇的情感连续剧
+            <span class="fire-icon text-cyber-magenta ml-2">
+              <i class="fas fa-theater-masks"></i><i class="fas fa-face-angry"></i><i class="fas fa-face-kiss-wink-heart"></i>
+            </span>
           </h2>
-          <p class="topic-title-en">THE "HUA" CLAN: A CARNIVAL OF NICKNAMES</p>
+          <p class="topic-title-en">JUNYU'S ONGOING RELATIONSHIP DRAMA</p>
           <hr class="card-hr" />
           <div>
-            <span class="section-label">发起人：</span><span class="participant-tag">金华</span><br>
-            <span class="section-label mt-2">参与者：</span>
+            <span class="section-label">主演：</span><span class="participant-tag">王烁烁</span><br>
+            <span class="section-label mt-2">观众：</span>
             <div class="flex flex-wrap">
-              <span class="participant-tag">银华</span>
-              <span class="participant-tag">铜华</span>
-              <span class="participant-tag">铝华</span>
-              <span class="participant-tag">不锈钢华</span>
-              <span class="participant-tag">铁华</span>
+              <span class="participant-tag">测试失业中～</span> <span class="participant-tag">小白君</span> <span class="participant-tag">皇帝</span> <span class="participant-tag">金华</span> <span class="participant-tag">鸭鸭</span>
             </div>
           </div>
           <div class="mt-4">
             <span class="section-label">时间段：</span>
-            <span class="content-text">06.16 - 06.17</span>
+            <span class="content-text">06.19 - 06.20</span>
           </div>
           <p class="section-label mt-4">过程：</p>
           <p class="content-text">
-            周日（06.16）晚间，一场由“金华”头像引发的集体改名行为艺术席卷全群。在“银华”（原“初会便已许平生”）的带动下，多位活跃群友纷纷将自己的昵称改为带有“华”字的金属名，如“铜华”、“铝华”、“铁华”、“不锈钢华”等，形成了壮观的“元素周期表”队形。这场自发的、无厘头的集体创作，迅速成为当晚的快乐源泉，大家在不断壮大的“华”字辈队伍中互相调侃，气氛十分欢乐。
+            “海王”俊宇的情感大戏本周继续上演。周三，他先是在群里抱怨“女朋友太作怎么办”、“强行找机会生气”，并表示一气之下已让对方删好友。然而画风一转，周四他又开始秀恩爱，晒出女友送的价值近千元的键盘，并得意地表示“吵得越凶越爱不懂吗”。这种“作妖-和好-秀恩爱”的循环往复，让群友们化身情感分析师和吐槽役，直言“群友都是你们play的一环”、“清醒的渣男”，并再次感叹其“百人斩”的传说。
           </p>
           <p class="section-label mt-4">评价：</p>
           <p class="evaluation-text">
-            一次完美的群体行为艺术，充分展现了群友们的幽默感、创造力和高度的集体认同感。这种无意义的狂欢恰恰是社群活力的最佳证明，为一周的紧张话题注入了轻松的润滑剂。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-          whileHover={{ scale: 1.02 }}
-        >
-          <h2 class="topic-title-cn">
-            6️⃣ 俊宇的“高速”时刻
-            <span class="fire-icon"
-              ><i class="fas fa-car-side"></i><i class="fas-regular fa-face-flushed"></i><i class="fas fa-fire"></i
-            ></span>
-          </h2>
-          <p class="topic-title-en">JUNYU'S "HIGH-SPEED" MOMENTS</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">发起人：</span><span class="participant-tag">王烁烁</span><br>
-            <span class="section-label mt-2">参与起哄：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">纯情蟑螂火辣辣</span>
-              <span class="participant-tag">那个老卢</span>
-              <span class="participant-tag">六号技师</span>
-              <span class="participant-tag">初会便已许平生</span>
-              <span class="participant-tag">AAA建材王哥</span>
-              <span class="participant-tag">我 / 双</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.11, 06.16 (贯穿全周)</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            “王烁烁”（俊宇）在本周多次高调“秀恩爱”，但方式极其“低俗”和大胆。他先是发了与女友的牵手照，随后又在周二（06.11）发出一张含有“一小时四次”露骨言论的聊天截图，瞬间引爆全场。群友们纷纷表示“厉害👍🏻”、“一下子上高速了”，并调侃他应该“去日本下海”、“开直播刷火箭”。“纯情蟑螂火辣辣”直言其“低俗”，而“那个老卢”等人则求私信点评，场面一度十分火爆和“污”。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            群内“开车文化”的极致体现。王烁烁的大胆分享成为强力催化剂，引发了一场集体的、充满荷尔蒙气息的调侃狂欢。虽然内容低俗，但极大地活跃了群聊气氛，成为本周不可或缺的“骚话”担当。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.35 }"
-          whileHover={{ scale: 1.02 }}
-        >
-          <h2 class="topic-title-cn">
-            7️⃣ 技术人的“正名之战”
-            <span class="fire-icon"
-              ><i class="fas fa-server"></i><i class="fas fa-code-branch"></i><i class="fas fa-terminal"></i
-            ></span>
-          </h2>
-          <p class="topic-title-en">THE TECHIES' BATTLE FOR NOMENCLATURE</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">参与者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">木得感情的复制和点赞和羡慕机器</span>
-              <span class="participant-tag">大蓝（大宇哥管家）</span>
-              <span class="participant-tag">Deep</span>
-              <span class="participant-tag">金华</span>
-              <span class="participant-tag">AAA建材王哥</span>
-              <span class="participant-tag">拱虾米的佩奇</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.11, 06.16 - 06.17</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周的技术交流集中体现了程序员对“规范”与“效率”的执着。周二（06.11），一张包含“sit”、“uat”、“pre”、“prod”等术语的Git分支流程图，引发了群内对开发环境命名的热烈讨论。周一（06.17），“拱虾米的佩奇”再次就`vue-pdf-signature`插件的预览和下载问题求助，群友们热心提供了替换方案。此外，关于ElementPlus的BUG、GSAP与Lottie的对比等，都展现了技术圈的日常。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次非常典型的程序员技术交流，话题虽小但极具代表性。它反映了软件开发流程在不同公司的多样化实践，也体现了程序员对自己工作领域内“黑话”的敏感和较真，是群聊技术属性的有力证明。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.4 }"
-          whileHover={{ scale: 1.02 }}
-        >
-          <h2 class="topic-title-cn">
-            8️⃣ 消费主义思辨：潮玩与智商税
-            <span class="fire-icon"
-              ><i class="fas fa-robot"></i><i class="fas fa-money-bill-wave"></i><i class="fas fa-question-circle"></i
-            ></span>
-          </h2>
-          <p class="topic-title-en">DEBATING CONSUMERISM: TRENDY TOYS & IQ TAX</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">参与者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">Deep</span>
-              <span class="participant-tag">AAA建材王哥</span>
-              <span class="participant-tag">测试转保安</span>
-              <span class="participant-tag">纯情蟑螂火辣辣</span>
-              <span class="participant-tag">暖暖</span>
-              <span class="participant-tag">金华</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.11, 06.16</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周群内两次对“潮玩”展开了激烈讨论。由一张价值124万的蒙奇奇图片和LABUBU的图片引发，多数群友如“暖暖”表示get不到其美感，认为“丑丑的”。而“AAA建材王哥”和“测试转保安”则一针见血地指出这是“资本做的局”，是一个圈子炒作、击鼓传花的游戏，并感叹“不坑穷人”。周日（06.16），当群内再次出现LABUBU相关视频时，群友们再次对其高昂的价格和营销模式表示不解，讨论热烈。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            话题由现象深入本质，从审美差异聊到资本运作和消费主义陷阱，展现了群友们清醒的思辨能力。讨论热烈，观点鲜明，是一次高质量的社会经济话题探讨。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.45 }"
-          whileHover={{ scale: 1.02 }}
-        >
-          <h2 class="topic-title-cn">
-            9️⃣ 京东小白外卖风云
-            <span class="fire-icon"
-              ><i class="fas fa-motorcycle"></i><i class="fas fa-box-open"></i><i class="fas fa-laugh-beam"></i
-            ></span>
-          </h2>
-          <p class="topic-title-en">THE "JD XIAOBAI" DELIVERY SAGA (JUNE 11TH)</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">参与者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">纯情蟑螂火辣辣</span>
-              <span class="participant-tag">六号技师</span>
-              <span class="participant-tag">我 / 双</span>
-              <span class="participant-tag">AAA建材王哥</span>
-              <span class="participant-tag">迪斯尼在逃公主Vivian</span>
-              <span class="participant-tag">大宇</span>
-              <span class="participant-tag">拱虾米的佩奇</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">06.11 08:19 - 09:06</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            周二早晨，“纯情蟑螂火辣辣”发出一张身穿京东工作服的图片，声称“为了五险一金，冲了！”并开玩笑说今天的外卖由他派送。这迅速引爆群聊，群友们纷纷化身顾客，开始点单各种奇葩物品，如1000斤黄金、五大桶矿泉水、好吃的水果等，并戏谑地表示“小费不用找了”。该梗持续发酵，衍生出“京东小白”、“小白外卖，送啥都快”等群内新词，气氛十分欢乐。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次非常成功的群体角色扮演与造梗狂欢。事件由一张图片轻松开启，展现了群友们极高的互动性和幽默感，为一周的话题定下了轻松的基调。
+            群内固定的情感“抓马”番。王烁烁以其独特的恋爱模式，持续为群聊提供着“又渣又甜”的复杂情感样本，引发了大量关于亲密关系、情绪价值和恋爱技巧的讨论，娱乐效果拉满。
           </p>
         </motion.div>
 
@@ -556,24 +414,24 @@
           :while-in-view="{ opacity: 1, y: 0 }"
           :transition="{ duration: 0.5, delay: 0.35 }"
         >
-          <h2 class="topic-title-cn text-tesla-red">本周其他提及话题</h2>
-          <p class="topic-title-en">OTHER MENTIONED TOPICS OF THE WEEK</p>
+          <h2 class="topic-title-cn text-cyber-cyan">本周其他闪光时刻</h2>
+          <p class="topic-title-en">OTHER HIGHLIGHTS OF THE WEEK</p>
           <hr class="card-hr" />
-          <ul class="list-none content-text mt-4 space-y-2 text-base">
+          <ul class="list-none content-text mt-4 space-y-3 text-base">
             <li class="flex items-start">
-                <i class="fas fa-file-pdf mr-3 mt-1 text-tesla-red opacity-70"></i><span><strong>(06.11) 腾讯“知三当三”瓜：</strong>群友分享并热议了一起腾讯内部的情感纠纷“PDF大瓜”，对当事人的行为和聊天记录进行了犀利的道德评判。</span>
+                <i class="fas fa-gamepad mr-3 mt-1 text-cyber-cyan opacity-70"></i><span><strong>怀旧剧集与游戏大赏：</strong>从《天下第一》到《小鱼儿与花无缺》，从《哆啦A梦》到《数码宝贝》，群友们集体陷入“童年回忆杀”，热烈讨论经典影视剧。同时，对“捞女游戏”的好奇与探讨也贯穿全周。</span>
             </li>
             <li class="flex items-start">
-                <i class="fas fa-rainbow mr-3 mt-1 text-tesla-red opacity-70"></i><span><strong>(06.11) Gay文化与性别探讨：</strong>由一张“嫩男”照片引发，群内对男性审美、同性吸引力以及多元性别认同（沃尔玛塑料袋梗）展开了开放而戏谑的讨论。</span>
+                <i class="fas fa-venus-mars mr-3 mt-1 text-cyber-cyan opacity-70"></i><span><strong>明星颜值与八卦盛宴：</strong>从刘亦菲、王祖贤到蔡少芬，再到对杨紫身材的讨论，群内多次掀起对明星颜值的“赛博选美”和八卦探讨，话题轻松，互动热烈。</span>
             </li>
              <li class="flex items-start">
-                <i class="fas fa-car mr-3 mt-1 text-tesla-red opacity-70"></i><span><strong>(06.12) 比亚迪车牌摇号：</strong>“AAA建材王哥”分享了一张疑似中签深圳车牌的截图（BYD250），引发了群友的祝贺与调侃，后证实为网图。</span>
+                <i class="fas fa-utensils mr-3 mt-1 text-cyber-cyan opacity-70"></i><span><strong>南北饮食文化差异辩：</strong>由“饺子”引发了关于南北方饮食习惯的趣味讨论，从主食差异到待客之道，群友们分享着各自的家乡味道与文化见解。</span>
             </li>
             <li class="flex items-start">
-                <i class="fas fa-user-graduate mr-3 mt-1 text-tesla-red opacity-70"></i><span><strong>(06.13) 学历与就业内卷：</strong>从“大宇哥”分享的顶尖高校毕业生履历，到“爱我中华”吐槽老家县城事业编都要求本科，群内对愈发激烈的学历内卷现象表达了深刻的无奈与焦虑。</span>
+                <i class="fas fa-house-chimney-medical mr-3 mt-1 text-cyber-cyan opacity-70"></i><span><strong>赛博诊室2.0：</strong>继上周的“突发性耳聋”后，本周健康话题转向“腰间盘突出”（by 小红小跟班）和献血焦虑，群友们对血型、献血政策等展开讨论，展现了对彼此健康的持续关怀。</span>
             </li>
             <li class="flex items-start">
-                <i class="fas fa-cat mr-3 mt-1 text-tesla-red opacity-70"></i><span><strong>(06.15-06.17) 猫狗展示会与宠物经：</strong>群内多次上演“云吸猫/狗”环节，从可爱的宠物照片视频，到养宠经验分享（如猫咪的感情、狗狗品种等），充满了温馨与治愈。</span>
+                <i class="fas fa-keyboard mr-3 mt-1 text-cyber-cyan opacity-70"></i><span><strong>电子产品与潮玩吐槽：</strong>群内对“泡泡玛特”等潮玩的高价和营销模式持续进行批判性讨论。此外，对输入法皮肤、键盘、显卡等电子产品的讨论也层出不穷。</span>
             </li>
           </ul>
         </motion.div>
@@ -585,190 +443,191 @@
         :initial="{ opacity: 0, y: 30 }"
         :while-in-view="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.6, delay: 0.15 }"
-        whileHover={{ scale: 1.02 }}
       >
-        <h3 class="topic-title-cn text-tesla-red">本周热门词云</h3>
+        <h3 class="topic-title-cn text-cyber-cyan">本周热门词云</h3>
         <p class="topic-title-en">WEEKLY HOT WORDS</p>
-        <div class="mt-4 flex flex-wrap justify-center">
+        <div class="mt-4 flex flex-wrap justify-center items-center">
+          <span class="keyword-tag text-lg">加班</span>
+          <span class="keyword-tag">公司</span>
+          <span class="keyword-tag text-lg">工作</span>
           <span class="keyword-tag">金华</span>
-          <span class="keyword-tag">小红</span>
-          <span class="keyword-tag">磊子哥</span>
+          <span class="keyword-tag text-lg">小红</span>
+          <span class="keyword-tag">磊子</span>
+          <span class="keyword-tag">李总</span>
           <span class="keyword-tag">大宇哥</span>
           <span class="keyword-tag">结婚</span>
-          <span class="keyword-tag">工作</span>
-          <span class="keyword-tag">分手</span>
           <span class="keyword-tag">对象</span>
-          <span class="keyword-tag">退群</span>
-          <span class="keyword-tag">小白</span>
-          <span class="keyword-tag">聊天记录</span>
-          <span class="keyword-tag">年终奖</span>
-          <span class="keyword-tag">耳鸣</span>
-          <span class="keyword-tag">孩子</span>
-          <span class="keyword-tag">加班</span>
-          <span class="keyword-tag">公司</span>
-          <span class="keyword-tag">外包</span>
-          <span class="keyword-tag">旅游</span>
+          <span class="keyword-tag">保安</span>
+          <span class="keyword-tag">捞女</span>
+          <span class="keyword-tag">键盘</span>
+          <span class="keyword-tag">游戏</span>
           <span class="keyword-tag">工资</span>
-          <span class="keyword-tag">开车</span>
-          <span class="keyword-tag">红包</span>
-          <span class="keyword-tag">漂亮</span>
+          <span class="keyword-tag">吃饭</span>
+          <span class="keyword-tag">出轨</span>
+          <span class="keyword-tag">好看</span>
           <span class="keyword-tag">喜欢</span>
-          <span class="keyword-tag">大佬</span>
+          <span class="keyword-tag">兄弟</span>
+          <span class="keyword-tag">妹子</span>
+          <span class="keyword-tag">踢了</span>
+          <span class="keyword-tag">红包</span>
         </div>
-        <div class="mt-3 text-xs text-gray-400 text-center">* 根据本周聊天内容高频词汇生成（已过滤常见停用词）。</div>
+        <div class="mt-3 text-xs text-gray-500 text-center">* 根据本周聊天内容高频词汇生成（已过滤常见停用词）。</div>
       </motion.div>
 
-      <!-- Top Speakers -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.2 }"
-        whileHover={{ scale: 1.02 }}
-      >
-        <h3 class="topic-title-cn mb-1 text-tesla-red">
-          本周活跃发言者 <span class="font-normal text-xl text-gray-800">TOP 8</span>
-        </h3>
-        <p class="topic-title-en">MOST ACTIVE SPEAKERS OF THE WEEK</p>
-        <ul class="mt-5 space-y-3">
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"
-                ><i class="fas fa-crown mr-2 text-yellow-500 opacity-80 group-hover:opacity-100"></i> 金华</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">835</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 100%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"
-                ><i class="fas fa-star mr-2 text-sky-500 opacity-80 group-hover:opacity-100"></i> AAA建材王哥</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">699</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 83.7%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"
-                ><i class="fas fa-medal mr-2 text-orange-500 opacity-80 group-hover:opacity-100"></i> 清爽樱桃子</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">497</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 59.5%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"> 银华(初会便已许平生)</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">442</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 53.0%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"> 纯情蟑螂火辣辣(铝华)</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">432</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 51.7%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"> 宇宙第一hr/小红君👻</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">420</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 50.3%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"> 测试失业中～</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">382</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 45.7%"></div></div>
-          </li>
-          <li class="group">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-lg text-gray-800"> 鸭鸭</span>
-              <span class="stat-number-large text-2xl md:text-3xl text-tesla-red font-bold">368</span>
-            </div>
-            <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 44.1%"></div></div>
-          </li>
-        </ul>
-        <div class="mt-4 text-xs text-gray-400">* 发言数量为本周（06.11-06.17）精确统计值。</div>
-      </motion.div>
+      <!-- Top Speakers & King of Chat -->
+      <div class="grid lg:grid-cols-3 gap-8">
+        <motion.div
+            class="bento-card lg:col-span-2"
+            :initial="{ opacity: 0, y: 30 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.6, delay: 0.2 }"
+        >
+            <h3 class="topic-title-cn mb-1 text-cyber-cyan">
+                本周话痨 <span class="font-normal text-xl text-gray-200">TOP 8</span>
+            </h3>
+            <p class="topic-title-en">MOST ACTIVE SPEAKERS OF THE WEEK</p>
+            <ul class="mt-5 space-y-4">
+                <li class="group">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-lg text-gray-200"><i class="fas fa-crown mr-2 text-yellow-400"></i> 小白君</span>
+                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">315</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 100%"></div></div>
+                </li>
+                <li class="group">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-lg text-gray-200"><i class="fas fa-star mr-2 text-cyan-400"></i> 我/双</span>
+                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">298</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 94.6%"></div></div>
+                </li>
+                <li class="group">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-lg text-gray-200"><i class="fas fa-medal mr-2 text-pink-400"></i> 猜猜我是谁(金华)</span>
+                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">281</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 89.2%"></div></div>
+                </li>
+                <li>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-base text-gray-300">皇帝</span>
+                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">205</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 65.1%"></div></div>
+                </li>
+                <li>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-base text-gray-300">鸭鸭</span>
+                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">196</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 62.2%"></div></div>
+                </li>
+                <li>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-base text-gray-300">测试失业中～</span>
+                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">188</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 59.7%"></div></div>
+                </li>
+                <li>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-base text-gray-300">AAA建材王哥</span>
+                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">142</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 45.1%"></div></div>
+                </li>
+                <li>
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-base text-gray-300">不锈钢华</span>
+                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">135</span>
+                    </div>
+                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 42.8%"></div></div>
+                </li>
+            </ul>
+            <div class="mt-4 text-xs text-gray-500">* 发言数量为本周（06.19-06.23）大致统计值。</div>
+        </motion.div>
 
-      <!-- 群聊发言王 -->
-      <motion.div
-        class="text-center py-8 bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.25 }"
-        whileHover={{ scale: 1.02 }}
-      >
-        <h3 class="topic-title-cn text-tesla-red">👑 本周群聊之王 👑</h3>
-        <p class="topic-title-en">KING/QUEEN OF CHAT (JUNE 11TH - 17TH)</p>
-        <p class="stat-number-large mt-2" style="font-size: 3rem">金华</p>
-        <p class="content-text">
-          以
-          <strong class="text-gray-900">835</strong>
-          条消息的绝对优势登顶！无论是分享健身日常、股市动态，还是在“突发性耳聋”事件中成为焦点，金华都深度参与并影响着本周的话题走向。他既是群内的技术担当，也是健康话题的核心，更是当之无愧的流量中心！
-        </p>
-      </motion.div>
+        <motion.div
+            class="text-center py-8 bento-card"
+            :initial="{ opacity: 0, y: 30 }"
+            :while-in-view="{ opacity: 1, y: 0 }"
+            :transition="{ duration: 0.6, delay: 0.25 }"
+        >
+            <h3 class="topic-title-cn text-cyber-cyan">👑 本周抓马女王 👑</h3>
+            <p class="topic-title-en">QUEEN OF DRAMA (JUNE 19TH - 23RD)</p>
+            <p class="stat-number-large mt-4" style="font-size: 3rem">小白君</p>
+            <p class="content-text mt-2">
+                以 <strong class="text-gray-100">315</strong> 条消息登顶！无论是对群友“金华”行使“极刑”的果决，还是对“小红”情感生活的精准翻译，亦或是对职场奇葩现象的犀利吐槽，“小白君”始终处在本周话题的风暴中心，是当之无愧的流量与抓马女王！
+            </p>
+        </motion.div>
+      </div>
 
-      <!-- 发言骚包 NO.1 -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.3 }"
-        whileHover={{ scale: 1.02 }}
-      >
-        <h3 class="topic-title-cn text-tesla-red">💃 大胆发言 NO.1 💃</h3>
-        <p class="topic-title-en">MOST FLIRTATIOUS/EDGY SPEAKER OF THE WEEK</p>
-        <div class="mt-6 text-center">
-          <p class="stat-number-large" style="font-size: 2.5rem; color: #e31937">王烁烁</p>
-        </div>
-        <p class="section-label mt-4 text-center">“高速战神”语录节选 (源自本周聊天记录)：</p>
-        <div class="space-y-3 content-text pb-2">
-          <p class="evaluation-text">"又想展示幸福了兄弟们" (06.11 10:10:18, 随后发出恩爱牵手照)</p>
-          <p class="evaluation-text">(06.11 18:08:13 发出包含“一小时四次”的露骨聊天截图，直接引爆全场)</p>
-          <p class="evaluation-text">"分不了一点兄弟们" (06.11 10:14:43, 回应王哥“分我一个”的要求)</p>
-          <p class="evaluation-text">"让她奶看看我" (06.16 11:36:53, 评论女友要跟他视频给奶奶看)</p>
-          <p class="evaluation-text">"1秒十破" (06.16 11:43:39, 回应关于攻速的调侃)</p>
-        </div>
-      </motion.div>
+      <!-- Character Cards -->
+      <div class="grid lg:grid-cols-2 gap-8">
+        <motion.div
+          class="bento-card"
+          :initial="{ opacity: 0, y: 30 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
+          :transition="{ duration: 0.6, delay: 0.3 }"
+        >
+          <h3 class="topic-title-cn text-cyber-cyan">💃 骚话连续剧主演 💃</h3>
+          <p class="topic-title-en">STAR OF THE FLIRTATIOUS DRAMA</p>
+          <div class="mt-6 text-center">
+            <p class="stat-number-large" style="font-size: 2.5rem; color: #f472b6;">王烁烁</p>
+          </div>
+          <p class="section-label mt-4 text-center">“极限拉扯”语录节选 (源自本周聊天记录)：</p>
+          <div class="space-y-3 content-text pb-2">
+            <p class="evaluation-text">"女朋友太作怎么办，强行找机会生气" (06.19 10:42)</p>
+            <p class="evaluation-text">"他妈的我叫他把我删了...应该是拉黑了" (06.19 10:44)</p>
+            <p class="evaluation-text">"吵得越凶越爱不懂吗" (06.20 12:45, 和好后)</p>
+            <p class="evaluation-text">"我必须得狠狠的撅一下" (06.20 14:44, 描述恋爱中的博弈)</p>
+            <p class="evaluation-text">"想亲嘴" (06.21 19:54)</p>
+          </div>
+        </motion.div>
 
-      <!-- 熬夜晚睡 TOP 3 -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.35 }"
-        whileHover={{ scale: 1.02 }}
-      >
-        <h3 class="topic-title-cn text-tesla-red">🦉 本周熬夜冠军 🦉</h3>
-        <p class="topic-title-en">LATEST NIGHT OWLS OF THE WEEK</p>
-        <ul class="mt-5 space-y-4">
-          <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <span class="text-lg text-gray-800 font-medium"
-              ><i class="fas fa-moon mr-2 text-indigo-500"></i>1. AAA建材王哥</span>
-            <span class="text-gray-600 font-semibold">06.14 01:53:09</span>
-          </li>
-          <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <span class="text-lg text-gray-800 font-medium"
-              ><i class="fas fa-moon mr-2 text-indigo-400 opacity-80"></i>2. 暖暖</span>
-            <span class="text-gray-600 font-semibold">06.14 01:43:49</span>
-          </li>
-          <li class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-            <span class="text-lg text-gray-800 font-medium"
-              ><i class="fas fa-moon mr-2 text-indigo-300 opacity-70"></i>3. 银华</span>
-            <span class="text-gray-600 font-semibold">06.14 01:40:46</span>
-          </li>
-        </ul>
-         <div class="mt-4 text-xs text-gray-400">* 根据本周记录的最后发言时间统计。</div>
-      </motion.div>
+        <motion.div
+          class="bento-card"
+          :initial="{ opacity: 0, y: 30 }"
+          :while-in-view="{ opacity: 1, y: 0 }"
+          :transition="{ duration: 0.6, delay: 0.35 }"
+        >
+          <h3 class="topic-title-cn text-cyber-cyan">🦉 本周熬夜冠军 🦉</h3>
+          <p class="topic-title-en">LATEST NIGHT OWLS OF THE WEEK</p>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-400"></i>1. AAA建材王哥</span>
+              <span class="text-gray-400 font-semibold">06.22 03:31:54</span>
+            </li>
+            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-500/80"></i>2. 大宇哥跟班</span>
+              <span class="text-gray-400 font-semibold">06.22 01:35:25</span>
+            </li>
+            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
+              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-600/70"></i>3. 小白君</span>
+              <span class="text-gray-400 font-semibold">06.22 01:02:34</span>
+            </li>
+          </ul>
+          <div class="mt-4 text-xs text-gray-500">* 根据本周记录的最后发言时间统计。</div>
+        </motion.div>
+      </div>
+
     </div>
 
     <script>
       // Framer Motion UMD script will automatically initialize animations
       // based on the motion attributes in the HTML.
+      document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.bento-card');
+        cards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--y', `${y}px`);
+          });
+        });
+      });
     </script>
   </body>
 </html>
