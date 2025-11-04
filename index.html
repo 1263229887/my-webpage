@@ -1,688 +1,433 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>深圳程序员技术交流群3.0 - 群聊日报 (10.20 Data)</title>
-    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.2.10/motion.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度剖析报告：微信群“意见领袖”月源</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=ZCOOL+KuaiLe&display=swap');
 
-      body {
-        background-color: #0d1117; /* Dark background */
-        color: #c9d1d9; /* Light text */
-        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-          Arial, sans-serif;
-        overflow-x: hidden;
-      }
-      .font-orbitron {
-        font-family: 'Orbitron', sans-serif;
-      }
-
-      .text-cyber-cyan { color: #22d3ee; }
-      .bg-cyber-cyan { background-color: #22d3ee; }
-      .border-cyber-cyan { border-color: #22d3ee; }
-      .text-cyber-magenta { color: #f472b6; }
-      .bg-cyber-magenta { background-color: #f472b6; }
-      .border-cyber-magenta { border-color: #f472b6; }
-
-      .bento-card {
-        background-color: rgba(31, 41, 55, 0.5); /* Semi-transparent dark card */
-        border-radius: 16px;
-        padding: 1.5rem; /* Adjusted padding for mobile */
-        border: 1px solid rgba(107, 114, 128, 0.2); /* Subtle border */
-        box-shadow: 0 0 15px rgba(34, 211, 238, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        overflow: hidden;
-        position: relative;
-        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
-      }
-      @media (min-width: 768px) {
-        .bento-card {
-            padding: 2rem;
+        :root {
+            --primary-color: #FFC300; /* Dark Gold */
+            --secondary-color: #DA70D6; /* Orchid Purple */
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --header-font: 'ZCOOL KuaiLe', cursive;
+            --body-font: 'Noto Sans SC', sans-serif;
         }
-      }
-      .bento-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 10px rgba(244, 114, 182, 0.1);
-        border-color: rgba(34, 211, 238, 0.4);
-      }
-      .bento-card::before {
-        content: '';
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        z-index: -1;
-        margin: -1px;
-        border-radius: inherit;
-        background: radial-gradient(circle at var(--x) var(--y), rgba(34, 211, 238, 0.25), rgba(34, 211, 238, 0.05), transparent 40%);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .bento-card:hover::before {
-        opacity: 1;
-      }
 
-      .topic-title-cn {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.5rem;
-        line-height: 2rem;
-        font-weight: 700;
-        color: #22d3ee; /* Cyber Cyan */
-        text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
-      }
-      .topic-title-en {
-        font-size: 0.8rem;
-        color: #9ca3af; /* Lighter gray subtitle */
-        margin-top: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .section-label {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f472b6; /* Cyber Magenta */
-        margin-bottom: 0.25rem;
-        display: block;
-      }
-      .content-text {
-        color: #d1d5db; /* Lighter content text */
-        line-height: 1.7;
-        font-size: 0.95rem;
-        overflow-wrap: break-word;
-      }
-      .participant-tag {
-        background-color: rgba(34, 211, 238, 0.1);
-        color: #a5f3fc;
-        padding: 0.25rem 0.6rem;
-        border-radius: 9999px;
-        font-size: 0.8rem;
-        margin-right: 0.4rem;
-        margin-bottom: 0.4rem;
-        display: inline-block;
-        border: 1px solid rgba(34, 211, 238, 0.2);
-        transition: all 0.2s ease-in-out;
-      }
-      .participant-tag:hover {
-        background-color: rgba(34, 211, 238, 0.2);
-        color: #fff;
-        transform: translateY(-1px);
-        text-shadow: 0 0 5px #22d3ee;
-      }
-      .evaluation-text {
-        font-style: normal;
-        color: #e5e7eb;
-        border-left: 3px solid #22d3ee;
-        padding-left: 1rem;
-        margin-top: 0.75rem;
-        background-color: rgba(34, 211, 238, 0.08); /* Very light cyan bg */
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-radius: 0 8px 8px 0;
-      }
-      .card-hr {
-        border-color: rgba(107, 114, 128, 0.2); /* Darker HR */
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-      .speaker-bar-bg {
-        background-color: #374151; /* Dark gray bar bg */
-        height: 10px;
-        border-radius: 5px;
-        overflow: hidden;
-        margin-top: 0.25rem;
-      }
-      .speaker-bar-fill {
-        background: linear-gradient(90deg, #f472b6, #22d3ee); /* Magenta to Cyan gradient */
-        height: 100%;
-        border-radius: 5px;
-        transition: width 0.8s ease-in-out;
-      }
-      .stat-number-large {
-        font-size: 4.5rem;
-        font-weight: 800;
-        line-height: 1;
-        color: #22d3ee;
-        text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
-      }
-      .keyword-tag {
-        background-color: rgba(244, 114, 182, 0.1);
-        color: #f9a8d4;
-        padding: 0.3rem 0.7rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        margin: 0.25rem;
-        display: inline-block;
-        border: 1px solid rgba(244, 114, 182, 0.2);
-        transition: all 0.2s ease-in-out;
-      }
-      .keyword-tag:hover {
-        background-color: rgba(244, 114, 182, 0.2);
-        color: #fce7f3;
-        transform: scale(1.05);
-        text-shadow: 0 0 5px #f472b6;
-      }
-
-      .main-title {
-        display: inline-block;
-        border-right: 3px solid rgba(34, 211, 238, 0.75);
-        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-        word-break: break-all; 
-      }
-      
-      @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
-      }
-
-      @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: rgba(34, 211, 238, 0.75); }
-      }
-      
-      @media (min-width: 768px) {
-        .main-title {
-          white-space: nowrap;
-          overflow: hidden;
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--body-font);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-      }
 
+        .container {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 25px;
+            background: linear-gradient(145deg, #1a1a1a, #101010);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 195, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 25px;
+        }
+
+        .glitch {
+            font-family: var(--header-font);
+            font-size: 3.8rem;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 20px var(--secondary-color);
+            position: relative;
+            animation: glitch-anim 4s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes glitch-anim {
+            0%, 100% { transform: skew(0deg); text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); }
+            48% { transform: skew(0deg); }
+            50% { transform: skew(0.8deg); text-shadow: 0 0 15px var(--secondary-color); }
+            52% { transform: skew(-0.8deg); }
+            54% { transform: skew(0deg); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .section {
+            background-color: var(--surface-color);
+            border: 1px solid #333;
+            border-left: 5px solid var(--primary-color);
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .section:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 0 25px rgba(255, 195, 0, 0.2);
+        }
+
+        .section-title {
+            font-family: var(--header-font);
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 12px;
+        }
+
+        .profile-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .profile-table td {
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            font-size: 1rem;
+        }
+
+        .profile-table td:first-child {
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 150px;
+        }
+
+        .conflict-list li, .story-list li, .habits-list li {
+            margin-bottom: 20px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .conflict-list li::before, .story-list li::before, .habits-list li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--secondary-color);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .conflict-list h4, .story-list h4, .habits-list h4 {
+            margin: 0 0 8px 0;
+            color: #fafafa;
+            font-size: 1.2rem;
+        }
+        
+        .conflict-list p, .story-list p, .habits-list p {
+            margin: 0;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .word-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .word-cloud span {
+            background-color: #333;
+            color: var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            cursor: default;
+            border: 1px solid #444;
+        }
+
+        .word-cloud span:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            transform: scale(1.15);
+            font-weight: 700;
+        }
+
+        .quote-block {
+            background-color: rgba(0,0,0,0.2);
+            border-left: 4px solid var(--secondary-color);
+            padding: 18px;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+        .quote-block::before {
+            content: '“';
+            font-family: serif;
+            font-size: 4rem;
+            color: rgba(218, 112, 214, 0.2);
+            position: absolute;
+            left: 10px;
+            top: -10px;
+        }
+
+        .quote-block .source {
+            display: block;
+            text-align: right;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .relationship-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .node {
+            text-align: center;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid #555;
+            transition: transform 0.3s;
+        }
+
+        .node:hover {
+            transform: scale(1.05);
+        }
+        
+        .node.central {
+            background: var(--primary-color);
+            color: var(--bg-color);
+            font-weight: bold;
+            grid-column: 1 / -1; /* Span full width */
+            margin: 10px 0;
+            box-shadow: 0 0 20px var(--primary-color);
+            z-index: 10;
+        }
+        
+        .node.love-hate { border-color: var(--secondary-color); background-color: rgba(218, 112, 214, 0.1); }
+        .node.conflict { border-color: #ff4136; background-color: rgba(255, 65, 54, 0.1); }
+        .node.idol { border-color: #0074d9; background-color: rgba(0, 116, 217, 0.1); }
+        .node.support { border-color: #2ecc40; background-color: rgba(46, 204, 64, 0.1); }
+
+        .node h5 { margin: 0 0 8px 0; font-size: 1.1rem; }
+        .node p { margin: 0; font-size: 0.85rem; color: #bbb; line-height: 1.5; }
+
+        .summary {
+            font-size: 1.15rem;
+            text-align: center;
+            padding: 25px;
+            background-color: rgba(0,0,0,0.3);
+            border-top: 2px solid var(--secondary-color);
+            border-radius: 10px;
+        }
     </style>
-  </head>
-  <body class="antialiased">
-    <div id="app" class="container mx-auto p-4 md:p-8 space-y-8">
-      <!-- Overall Style Evaluation -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :animate="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.1 }"
-      >
-        <h2 class="topic-title-cn text-cyber-cyan main-title">深圳程序员技术交流群日报 (10.20)</h2>
-        <p class="topic-title-en">SHENZHEN PROGRAMMERS TECHNICAL EXCHANGE GROUP DAILY (OCTOBER 20TH)</p>
-        <p class="content-text mt-4 text-base md:text-lg">
-          周一的群聊是一场出人意料的<strong class="text-cyber-magenta font-semibold">“社群压力测试”</strong>。晨间的乐章由<strong class="text-cyber-cyan font-semibold">@蜻蜓队长-小白君🧐</strong>主演的<strong class="text-gray-100 font-semibold">“职场一小时速通”</strong>黑色幽默剧拉开序幕，为全天的戏剧性奠定了基调。午后，轻松的日常话题如“南北过冬指南”、“亚健康互助会”等构成了舒缓的间奏曲，充满了生活的烟火气。然而，当夜幕降临，一曲激昂的<strong class="text-cyber-magenta font-semibold">“家庭财政权狂想曲”</strong>骤然奏响，由<strong class="text-cyber-cyan font-semibold">@金华</strong>挑起的关于“丈夫是否应上交工资”的辩论，迅速将气氛推向了白热化，最终导致了数位群友的“暂时性离场”，成为本日最核心的冲突事件。但社群强大的自愈能力在<strong class="text-gray-100 font-semibold">“赛博围观JK表妹”</strong>的轻松插曲和后续的自我反思中得以体现。这是一个<strong class="text-cyber-magenta font-semibold">既能因职场荒诞而同仇敌忾，又能为家庭观念激烈交锋；既能为一张JK照集体沸腾，又能为社群裂痕努力弥合</strong>的，充满真实人性与情感张力的数字社区切片。
-        </p>
-      </motion.div>
+</head>
+<body>
 
-      <!-- Topics Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <motion.div
-          class="bento-card lg:col-span-3"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣ 家庭财政权大辩论：一场由“上交工资”引发的社群风暴
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-wallet"></i><i class="fas fa-balance-scale-right"></i><i class="fas fa-fire"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">THE GREAT DEBATE ON FAMILY FINANCES: A COMMUNITY STORM TRIGGERED BY SALARY HANDOVER</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">核心辩手：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">金华 无恶意勿举报</span><span class="participant-tag">皇帝</span><span class="participant-tag">李磊</span>
-            </div>
-            <span class="section-label mt-2">关键参与者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">oi</span><span class="participant-tag">栗子</span><span class="participant-tag">晚卿</span><span class="participant-tag">海螺哥</span><span class="participant-tag">六号技师</span><span class="participant-tag">慢子</span><span class="participant-tag">print:十二</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">18:11 - 19:15 (主风暴时段) & 持续发酵至深夜</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本日最核心、最具争议性的事件。由<strong class="text-cyber-cyan">@皇帝</strong>一句“你们结婚了上交工资给老婆吗”的提问点燃导火索。她分享了<strong class="text-gray-100">@李磊</strong>每月上交工资并领取1000元零花钱的家庭模式，此举意外触动了<strong class="text-cyber-magenta">@金华</strong>的神经，他认为这并非“理应如此”，而是男方为爱与家庭的“让步”，并对将丈夫描述成“耙耳朵”的说法表示强烈反对。辩论迅速升级，群内成员就“管账权”、“夫妻财产自主权”、“地区习俗”等议题展开激烈交锋。尽管<strong class="text-gray-100">@皇帝</strong>和<strong class="text-cyber-cyan">@李磊</strong>本人均表示此为双方协商且和谐的结果，但观念的碰撞依然造成了连锁反应，最终导致<strong class="text-cyber-magenta">@海螺哥</strong>、<strong class="text-gray-100">@晚卿</strong>等成员因不堪争吵氛围而退群。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一场教科书级的社群观念冲突案例。它深刻地揭示了不同成长背景和家庭观念在现实议题下的碰撞。事件本身并无对错，但其发酵过程暴露了公开讨论私人家庭模式的潜在风险，以及言语表达在社群互动中的巨大影响力。这也是对社群成员情绪管理和求同存异能力的一次严峻考验，最终的“人员流失”令人惋惜，但也引发了关于群聊边界和沟通方式的深度反思。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            2️⃣ 闪电离职记：小白君的一小时新工作
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-bolt"></i><i class="fas fa-building-circle-xmark"></i><i class="fas fa-person-running"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">THE LIGHTNING RESIGNATION: XIAO BAI'S ONE-HOUR NEW JOB</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">主演：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">蜻蜓队长-小白君🧐</span>
-            </div>
-             <span class="section-label mt-2">吃瓜群众：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">海螺哥</span><span class="participant-tag">慢子</span><span class="participant-tag">这不是我月薪三千该考虑的问题</span><span class="participant-tag">非凡哥</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">10:43 - 10:55 (高能时段)</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本日最佳职场喜剧。主人公<strong class="text-cyber-cyan">@蜻蜓队长-小白君🧐</strong>怀揣着对新工作的期待去入职，不料一进门就遭遇了全员站立高喊<strong class="text-cyber-magenta">“好，很好，非常好，明天会更好！”</strong>的“打鸡血”式早会。这充满传销味的场景让她大受震撼，当机立断，以“上厕所”为名，行“战略撤退”之实，随后潇洒地告知HR“不太合适”，光速结束了这段仅维持一小时的雇佣关系。她那句<strong class="text-gray-100">“这工作跟我的包子一样，凉了”</strong>，堪称年度金句。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一出现实版的“整顿职场”爽剧。小白君用实际行动诠释了当代年轻人的果决与对劣质企业文化的“零容忍”。整个过程充满了戏剧性与黑色幽默，为上午的群聊贡献了最大的笑料，也引发了对武汉职场环境的又一轮吐槽。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-        >
-          <h2 class="topic-title-cn">
-            3️⃣ 赛博围观：表妹的JK与洛丽塔风暴
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fa-solid fa-person-dress"></i><i class="fa-solid fa-heart"></i><i class="fa-solid fa-mobile-screen-button"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">CYBER SPECTATING: THE COUSIN'S JK & LOLITA STORM</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">内容提供者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">瑞秋（Rachel）</span>
-            </div>
-             <span class="section-label mt-2">沸腾的男群友们：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">坚果小子(正经版)</span><span class="participant-tag">这不是我月薪三千该考虑的问题</span><span class="participant-tag">金华</span><span class="participant-tag">流星🌠</span><span class="participant-tag">【八方来财】</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">17:17 - 17:30</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            在晚间激烈辩论前夕的一剂强力“荷尔蒙调味剂”。<strong class="text-cyber-cyan">@瑞秋（Rachel）</strong>分享了她老公表妹的照片和视频，一位热爱<strong class="text-cyber-magenta">JK制服与洛丽塔裙装</strong>的可爱女孩。高质量的分享瞬间引爆了群聊，男群友们纷纷化身“夸夸团”，<strong class="text-gray-100">“表嫂你好！”</strong>的口号响彻云霄，索要微信和抖音号的请求此起彼伏。尽管得知表妹已有男友，但大家的热情丝毫未减，慷慨的<strong class="text-cyber-cyan">@瑞秋（Rachel）</strong>最终分享了更多照片，满足了大家的“赛博围观”欲。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次完美的社群氛围“破冰”与“升温”活动。它精准地击中了群内直男们的审美点，用最纯粹的欣赏和最直白的赞美，暂时冲淡了所有现实烦恼。这场短暂而热烈的狂欢，是社群娱乐精神的绝佳体现。
-          </p>
-        </motion.div>
+    <div class="container">
+        <header>
+            <h1 class="glitch">月源-人物画像分析报告</h1>
+            <p class="subtitle">一个挣扎于“三和大神”与“天选之子”身份认同之间的深圳前端程序员</p>
+        </header>
 
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.15 }"
-        >
-          <h2 class="topic-title-cn">
-            4️⃣ 南北过冬差异考：地暖、空调与秋裤的终极对决
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fas fa-temperature-low"></i><i class="fas fa-fan"></i><i class="fas fa-mitten"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">NORTH VS. SOUTH WINTER SURVIVAL: HEATING, AC, AND LONG JOHNS</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">主要参与者：</span><div class="flex flex-wrap"><span class="participant-tag">晚卿</span><span class="participant-tag">栗子</span><span class="participant-tag">星火航途</span><span class="participant-tag">坚果小子(正经版)</span><span class="participant-tag">oi</span></div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">09:16 - 09:28 & 16:37 - 16:50</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            随着天气转凉，一场关于“过冬装备”的研讨会自然展开。身在武汉的<strong class="text-cyber-cyan">@晚卿</strong>吐槽冬天湿冷且无集中供暖，引发了对南方冬季取暖方式的讨论。<strong class="text-cyber-magenta">“地暖”</strong>成为众人羡慕的对象，其舒适度远超干燥的空调。群友们分享了从<strong class="text-gray-100">烧锅炉的自建房</strong>到<strong class="text-cyber-cyan">集中供能的新楼盘</strong>等多种取暖方案，甚至讨论到湖南特色的“电暖桌”。这场讨论充满了对温暖的向往和地域差异的趣味科普。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            极具生活气息和参与度的日常话题。它触及了每个人的切身体验，让地理位置不同的群友得以分享各自的生活智慧。从秋裤要不要穿，到地暖一个月多少钱，充满了实用的信息和南北文化的碰撞，是社群闲聊的优质范本。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            5️⃣ “亚健康”程序员互助会
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-bed"></i><i class="fas fa-pills"></i><i class="fas fa-hospital"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">THE "SUB-HEALTH" PROGRAMMERS' SUPPORT GROUP</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">病友交流：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">芊雨（瘦26斤版）</span><span class="participant-tag">十哥</span><span class="participant-tag">慢子</span><span class="participant-tag">oi</span><span class="participant-tag">我(双)</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">13:58 - 14:15 & 15:09 - 15:23</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本日的健康主题围绕两大痛点展开：失眠与腰痛。<strong class="text-cyber-cyan">@十哥</strong>自述疑似患上“植物神经紊乱”导致失眠，引发了关于助眠方法的讨论，从<strong class="text-cyber-magenta">褪黑素</strong>到“蒙汗药”，群友们各出奇招。另一边，<strong class="text-gray-100">@芊雨（瘦26斤版）</strong>直播了自己去医院治疗腰椎间盘突出的经历，分享了“骨科正骨”的神奇疗效，并对比了推拿科的高昂费用，为同样受腰痛困扰的群友提供了宝贵的一手经验。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            充满了关怀与实用信息的技术群体“病友交流会”。它真实地反映了当代打工人普遍面临的健康问题。从药物推荐到医院科室选择，群友间的分享不仅提供了情绪支持，更包含了极具价值的“避坑”指南，体现了社群的互助精神。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            6️⃣ 舌尖上的代码：从活珠子到释迦果
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fa-solid fa-egg"></i><i class="fa-solid fa-apple-whole"></i><i class="fa-solid fa-utensils"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">A BITE OF CODE: FROM BALUT TO SUGAR APPLES</p>
-          <hr class="card-hr" />
-          <div>
-             <span class="section-label">美食家们：</span>
-             <div class="flex flex-wrap">
-              <span class="participant-tag">这不是我月薪三千该考虑的问题</span> <span class="participant-tag">慢子</span><span class="participant-tag">坚果小子(正经版)</span><span class="participant-tag">芊雨（瘦26斤版）</span><span class="participant-tag">栗子</span>
-             </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">15:26 - 15:47 (集中讨论)</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            下午茶时段，一场关于“奇特美食”的讨论悄然展开。<strong class="text-cyber-cyan">@这不是我月薪三千该考虑的问题</strong>极力推荐<strong class="text-cyber-magenta">“活珠子”</strong>（即毛鸡蛋），引发了<strong class="text-gray-100">@慢子</strong>等人的“生理性”抗拒，而“同好会”成员则分享其美味。随后，话题转向水果，<strong class="text-cyber-cyan">@这不是我月薪三千该考虑的问题</strong>再次安利甜度极高的<strong class="text-gray-100">释迦果</strong>，并科普了通过小红书购买平价水果的技巧。榴莲的“出肉率”也成为热门议题，大家交流着挑选榴莲的独门秘籍。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一场味蕾的“线上冒险”。它不仅展示了群友们多元的饮食偏好，更在“活珠子”这类食物上巧妙地制造了“爱憎分明”的趣味对立。整个过程充满了生活气息和消费技巧分享，是绝佳的“摸鱼”话题。
-          </p>
-        </motion.div>
+        <section class="section">
+            <h2 class="section-title">I. 核心档案 (Profile)</h2>
+            <table class="profile-table">
+                <tr>
+                    <td>昵称</td>
+                    <td>🍃, 月源, 佬外引路人, 喜欢外国人, 小幻</td>
+                </tr>
+                <tr>
+                    <td>年龄</td>
+                    <td>约30岁 (自曝95年生)</td>
+                </tr>
+                <tr>
+                    <td>职业</td>
+                    <td>前端开发工程师，薪资波动剧烈 (曾达20k，现16k)，自称“半步本科” (深圳大学自考在读)</td>
+                </tr>
+                 <tr>
+                    <td>身高</td>
+                    <td>对外宣称175cm，体检实测173cm，梦想穿7cm增高鞋达到180cm，对身高极为敏感。</td>
+                </tr>
+                <tr>
+                    <td>经济状况</td>
+                    <td>月薪16k，但有3k房贷，热衷于加密货币合约交易并亏损数十万。日常消费极度节俭，堪称“挂壁大师”，对优惠券和免费福利有猎犬般的嗅觉。</td>
+                </tr>
+                <tr>
+                    <td>坐标</td>
+                    <td>广东深圳 (宝安/福田/龙华区常驻)</td>
+                </tr>
+                <tr>
+                    <td>核心诉求</td>
+                    <td>脱单结婚，寻找年轻(00后，最好是03后)、漂亮、高挑(165+)、清纯(“没谈过”)的“小美”，以完成“传宗接代”的人生终极使命。</td>
+                </tr>
+                <tr>
+                    <td>精神状态</td>
+                    <td>在极度自信(“天选之子”)与极度自卑(“我是废物”)之间高频振荡，情绪极不稳定，易被小事激怒或emo。</td>
+                </tr>
+            </table>
+        </section>
 
-      </div>
-
-      <!-- Other Highlights & Special Awards -->
-      <div class="grid lg:grid-cols-2 gap-8">
-        <motion.div
-            class="bento-card"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.15 }"
-        >
-            <h3 class="topic-title-cn text-cyber-cyan">本日其他高光时刻</h3>
-            <p class="topic-title-en">OTHER HIGHLIGHTS OF THE DAY</p>
-            <hr class="card-hr" />
-            <ul class="list-disc list-inside space-y-3 content-text">
-                <li><strong>公主的红包雨：</strong><strong class="text-cyber-cyan">@oi</strong>（公主）在上午和下午两次出手，用红包成功平息了群内的躁动与潜在争吵，展现了强大的“钞能力”控场艺术。</li>
-                <li><strong>AI作图持续升温：</strong><strong class="text-cyber-magenta">@金华</strong>、<strong class="text-gray-100">@瑞秋</strong>、<strong class="text-cyber-cyan">@这不是我月薪三千该考虑的问题</strong>等人继续分享AI生成的个人写真与猫咪拟人图，并大方分享提示词（Prompt），技术交流氛围浓厚。</li>
-                <li><strong>游戏分歧：</strong><strong class="text-cyber-magenta">@栗子</strong>吐槽男友沉迷的《三角洲》是“垃圾游戏”，引发了关于“搜打撤”类游戏与传统FPS游戏趣味性的简短讨论。</li>
-                <li><strong>数学陷阱题：</strong>一道充满视觉陷阱的“看图计算题”在傍晚时分出现，成功迷惑了多位群友，最终在细节控们的火眼金睛下揭开了所有“坑点”。</li>
+        <section class="section">
+            <h2 class="section-title">II. 性格特征 & 核心冲突</h2>
+            <ul class="conflict-list">
+                <li>
+                    <h4>“天选之人”的宏大叙事 vs “我是废物”的自我否定</h4>
+                    <p>他构建了一套自我神话体系：自称“天龙人”、“天选之子”，拥有“狩猎技能”，潜力无限。然而，这套叙事极其脆弱，一次搭讪失败、一次工作不顺、甚至一次网络对线失利，都能让他瞬间崩溃，陷入“我果然是个废物”、“又老又丑”的自我唾弃中。这种在自大与自卑间的反复横跳，是他最核心的人格特征。</p>
+                </li>
+                <li>
+                    <h4>“黄毛”理论的狂热信徒 vs “纯爱战士”的最后挣扎</h4>
+                    <p>口头上极度崇拜并模仿“黄毛”（Player），信奉“量大出单”、“约会必动手”、“快速推进关系”等理论，言语上充满攻击性和原始欲望（“日逼”）。但在实际与心仪对象（如“女高”）的交往中，又会陷入“纯爱”的幻想，渴望真挚情感，害怕被拒绝，甚至在强吻后因对方的激烈反应而感到懊悔和失落，暴露出内心深处的“龟男”底色。</p>
+                </li>
+                <li>
+                    <h4>极致“挂壁”的消费哲学 vs “为爱冲锋”的投资冲动</h4>
+                    <p>他的生活是一部生动的“省钱攻略”。热衷于拼好饭、京东外卖优惠券，为几块钱的差价沾沾自喜，甚至吃外卖有苍蝇也能转化为“薅羊毛”的胜利。但这种节俭并非普适，当涉及到提升“性吸引力”时，他愿意斥资购买香水、考虑拍摄昂贵的“展示面”，并计划给“女高”买礼物，形成“日常挂壁，为爱挥霍”的奇特消费模式。</p>
+                </li>
+                <li>
+                    <h4>线上重拳出击的键盘战神 vs 线下唯唯诺诺的社恐患者</h4>
+                    <p>在网络世界，他是无畏的战士，能与“女拳”、“黑子”大战三百回合，言辞粗鄙，逻辑自洽，甚至不惜赌上“被车撞死”的毒咒，并付诸行动报警处理网络纠纷。但在现实世界，尤其是在搭讪和职场中，他却表现出显著的社恐、内向与懦弱，被新同事安排工作不敢当面反抗，面对心仪女性“怂了”是常态，形成了鲜明的线上线下人格反差。</p>
+                </li>
+                 <li>
+                    <h4>“传宗接代”的传统枷锁 vs “及时行乐”的现代诱惑</h4>
+                    <p>深受“传宗接代”、“延续香火”等传统观念的深刻影响，这是他一切求偶行为的底层驱动力，甚至为此规划要生三到五个孩子。然而，他又被现代“搭讪圈”的“及时行乐”、“快速得吃”文化所吸引，在“找老婆”和“玩一玩”之间摇摆不定，使得他的求偶之路充满了矛盾与混乱。</p>
+                </li>
             </ul>
-        </motion.div>
-        <motion.div
-            class="bento-card"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.2 }"
-        >
-            <h3 class="topic-title-cn text-cyber-cyan">🏆 本日特别奖项</h3>
-            <p class="topic-title-en">SPECIAL AWARDS OF THE DAY</p>
-            <hr class="card-hr" />
-            <div class="space-y-4">
-              <div>
-                <p class="section-label">最佳总结官 (Best Summarizer)</p>
-                <p class="text-xl font-bold text-gray-200">慢子</p>
-                <p class="content-text text-sm">在群内大辩论的余波中，她以一句<strong class="text-cyber-magenta">“金华就磊子上交工资给小红看不顺眼（因为他花不到）然后俩人就开撕，再然后两个劝架的退群了”</strong>，用戏谑的方式精准（虽然略带调侃）地概括了事件核心，堪称“史官”级总结。
-                </p>
-              </div>
-              <div>
-                <p class="section-label">人间清醒奖 (Sober Mind Award)</p>
-                <p class="text-xl font-bold text-gray-200">李磊</p>
-                <p class="content-text text-sm">在关于他家庭财政的激烈讨论中，他最后以一句<strong class="text-cyber-cyan">“都是为了小家多攒点钱而已”</strong>平静作结。这句话朴实无华，却瞬间消解了所有理论上的对立，点明了家庭经营的本质，展现了成熟男性的责任与担当。
-                </p>
-              </div>
-            </div>
-        </motion.div>
-      </div>
+        </section>
 
-      <!-- 群聊热门词云 -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.15 }"
-      >
-        <h3 class="topic-title-cn text-cyber-cyan">本日热门词云</h3>
-        <p class="topic-title-en">TODAY'S HOT WORDS</p>
-        <div class="mt-4 flex flex-wrap justify-center items-center">
-          <span class="keyword-tag text-lg">金华</span>
-          <span class="keyword-tag">老婆</span>
-          <span class="keyword-tag text-lg">工资</span>
-          <span class="keyword-tag">磊子</span>
-          <span class="keyword-tag">小白</span>
-          <span class="keyword-tag text-lg">吵架</span>
-          <span class="keyword-tag">表妹</span>
-          <span class="keyword-tag">退群</span>
-          <span class="keyword-tag">哄</span>
-          <span class="keyword-tag">上班</span>
-          <span class="keyword-tag">公主</span>
-          <span class="keyword-tag">红包</span>
-          <span class="keyword-tag">地暖</span>
-          <span class="keyword-tag">空调</span>
-          <span class="keyword-tag">商量</span>
-          <span class="keyword-tag">活珠子</span>
-          <span class="keyword-tag">慢子</span>
-          <span class="keyword-tag">海螺哥</span>
-          <span class="keyword-tag">好看</span>
-          <span class="keyword-tag">晚卿</span>
-          <span class="keyword-tag">jk</span>
-          <span class="keyword-tag">零花钱</span>
-          <span class="keyword-tag">秋裤</span>
+        <section class="section">
+            <h2 class="section-title">III. 生活方式与日常习惯</h2>
+            <ul class="habits-list">
+                <li>
+                    <h4>挂壁美食学 (Dietary Habits)</h4>
+                    <p>饮食结构以“拼好饭”和各类外卖平台的低价套餐为主，是极致性价比的追求者。对瑞幸、蜜雪冰城等品牌的2-3元优惠券了如指掌。但并非完全苦行，偶尔也会下馆子吃25元的自选快餐，并对“顿顿牛肉”的生活充满向往。</p>
+                </li>
+                <li>
+                    <h4>健康焦虑症 (Health Concerns)</h4>
+                    <p>长期被脱发问题困扰，积极尝试米诺地尔、非那雄胺等各种生发产品。对ED（勃起障碍）话题毫不避讳，并乐于在群内分享与讨论。近期因不明原因出现严重皮肤问题（真菌感染），虽去医院就诊，但更倾向于“信念自愈”和自行用药，体现出对身体健康的极度焦虑与不科学处理方式的矛盾。</p>
+                </li>
+                <li>
+                    <h4>赌徒式理财 (Financial Habits)</h4>
+                    <p>“真男人只玩合约”。尽管日常消费极度节俭，但在投资领域却表现出极高的风险偏好，热衷于加密货币合约交易，并因此亏损数十万。这种“省吃俭用拿去赌”的行为，是他经济状况不稳定的核心原因。</p>
+                </li>
+                <li>
+                    <h4>赛博精神家园 (Entertainment)</h4>
+                    <p>《王者荣耀》是他重要的精神寄托和自信来源之一，乐于分享自己的战绩。同时是重度抖音、小红书用户，从中获取情感理论、搭讪技巧、社会新闻和大量情绪价值（或负价值），这些平台的内容深刻影响着他的三观和行为模式。</p>
+                </li>
+            </ul>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">IV. 高频词汇云图</h2>
+            <div class="word-cloud">
+                <span>兄弟萌</span> <span>老弟</span> <span>搭讪</span> <span>我丢</span> <span>卧槽</span> <span>踏马的</span> <span>[捂脸]</span> <span>[破涕为笑]</span> <span>牛批</span> <span>666</span> <span>女高</span> <span>女大</span> <span>小美</span> <span>黄毛</span> <span>龟男</span> <span>得吃</span> <span>蒜鸟</span> <span>[动画表情]</span> <span>天龙人</span> <span>废物</span> <span>帅哥</span> <span>小红书</span> <span>抖音</span> <span>拼好饭</span> <span>老斑鸠</span> <span>力工思维</span> <span>展示面</span> <span>嘎嘎嘎</span> <span>[奸笑]</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">V. 经典言行录 (Verbatim)</h2>
+            <div class="quote-block">量大出单，你懂不懂？<span class="source">- 论求偶策略</span></div>
+            <div class="quote-block">虽然我看着年龄比较大，但是我的潜力非常大。你别忘了，我也算天选之子...天龙人，你懂不懂。<span class="source">- 论自我血统</span></div>
+            <div class="quote-block">我果然是个废物。<span class="source">- 论搭讪失败后的自我审判</span></div>
+            <div class="quote-block">踏马的，不肯给我亲😗<span class="source">- 论与“女高”约会的核心总结</span></div>
+            <div class="quote-block">我只是贪便宜，不是扣。<span class="source">- 论消费哲学</span></div>
+            <div class="quote-block">有些程序员活该接盘，死肥宅，又矮又胖又丑...有本事来线下找我，看看我送不送他进医院。<span class="source">- 论同行内卷</span></div>
+            <div class="quote-block">老弟，来赌被车撞死，敢不敢？<span class="source">- 论网络对线的终极解决方案</span></div>
+            <div class="quote-block">结婚不就是为了传中接代，不然谁结婚？<span class="source">- 论婚姻的本质</span></div>
+            <div class="quote-block">你们的女朋友年龄比较大，嫌弃正常。<span class="source">- 论择偶的年龄偏好</span></div>
+            <div class="quote-block">我感觉我太自我封闭了。<span class="source">- 论社交困境的自我认知</span></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">VI. 人物关系图谱 (Relationship Map)</h2>
+            <div class="relationship-map">
+                <div class="node central">
+                    <h5>月源</h5>
+                    <p>核心主体，群聊的绝对焦点</p>
+                </div>
+                <div class="node love-hate">
+                    <h5>女高 (17岁)</h5>
+                    <p>核心情感投射对象。对其极度迷恋，多次约会并发生强吻等肢体接触，但又因对方的拒绝和“高冷”而反复破防、拉黑。是其“纯爱幻想”与“黄毛冲动”的主要实践对象。</p>
+                </div>
+                <div class="node conflict">
+                    <h5>三个水 (肥猪) & 小红书女拳</h5>
+                    <p>网络世界的头号宿敌。因被造谣“对她有意思”而彻底破防，引发了持续的、充满侮辱性言辞的网络骂战和报警风波。是他“反女拳”斗争的主要靶子。</p>
+                </div>
+                <div class="node support">
+                    <h5>星火航途 & 小白(寻三千)</h5>
+                    <p>“难兄难弟”与“重点调侃对象”。经常交流脱单、脱发、工作等焦虑，互相提供情绪价值。月源常以“过来人”姿态对其进行说教和调侃，是其展现“优越感”的重要渠道。</p>
+                </div>
+                <div class="node idol">
+                    <h5>搭讪大佬 (明哥 & 建模哥)</h5>
+                    <p>精神图腾与模仿对象。极度崇拜那些搭讪能力强的“大佬”，对他们的“0帧起手”、“嘎嘎乱杀”等行为津津乐道，视其为自己努力的方向，但又因自身“怂”而望尘莫及。</p>
+                </div>
+                <div class="node">
+                    <h5>千ヘ落 & 押沙龙 & 迷</h5>
+                    <p>资深吃瓜群众与“捧哏”。是月源各种戏剧性事件的主要观众和互动者，时而附和，时而质疑，时而调侃，他们的反应构成了月源表演的重要组成部分。</p>
+                </div>
+                 <div class="node">
+                    <h5>女宝 (江西)</h5>
+                    <p>前网恋对象，风评受害者。一段短暂的网恋，因200元红包问题产生纠纷，后被月源在群内反复提及，成为其“被造谣”叙事中的关键证据之一。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">VII. “吃瓜”大事件 (Key Incidents)</h2>
+            <ul class="story-list">
+                <li>
+                    <h4>“女高”拉扯史诗</h4>
+                    <p>主线剧情。通过搭讪认识17岁“女高”，随即展开了一场长达数月的极限拉扯。剧情包括：多次约会、强吻、打屁股、摸胸等出格行为；因对方拒绝或冷淡而反复破防、删好友、深夜emo；在群里分享聊天记录和约会细节，寻求“兄弟萌”的分析与支持。此事件集中体现了他对年轻女性的执着、笨拙的追求方式以及由此引发的剧烈情绪波动。</p>
+                </li>
+                <li>
+                    <h4>网络骂战与报警风云</h4>
+                    <p>因被另一群的女性“三个水”（被其蔑称为“肥猪”）造谣“对她有意思”，自尊心受到巨大侮辱，从而引发了激烈的网络冲突。事件迅速升级，涉及人身攻击、曝光个人信息（开盒）、赌咒发誓，并最终以月源亲自前往派出所报警作为高潮。此事完美展示了其在网络世界的攻击性和对“名誉”的极端维护。</p>
+                </li>
+                <li>
+                    <h4>搭讪“修行”与心魔之战</h4>
+                    <p>将几乎所有周末时间投入到线下搭讪活动中，足迹遍布深圳各大商圈（壹方城、万象天地等）。他崇拜能“0帧起手”的“明哥”，鄙视言行“傻逼”的同伴。然而，他自身却长期处于“想搭不敢搭”的内心挣扎中，经常在目送一个个“顶美”走远后，于群内发表“我真是个废物”的忏悔，构成了一部荒诞又真实的《都市求偶自我折磨录》。</p>
+                </li>
+                <li>
+                    <h4>职场沉浮录</h4>
+                    <p>职业生涯如过山车，曾达到20k高薪，后因裁员降至12k，最近又跳槽至16k。在新公司，他一方面自诩经验丰富，看不起同事（“傻逼后端”），另一方面又对复杂需求感到头疼，选择“偷工减料”。他时刻处于“摸鱼”与“被优化”的焦虑中，工作状态是他现实压力的主要来源，也是其“怀才不遇”心态的体现。</p>
+                </li>
+                 <li>
+                    <h4>“公检法”三进宫</h4>
+                    <p>生活充满了与规则的碰撞。因早年网贷平台暴雷，导致微信、支付宝被法院冻结并强制执行，此事让他焦头烂额；因前公司未足额缴纳公积金，他毅然前往相关部门维权；因被网络开盒，他毫不犹豫地选择报警。这些经历让他对社会规则有了更“深刻”的认识，也成为他在群里吹嘘自己“硬气”的资本。</p>
+                </li>
+            </ul>
+        </section>
+        
+        <div class="summary">
+            <h3>终极点评：一个数字时代的堂吉诃德</h3>
+            <p>月源，一个被互联网思潮与现实压力反复撕扯的矛盾聚合体。他像是数字时代的堂吉诃德，手持从抖音和小红书捡来的“黄毛”长矛，向着他想象中的“女拳”风车发起一次次冲锋，而他真正想拯救的，或许只是那个被困在“大龄、丑、穷、矮”城堡里的“纯爱公主”——他自己。<br><br>
+            他用“天选之子”的铠甲包裹住脆弱的自尊，用“量大出单”的口号掩盖对真爱的渴望。他的生活是一场永不停歇的战斗：与“傻逼”战斗，与“老斑鸠”战斗，与搭讪时的恐惧战斗，但归根结底，是与那个既渴望顶天立地、又时常自我否定的内心战斗。<br><br>
+            他的故事，既是一出令人捧腹的荒诞喜剧，也是一曲当代部分青年男性在欲望的海洋中迷航、在现实的泥潭里挣扎的悲歌。我们围观他，嘲笑他，或许也正在他身上，看到了几分我们自己不愿承认的影子。</p>
         </div>
-        <div class="mt-3 text-xs text-gray-500 text-center">* 根据本日聊天内容高频词汇生成（已过滤常见停用词）。</div>
-      </motion.div>
-
-      <!-- Topic Emotional Flow -->
-      <div class="grid lg:grid-cols-3 gap-8">
-        <motion.div
-            class="bento-card lg:col-span-2"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.2 }"
-        >
-            <h3 class="topic-title-cn mb-1 text-cyber-cyan">
-                本日话题情感流
-            </h3>
-            <p class="topic-title-en">EMOTIONAL SPECTRUM ANALYSIS</p>
-            <div class="mt-5 space-y-6">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-cyber-magenta"><i class="fas fa-running"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-cyber-magenta">上午</div>
-                    </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">焦虑 & 荒诞</h4>
-                        <p class="content-text mt-1">以对周一的集体性抱怨和对降温的日常讨论开启，氛围较为平淡。随后，<strong class="text-cyber-cyan">@小白君</strong>的“闪电离职”事件为群聊注入了强烈的荒诞喜剧色彩，引发了对奇葩职场文化的集体吐槽，情绪在焦虑与爆笑间摇摆。</p>
-                    </div>
-                </div>
-                 <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-cyber-cyan"><i class="fas fa-pills"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-cyber-cyan">下午</div>
-                    </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">养生 & 猎奇</h4>
-                        <p class="content-text mt-1">群聊进入“养生”时段，从失眠、腰痛的治疗分享，到对各种水果、美食的探讨，充满了浓厚的生活气息。情绪平稳，氛围轻松，偶尔因“活珠子”等猎奇食物引发小范围的趣味对立。</p>
-                    </div>
-                </div>
-                 <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-gray-400"><i class="fas fa-people-arrows"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-gray-400">傍晚至深夜</div>
-                    </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">冲突 & 修复</h4>
-                        <p class="content-text mt-1">全天情绪的爆点。一场关于家庭财政的观念冲突骤然爆发，气氛迅速变得紧张而严肃，充满了观点的交锋与误解，并直接导致社群成员流失。但在冲突过后，群聊进入了漫长的“自我修复”阶段，成员们开始反思、解释、并试图重建和谐氛围，最终在深夜的闲聊中逐渐回归平静。</p>
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-
-        <motion.div
-            class="bento-card"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.25 }"
-        >
-          <h3 class="topic-title-cn text-cyber-cyan">🧐 本日辩手</h3>
-          <p class="topic-title-en">DEBATER OF THE DAY</p>
-          <div class="mt-6 text-center">
-            <p class="stat-number-large" style="font-size: 3rem; color: #f472b6;">金华</p>
-          </div>
-          <p class="content-text mt-4">
-            今日的“风暴中心”。<strong class="text-cyber-magenta">@金华</strong>以其鲜明的个人立场，几乎是以一己之力挑起并主导了关于“上交工资”的大辩论。他坚持认为夫妻间的财务安排应是基于“爱与商量”的让步，而非“理所应当”的义务。尽管其表达方式略显激进，并引发了巨大争议，但他成功地将一个潜在的“秀恩爱”话题，深化为一场关于男性家庭角色、权利与尊重的严肃讨论，展现了强烈的思辨精神和议题设置能力。
-          </p>
-        </motion.div>
-      </div>
-
-      <!-- Top Speakers & Night Owls -->
-      <div class="grid lg:grid-cols-3 gap-8">
-        <motion.div
-            class="bento-card lg:col-span-2"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.2 }"
-        >
-            <h3 class="topic-title-cn mb-1 text-cyber-cyan">
-                本日话痨 <span class="font-normal text-xl text-gray-200">TOP 8</span>
-            </h3>
-            <p class="topic-title-en">MOST ACTIVE SPEAKERS OF THE DAY</p>
-            <ul class="mt-5 space-y-4">
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-crown mr-2 text-yellow-400"></i> 坚果小子(正经版)</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">148</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 100%"></div></div>
-                </li>
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-star mr-2 text-cyan-400"></i> 这不是我月薪三千该考虑的问题</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">146</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 98.6%"></div></div>
-                </li>
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-medal mr-2 text-pink-400"></i> 金华 无恶意勿举报</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">133</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 89.8%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">栗子</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">128</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 86.5%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">慢子</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">109</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 73.6%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">蜻蜓队长-小白君🧐</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">85</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 57.4%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">内向腼腆社恐和自卑害羞且文静男孩</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">83</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 56.1%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">晚卿</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">81</span>
-                    </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 54.7%"></div></div>
-                </li>
-            </ul>
-            <div class="mt-4 text-xs text-gray-500">* 发言数量为本日（10.20）大致统计值。</div>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 30 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.6, delay: 0.35 }"
-        >
-          <h3 class="topic-title-cn text-cyber-cyan">🦉 本日熬夜冠军 🦉</h3>
-          <p class="topic-title-en">LATEST NIGHT OWLS OF THE DAY</p>
-          <ul class="mt-5 space-y-4">
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-400"></i>1. 十哥</span>
-              <span class="text-gray-400 font-semibold">23:49:59</span>
-            </li>
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-500/80"></i>2. 蜻蜓队长-小白君🧐</span>
-              <span class="text-gray-400 font-semibold">23:47:13</span>
-            </li>
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-600/70"></i>3. 马化腾</span>
-              <span class="text-gray-400 font-semibold">23:44:02</span>
-            </li>
-          </ul>
-          <div class="mt-4 text-xs text-gray-500">* 根据本日记录的最后发言时间统计。</div>
-        </motion.div>
-      </div>
 
     </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.bento-card');
-        cards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', `${x}px`);
-            card.style.setProperty('--y', `${y}px`);
-          });
-        });
-      });
-    </script>
-  </body>
+</body>
 </html>
