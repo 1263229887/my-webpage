@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 40px 30px;
+        }
+
+        .tab-item {
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-item:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .tab-item:hover:before {
+            left: 100%;
+        }
+
+        .tab-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-item:active {
+            transform: translateY(-2px);
+        }
+
+        .tab-item:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .tab-item:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .tab-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .tabs {
+                padding: 30px 20px;
+                gap: 15px;
+            }
+
+            .tab-item {
+                padding: 20px 25px;
+                font-size: 18px;
+            }
+
+            .tab-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .tabs {
+                padding: 25px 15px;
+                gap: 12px;
+            }
+
+            .tab-item {
+                padding: 18px 20px;
+                font-size: 16px;
+            }
+        }
+
+        /* 触摸设备优化 */
+        @media (hover: none) {
+            .tab-item:hover {
+                transform: none;
+            }
+
+            .tab-item:active {
+                transform: scale(0.98);
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>欢迎</h1>
+            <p>选择您想要查看的内容</p>
+        </div>
+
+        <div class="tabs">
+            <a href="weeklyNewspaper.html" class="tab-item">
+                <span class="tab-icon">📰</span>
+                <span>群周报</span>
+            </a>
+            <a href="personalitySketch.html" class="tab-item">
+                <span class="tab-icon">✍️</span>
+                <span>性格速写</span>
+            </a>
+        </div>
+
+        <div class="footer">
+            © 2025 All Rights Reserved
+        </div>
+    </div>
+</body>
+</html>

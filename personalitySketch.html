@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深圳程序员技术交流群3.0 - 群友人格速写 (Data: 11.10-11.16)</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.2.10/motion.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css/all.min.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+      body {
+        background-color: #0d1117; /* Dark background */
+        color: #c9d1d9; /* Light text */
+        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+          Arial, sans-serif;
+        overflow-x: hidden;
+      }
+      .font-orbitron {
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .text-cyber-cyan { color: #22d3ee; }
+      .bg-cyber-cyan { background-color: #22d3ee; }
+      .border-cyber-cyan { border-color: #22d3ee; }
+      .text-cyber-magenta { color: #f472b6; }
+      .bg-cyber-magenta { background-color: #f472b6; }
+      .border-cyber-magenta { border-color: #f472b6; }
+
+      .bento-card {
+        background-color: rgba(31, 41, 55, 0.5); /* Semi-transparent dark card */
+        border-radius: 16px;
+        padding: 1.5rem;
+        border: 1px solid rgba(107, 114, 128, 0.2); /* Subtle border */
+        box-shadow: 0 0 15px rgba(34, 211, 238, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+        height: 100%; /* Ensure cards in a row have the same height */
+        display: flex;
+        flex-direction: column;
+      }
+      @media (min-width: 768px) {
+        .bento-card {
+            padding: 2rem;
+        }
+      }
+      .bento-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 10px rgba(244, 114, 182, 0.1);
+        border-color: rgba(34, 211, 238, 0.4);
+      }
+      .bento-card::before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -1;
+        margin: -1px;
+        border-radius: inherit;
+        background: radial-gradient(circle at var(--x) var(--y), rgba(34, 211, 238, 0.25), rgba(34, 211, 238, 0.05), transparent 40%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .bento-card:hover::before {
+        opacity: 1;
+      }
+      
+      .topic-title-cn {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.8rem; /* Larger for main title */
+        line-height: 2.2rem;
+        font-weight: 700;
+        color: #22d3ee; /* Cyber Cyan */
+        text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+      }
+      .topic-title-en {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-top: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .card-title {
+        font-size: 1.25rem; /* text-xl */
+        font-weight: 700; /* font-bold */
+        color: #f472b6; /* text-cyber-magenta */
+        text-shadow: 0 0 6px rgba(244, 114, 182, 0.4);
+      }
+
+      .content-text {
+        color: #d1d5db;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        overflow-wrap: break-word;
+        flex-grow: 1; /* Allow content to fill space */
+      }
+      
+      .card-hr {
+        border-color: rgba(107, 114, 128, 0.2);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+    </style>
+  </head>
+  <body class="antialiased">
+    <div id="app" class="container mx-auto p-4 md:p-8 space-y-8">
+      <!-- Main Title Card -->
+      <motion.div
+        class="bento-card text-center"
+        :initial="{ opacity: 0, y: 30 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :transition="{ duration: 0.6, delay: 0.1 }"
+      >
+        <h2 class="topic-title-cn text-cyber-cyan">群友人格速写</h2>
+        <p class="topic-title-en">COMMUNITY MEMBER PERSONA PROFILES</p>
+        <p class="content-text mt-4 max-w-3xl mx-auto text-center text-gray-400">
+          基于上周群聊数据生成的趣味快照，观点犀利幽默，如有雷同，不胜荣幸。仅供娱乐，切勿对号入座（除非忍不住）。
+        </p>
+      </motion.div>
+
+      <!-- Persona Cards Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+          <div class="flex items-center">
+            <i class="fas fa-rocket text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">栗子 (p姨)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">社群八卦发动机与生活美学实践者。上知备孕细节，下知中山美食，是P姨宇宙的绝对核心。永远冲在吃瓜第一线，擅长用“笑爆”表达一切情绪，其“防撤回”插件是所有秘密的终结者。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.25 }">
+          <div class="flex items-center">
+            <i class="fas fa-heartbeat text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">大公主舔狗二号 (金华)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">群聊的节拍器与气氛担当。发言贯穿全天，无缝切换于“股市红绿”、“女友日常”与“深夜加班”之间。看似纯情，却对各类话题有着深刻的洞察力，是群内最稳定的快乐源泉之一。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+          <div class="flex items-center">
+            <i class="fas fa-microphone-alt text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">这不是我月薪三千该考虑的问题 (家乐)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">首席捧哏大师与话题永动机。擅长以“怎么说？”、“展开讲讲”为引，撬动一切潜在的瓜田，是维持群聊热度的关键燃料。虽然自嘲“挂壁”，但对生活的热情与好奇心从未下线。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+          <div class="flex items-center">
+            <i class="fas fa-crown text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">oi (公主)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">群聊的时尚女王与生活剧女主。OOTD是她的T台，办公室是她的剧场。敢于分享纹身，也敢于怒怼老板和老公。她的生活本身就是一部连续剧，为群聊提供了源源不断的“抓马”素材。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.25 }">
+          <div class="flex items-center">
+            <i class="fas fa-store-alt text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">皇帝 (小红)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">待业新婚甜妻兼街头创业者。她的叙事在“老公好爱我”的甜蜜、“找不到工作”的焦虑与“摆摊被城管追”的戏剧感中交织。真实、接地气，是群内最具烟火气的角色之一。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+          <div class="flex items-center">
+            <i class="fas fa-binoculars text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">蜻蜓队长-小白君🧐</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">“教主宇宙”首席播报员与斜杠青年实践者。左手转播教主最新“精神分裂”实录，右手与皇帝在街头卖气球体验人生。精力旺盛，是连接群内八卦与现实行动的关键节点。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+          <div class="flex items-center">
+            <i class="fas fa-book text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">我 (双)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">群聊的书记官与技术问题宝宝。热衷于记录群内大小事件（比如这份周报），同时也是“烫头失败”、“代码重构”等技术话题的发起者。一个在努力跟上群友节奏的观察者。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.25 }">
+          <div class="flex items-center">
+            <i class="fas fa-feather-alt text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">随木 (娇姐)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">群内的人生导师与焦虑担当。发言总能一语中的，充满成熟女性的通透。但同时，她也坦诚地分享自己的年龄、财务和情感焦虑，在“指点江山”与“自我内耗”之间反复横跳。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+          <div class="flex items-center">
+            <i class="fas fa-binoculars text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">【八方来财】努力成为健身摄影律师 (阿喵)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">全领域围观群众与气氛组骨干。上至天文地理，下至八卦情色，哪里有热闹哪里就有他。一句“看看”是他参与所有话题的通行证，是群聊不可或缺的“点赞之交”。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+          <div class="flex items-center">
+            <i class="fas fa-bomb text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">六号技师 (Sir)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">行走的尺度标尺与犀利吐槽官。擅长在各类话题中找到最“刁钻”的切入点，并以极具攻击性的幽默感引爆全场。他的存在，就是为了确保群聊永远不会变得“无聊”。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.25 }">
+          <div class="flex items-center">
+            <i class="fas fa-gavel text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">十哥</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">专情少妇的鉴赏家与历史话题爱好者。审美标准高度统一且从不动摇，总能分享符合其独特品味的“资源”。同时，也能随时将话题引向严肃的历史思辨，展现出复杂而有趣的人格侧面。</p>
+        </motion.div>
+
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+          <div class="flex items-center">
+            <i class="fas fa-shopping-bag text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">芊雨（瘦29斤版）</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">行走的种草机与瓜田搬运工。前脚刚推荐完“版型绝了”的T恤，后脚就搬运来“阳痿渣男”的惊天巨瓜。热衷于分享生活中的一切，从减肥心得、养生知识到劲爆八卦，信息密度极高。</p>
+        </motion.div>
+        
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.2 }">
+          <div class="flex items-center">
+            <i class="fas fa-male text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">灵魂写手 (康哥)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">已婚男性的“嘴替”与过来人。无论是分享育儿经验，还是剖析婚姻中的“小金库”哲学，他总能以幽默而真实的方式，道出已婚男人的心声与无奈，是群内男性家庭生活的代言人。</p>
+        </motion.div>
+        
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.25 }">
+          <div class="flex items-center">
+            <i class="fas fa-hamburger text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">美式不加冰</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">“疯狂星期四”文学家与八卦雷达。总能在第一时间捕捉到群内的八卦苗头并迅速跟进。他的KFC文案独树一帜，同时也是OOTD环节的积极分子，一个有趣的灵魂。</p>
+        </motion.div>
+        
+        <motion.div class="bento-card" :initial="{ opacity: 0, y: 20 }" :while-in-view="{ opacity: 1, y: 0 }" :transition="{ duration: 0.5, delay: 0.3 }">
+          <div class="flex items-center">
+            <i class="fas-solid fa-wand-magic-sparkles text-cyber-cyan text-2xl mr-4"></i>
+            <h3 class="card-title">慢子 (忙到有时间摸鱼版)</h3>
+          </div>
+          <hr class="card-hr" />
+          <p class="content-text">返场的情感大师。虽然发言不多，但每次出现都能引发小范围骚动。无论是对前任的潇洒态度，还是对两性关系的“拉扯”心得，都展现出极高的情商，是群友们学习情感博弈的活教材。</p>
+        </motion.div>
+
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.bento-card');
+        cards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--y', `${y}px`);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
