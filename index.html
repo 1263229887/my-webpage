@@ -1,984 +1,873 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>深圳程序员技术交流群3.0 - 群聊周报 (11.24-11.30 Data)</title>
-    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/11.2.10/motion.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深圳程序员交流群 · 春节特别周报</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/framer-motion@11.2.10/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
-
-      body {
-        background-color: #0d1117; /* Dark background */
-        color: #c9d1d9; /* Light text */
-        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-          Arial, sans-serif;
-        overflow-x: hidden;
-      }
-      .font-orbitron {
-        font-family: 'Orbitron', sans-serif;
-      }
-
-      .text-cyber-cyan { color: #22d3ee; }
-      .bg-cyber-cyan { background-color: #22d3ee; }
-      .border-cyber-cyan { border-color: #22d3ee; }
-      .text-cyber-magenta { color: #f472b6; }
-      .bg-cyber-magenta { background-color: #f472b6; }
-      .border-cyber-magenta { border-color: #f472b6; }
-
-      .bento-card {
-        background-color: rgba(31, 41, 55, 0.5); /* Semi-transparent dark card */
-        border-radius: 16px;
-        padding: 1.5rem; /* Adjusted padding for mobile */
-        border: 1px solid rgba(107, 114, 128, 0.2); /* Subtle border */
-        box-shadow: 0 0 15px rgba(34, 211, 238, 0.05);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        overflow: hidden;
-        position: relative;
-        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
-      }
-      @media (min-width: 768px) {
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        
+        .cyber-glow {
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+        }
+        
+        .cyber-glow-pink {
+            box-shadow: 0 0 20px rgba(244, 114, 182, 0.3), 0 0 40px rgba(244, 114, 182, 0.1);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5), 0 0 20px rgba(34, 211, 238, 0.3);
+        }
+        
+        .text-glow-pink {
+            text-shadow: 0 0 10px rgba(244, 114, 182, 0.5), 0 0 20px rgba(244, 114, 182, 0.3);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.1), rgba(244, 114, 182, 0.1));
+            border: 1px solid transparent;
+            background-clip: padding-box;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, #22d3ee, #f472b6);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+        
         .bento-card {
-            padding: 2rem;
+            background: rgba(20, 20, 35, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            transition: all 0.3s ease;
         }
-      }
-      .bento-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 10px rgba(244, 114, 182, 0.1);
-        border-color: rgba(34, 211, 238, 0.4);
-      }
-      .bento-card::before {
-        content: '';
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        z-index: -1;
-        margin: -1px;
-        border-radius: inherit;
-        background: radial-gradient(circle at var(--x) var(--y), rgba(34, 211, 238, 0.25), rgba(34, 211, 238, 0.05), transparent 40%);
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      .bento-card:hover::before {
-        opacity: 1;
-      }
-
-      .topic-title-cn {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.5rem;
-        line-height: 2rem;
-        font-weight: 700;
-        color: #22d3ee; /* Cyber Cyan */
-        text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
-      }
-      .topic-title-en {
-        font-size: 0.8rem;
-        color: #9ca3af; /* Lighter gray subtitle */
-        margin-top: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
-      .section-label {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f472b6; /* Cyber Magenta */
-        margin-bottom: 0.25rem;
-        display: block;
-      }
-      .content-text {
-        color: #d1d5db; /* Lighter content text */
-        line-height: 1.7;
-        font-size: 0.95rem;
-        overflow-wrap: break-word;
-      }
-      .participant-tag {
-        background-color: rgba(34, 211, 238, 0.1);
-        color: #a5f3fc;
-        padding: 0.25rem 0.6rem;
-        border-radius: 9999px;
-        font-size: 0.8rem;
-        margin-right: 0.4rem;
-        margin-bottom: 0.4rem;
-        display: inline-block;
-        border: 1px solid rgba(34, 211, 238, 0.2);
-        transition: all 0.2s ease-in-out;
-      }
-      .participant-tag:hover {
-        background-color: rgba(34, 211, 238, 0.2);
-        color: #fff;
-        transform: translateY(-1px);
-        text-shadow: 0 0 5px #22d3ee;
-      }
-      .evaluation-text {
-        font-style: normal;
-        color: #e5e7eb;
-        border-left: 3px solid #22d3ee;
-        padding-left: 1rem;
-        margin-top: 0.75rem;
-        background-color: rgba(34, 211, 238, 0.08); /* Very light cyan bg */
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-radius: 0 8px 8px 0;
-      }
-      .card-hr {
-        border-color: rgba(107, 114, 128, 0.2); /* Darker HR */
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-      .speaker-bar-bg {
-        background-color: #374151; /* Dark gray bar bg */
-        height: 10px;
-        border-radius: 5px;
-        overflow: hidden;
-        margin-top: 0.25rem;
-      }
-      .speaker-bar-fill {
-        background: linear-gradient(90deg, #f472b6, #22d3ee); /* Magenta to Cyan gradient */
-        height: 100%;
-        border-radius: 5px;
-        transition: width 0.8s ease-in-out;
-      }
-      .stat-number-large {
-        font-size: 4.5rem;
-        font-weight: 800;
-        line-height: 1;
-        color: #22d3ee;
-        text-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
-      }
-      .keyword-tag {
-        background-color: rgba(244, 114, 182, 0.1);
-        color: #f9a8d4;
-        padding: 0.3rem 0.7rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        margin: 0.25rem;
-        display: inline-block;
-        border: 1px solid rgba(244, 114, 182, 0.2);
-        transition: all 0.2s ease-in-out;
-      }
-      .keyword-tag:hover {
-        background-color: rgba(244, 114, 182, 0.2);
-        color: #fce7f3;
-        transform: scale(1.05);
-        text-shadow: 0 0 5px #f472b6;
-      }
-
-      /* --- Mobile Compatibility Fix for Title --- */
-      .main-title {
-        display: inline-block;
-        /* No white-space: nowrap by default for mobile */
-        border-right: 3px solid rgba(34, 211, 238, 0.75);
-        animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
-        word-break: break-all; /* Allow wrapping */
-      }
-      
-      @keyframes typing {
-        from { width: 0; }
-        to { width: 100%; }
-      }
-
-      @keyframes blink-caret {
-        from, to { border-color: transparent; }
-        50% { border-color: rgba(34, 211, 238, 0.75); }
-      }
-      
-      /* Apply nowrap and overflow hidden only on larger screens */
-      @media (min-width: 768px) {
-        .main-title {
-          white-space: nowrap;
-          overflow: hidden;
+        
+        .bento-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(34, 211, 238, 0.5);
         }
-      }
-
+        
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(34, 211, 238, 0.15);
+            color: #22d3ee;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+        }
+        
+        .tag-pink {
+            background: rgba(244, 114, 182, 0.15);
+            color: #f472b6;
+            border: 1px solid rgba(244, 114, 182, 0.3);
+        }
+        
+        .tag-green {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .tag-yellow {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .scroll-container::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .scroll-container::-webkit-scrollbar-track {
+            background: rgba(20, 20, 35, 0.5);
+        }
+        
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #22d3ee, #f472b6);
+            border-radius: 2px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #22d3ee, #f472b6);
+            border-radius: 9999px;
+            height: 6px;
+        }
+        
+        .avatar-ring {
+            padding: 2px;
+            background: linear-gradient(135deg, #22d3ee, #f472b6);
+            border-radius: 50%;
+        }
+        
+        .timeline-line {
+            background: linear-gradient(180deg, #22d3ee, #f472b6, #22d3ee);
+        }
     </style>
-  </head>
-  <body class="antialiased">
-    <div id="app" class="container mx-auto p-4 md:p-8 space-y-8">
-      <!-- Overall Style Evaluation -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :animate="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.1 }"
-      >
-        <h2 class="topic-title-cn text-cyber-cyan main-title">深圳程序员技术交流群周报 (11.24 - 11.30)</h2>
-        <p class="topic-title-en">SHENZHEN PROGRAMMERS TECHNICAL EXCHANGE GROUP WEEKLY (NOVEMBER 24TH - 30TH)</p>
-        <p class="content-text mt-4 text-base md:text-lg">
-            本周群聊在<strong class="text-cyber-magenta font-semibold">职场风暴与生活伦理剧的交织中</strong>奏响了一曲跌宕起伏的乐章。序曲由<strong class="text-cyber-cyan font-semibold">@oi（公主）</strong>的<strong class="text-gray-100 font-semibold">“被裁倒计时”</strong>拉开，其老板暗中调查考勤的骚操作，最终在她潇洒的“下午就不干了”中迎来高潮，群友们共同见证了一场现代职场版的“胜利大逃亡”。然而，职场的波澜远不及<strong class="text-cyber-magenta font-semibold">人性剧场的惊心动魄</strong>。公主分享的<strong class="text-gray-100 font-semibold">“舅甥孽缘”</strong>连载，以其颠覆伦理的聊天记录和金钱纠葛，瞬间引爆全群的八卦之魂与道德审判欲，其精彩程度堪比年度最佳社会新闻。在这些主旋律之下，群聊的温情与烟火气也从未缺席：一场关于<strong class="text-cyber-cyan font-semibold">备孕与育儿的“准父母圆桌会”</strong>，让<strong class="text-gray-100 font-semibold">@栗子</strong>、<strong class="text-cyber-magenta font-semibold">@瑞秋</strong>等群友分享了各自的期待与焦虑，展现了社群在人生重要阶段的陪伴价值；<strong class="text-cyber-cyan font-semibold">@芊雨</strong>的<strong class="text-gray-100 font-semibold">“高知相亲”</strong>实录，则为群内单身人士上演了一场高段位的情感博弈教学。与此同时，从<strong class="text-cyber-magenta font-semibold">“疯狂星期四”</strong>的集体狂欢，到<strong class="text-gray-100 font-semibold">OOTD环节</strong>的马甲线与帅照比拼，再到对<strong class="text-cyber-cyan font-semibold">前端技术</strong>和<strong class="text-gray-100 font-semibold">跨境电商</strong>的硬核探讨，共同谱写了一部<strong class="text-cyber-cyan font-semibold">既有职场博弈的现实冷峻，又不乏人性八卦的极致快感与生活琐碎的温暖真实的</strong>社群周记。
-        </p>
-      </motion.div>
-
-      <!-- Topics Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { motion, AnimatePresence } = window.Motion;
+        const { useState, useEffect } = React;
         
-        <motion.div
-          class="bento-card lg:col-span-2"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣ 公主终局：一场潇洒的“胜利大逃亡”
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-user-secret"></i><i class="fas fa-running"></i><i class="fas fa-crown"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">THE PRINCESS'S ENDGAME: A STYLISH "GREAT ESCAPE"</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">核心人物：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">oi (公主)</span><span class="participant-tag">屑老板 (Eric)</span> <span class="participant-tag">告密同事</span>
-            </div>
-            <span class="section-label mt-2">精神股东：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">全体群友</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">贯穿全周，11.28 上午高潮</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周最受关注的连续剧。开篇即曝出<strong class="text-cyber-cyan">@oi（公主）</strong>的老板Eric授意HR调查其车辆进出记录，意图“无痛开除”。公主在“想被开又不想被开”的矛盾中，展现了强大的心态，表示“正好可以全职跳舞”。期间，其父“你这个老板太小心眼了”的霸气回应和主动为她交五险一金的兜底操作，让群友艳羡不已。周五上午，HR终于约谈，公主当即表示“下午就不干了”，并成功拿到<strong class="text-cyber-magenta">N+1.5</strong>的赔偿。这场持续数日的职场博弈，最终以公主的潇洒离场和喜提“自由红包”宣告胜利，堪称教科书级的反PUA案例。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一出高潮迭起的职场现实主义大戏。它不仅满足了群友对职场斗争的窥探欲，更因公主强大的家庭后盾和“姐不伺候了”的洒脱态度，成为一场“爽文”直播。整个过程充满了悬念、共情与最终的集体狂欢，是社群作为“情绪加油站”和“人生见证者”功能的完美体现。
-          </p>
-        </motion.div>
+        // 话题数据
+        const topics = [
+            { id: 1, title: "红包雨大作战", icon: "fa-red-envelope", color: "pink", heat: 98, desc: "元宝/千问/豆包APP抢红包活动风靡全群，李唔直疯狂输入各种春晚红包口令", highlights: ["中到2次500多币", "千问输入口令", "浙江/东方/江苏春晚红包"] },
+            { id: 2, title: "除夕祝福抢红包", icon: "fa-gift", color: "cyan", heat: 95, desc: "oi公主、李总、龙龙等大佬轮番发红包，群友们疯狂抢红包送祝福", highlights: ["公主发红包大方", "陈郅衡发红包", "龙龙春节红包"] },
+            { id: 3, title: "年夜饭时间之争", icon: "fa-utensils", color: "yellow", heat: 85, desc: "各地年夜饭时间大不同：有的早上、有的中午、有的晚上，引发热烈讨论", highlights: ["广东中午吃", "北方晚上吃", "各地习俗差异大"] },
+            { id: 4, title: "江西彩礼大瓜", icon: "fa-ring", color: "pink", heat: 92, desc: "江西彩礼38.8万话题引发热议，骗婚风险讨论让单身群友瑟瑟发抖", highlights: ["38.8万彩礼", "骗婚风险", "结婚成本高"] },
+            { id: 5, title: "相亲大会风云", icon: "fa-heart", color: "pink", heat: 96, desc: "龙龙参加相亲大会，70多男VS10几女的残酷比例下，竟然收获4个女生微信！", highlights: ["龙龙4个女生加微信", "全场最年轻蛋蛋后", "一龙四吃梗诞生"] },
+            { id: 6, title: "crush是什么", icon: "fa-heart-crack", color: "cyan", heat: 78, desc: "oi公主问能否给crush发红包，引发crush含义讨论", highlights: ["oi的crush是谁", "能否给crush发红包", "暧昧话题"] },
+            { id: 7, title: "健身达人公主", icon: "fa-dumbbell", color: "green", heat: 82, desc: "oi公主除夕初一都坚持健身，自律程度让群友叹服", highlights: ["除夕健身", "初一健身", "公主的自律"] },
+            { id: 8, title: "天气南北差异", icon: "fa-cloud-sun", color: "cyan", heat: 70, desc: "广东热到穿短袖17°觉得冷，其他地方3-4℃冻成狗，南北差异笑料不断", highlights: ["广东17°喊冷", "其他地方3-4℃", "三亚游客很舒服"] },
+            { id: 9, title: "春晚吐槽大会", icon: "fa-tv", color: "yellow", heat: 88, desc: "年年骂春晚，今年被春晚骂了！导演收到五湖四海的刀片", highlights: ["机器人浓度高", "被春晚骂了", "导演收刀片"] },
+            { id: 10, title: "烟花鞭炮禁放", icon: "fa-fire", color: "pink", heat: 75, desc: "城市禁放烟花鞭炮，程权和3个女大放烟花被罚款2000", highlights: ["禁放政策", "罚款2000", "朋友圈点赞50退罚款"] },
+            { id: 11, title: "拜年习俗大PK", icon: "fa-house-chimney", color: "cyan", heat: 80, desc: "初二回娘家还是初三去老丈人家？十里不同俗，群友们各执一词", highlights: ["初二回娘家", "初三去丈母娘家", "各地习俗不同"] },
+            { id: 12, title: "音乐格式转换", icon: "fa-music", color: "green", heat: 60, desc: "kgg格式怎么转mp3？技术问题也需要讨论", highlights: ["kgg转mp3", "格式转换工具", "音乐播放问题"] },
+            { id: 13, title: "520情侣红包", icon: "fa-heart-pulse", color: "pink", heat: 72, desc: "情人节520红包话题，单身狗表示受到了伤害", highlights: ["520红包", "情人节话题", "单身狗受伤"] },
+            { id: 14, title: "麻将赌局风云", icon: "fa-dice", color: "yellow", heat: 85, desc: "群主打麻将输了钱，樱桃炸金花平本，过年赌博娱乐少不了", highlights: ["群主输钱", "炸金花平本", "赢了七八十"] },
+            { id: 15, title: "萌宠过年记", icon: "fa-paw", color: "green", heat: 76, desc: "狗子吃棒棒糖、黑狗崽、猫不吃死老鼠，宠物们的春节也精彩", highlights: ["狗子吃棒棒糖", "黑狗崽辟邪", "猫玩老鼠不吃"] },
+            { id: 16, title: "返程抢票大作战", icon: "fa-train", color: "cyan", heat: 90, desc: "高铁票候补难兑现，智行帮抢票，初七返程压力大", highlights: ["候补票难兑现", "智行抢票", "买短乘长"] },
+            { id: 17, title: "特斯拉血汗工厂", icon: "fa-car", color: "yellow", heat: 68, desc: "每周工作40小时被说血汗工厂，外企最良心引发讨论", highlights: ["40小时工作制", "外企良心", "工资高"] },
+            { id: 18, title: "春节档电影推荐", icon: "fa-film", color: "pink", heat: 82, desc: "飞驰人生3好评如潮，镖人、星河入梦也被推荐", highlights: ["飞驰人生3好看", "镖人武打精彩", "星河入梦排片少"] },
+            { id: 19, title: "催婚大戏", icon: "fa-users", color: "pink", heat: 94, desc: "13岁妹妹说想结婚选有钱的，30岁学霸被说不结婚白读书了", highlights: ["13岁妹妹三观正", "30岁被催婚", "白读书了"] },
+            { id: 20, title: "城里到底有谁在", icon: "fa-city", color: "cyan", heat: 88, desc: "程序员名场面：'咋了，你城里还有房子'刷屏全群", highlights: ["城里还有房子", "五胡乱华梗", "群友刷屏"] },
+            { id: 21, title: "深圳租房指南", icon: "fa-building", color: "green", heat: 65, desc: "福田上班去哪里租房？罗湖便宜但远，福田停车难", highlights: ["福田租房贵", "罗湖便宜", "停车难"] },
+            { id: 22, title: "赌狗亲戚八卦", icon: "fa-user-secret", color: "yellow", heat: 86, desc: "小白君分享赌徒亲戚八卦：让儿子打钱、让女儿抵押房子", highlights: ["赌博欠七八十万", "儿子当兵打钱", "女儿差点抵押房子"] },
+            { id: 23, title: "美式订婚喜讯", icon: "fa-champagne-glasses", color: "pink", heat: 91, desc: "美式不加冰2月22日初六订婚，群友纷纷祝福！", highlights: ["2.22订婚", "酒店难订", "群友祝福"] },
+            { id: 24, title: "金华泰国蜜月", icon: "fa-plane", color: "cyan", heat: 79, desc: "金华偷偷去泰国度蜜月，群友调侃看人妖", highlights: ["泰国度蜜月", "看人妖", "一路向西2主演金华"] },
+        ];
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            2️⃣ 舅甥“孽缘”？：年度最佳人性观察录
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-scroll"></i><i class="fas fa-eye"></i><i class="fas fa-gavel"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">UNCLE-NIECE "AFFAIR"?: THE BEST CASE STUDY IN HUMANITY OF THE YEAR</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">战地记者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">oi (公主)</span>
-            </div>
-             <span class="section-label mt-2">陪审团：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">慢子</span><span class="participant-tag">吻如雪上霜</span><span class="participant-tag">全体吃瓜群众</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.24 上午</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周最劲爆、信息量最大的“瓜田”。<strong class="text-cyber-cyan">@oi</strong>转发了一位朋友圈好友（环球影城租衣店主）的惊天大瓜。内容为一个男人长期骚扰一位离异带娃的女性，并持续转账，聊天内容充满了自我感动的“硬舔”式骚扰。最炸裂的是，两人关系最初被描述为“亲舅舅和外甥女”（后证实为疏远老乡）。男方在被拒后，将聊天记录和转账截图发布朋友圈，配文“当了婊子还想立牌坊”，意图毁掉女方名声。群友们对聊天记录进行逐帧分析，从<strong class="text-cyber-magenta">“自愿赠予”</strong>的法律效力，到女方“欲拒还迎”是否妥当，展开了激烈辩论。<strong class="text-gray-100">@慢子</strong>一针见血总结为<strong class="text-cyber-cyan">“男的硬舔，女的想要钱”</strong>。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一出活生生的、充满伦理争议与人性复杂的现实剧。它集齐了金钱、性骚扰、亲戚关系、网络暴力等所有爆款元素，完美满足了社群的八卦天性。群友们的集体分析不仅娱乐性拉满，更是一场关于两性关系边界、金钱诱惑与网络名誉的深刻社会学讨论。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-        >
-          <h2 class="topic-title-cn">
-            3️⃣ 群聊变产房：准父母们的“好孕”圆桌会
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-baby-carriage"></i><i class="fas fa-comments"></i><i class="fas fa-heart"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">CHAT GROUP TURNED MATERNITY WARD: THE "GOOD PREGNANCY" ROUNDTABLE</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">核心成员：</span><div class="flex flex-wrap"><span class="participant-tag">栗子</span><span class="participant-tag">瑞秋</span><span class="participant-tag">灵魂写手 (康哥)</span><span class="participant-tag">斤华</span><span class="participant-tag">皇帝</span></div>
-            <span class="section-label mt-2">围观群众：</span><div class="flex flex-wrap"><span class="participant-tag">全体单身/未育群友</span></div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.28 上午</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周最温馨且最具“人生大事”氛围的讨论。话题由<strong class="text-cyber-cyan">@瑞秋</strong>分享田园待产生活开启。随后，<strong class="text-cyber-magenta">@栗子</strong>自曝可能“一次就中”，已验出两道杠，引发群内一片“恭喜”。讨论迅速扩展到孕期注意事项：<strong class="text-gray-100">@灵魂写手</strong>和<strong class="text-cyber-cyan">@斤华</strong>等“过来人”分享带娃经验，众人探讨了送走宠物、孕反与胎儿性别的玄学、叶酸补充、产检等一系列实用话题。<strong class="text-cyber-magenta">@栗子</strong>更是直接宣布“要卖电脑，断了念想”，展现了准妈妈的决心。整个群聊充满了祝福与经验分享，俨然一个线上“宝妈/宝爸预备役”交流会。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            社群温度与陪伴价值的极致体现。这场讨论不仅为准父母们提供了宝贵的情绪支持和实战经验，也让年轻群友们对婚育阶段的生活有了更真实的认知。从备孕到育儿，群聊正在成为成员们人生重要节点的见证者和智囊团，极大地增强了社群的归属感和粘性。
-          </p>
-        </motion.div>
+        // 活跃用户数据
+        const activeUsers = [
+            { rank: 1, name: "oi(公主)", avatar: "👸", messages: 520, highlights: ["健身达人", "发红包大方", "家境殷实"], tags: ["富婆", "自律", "加拿大"] },
+            { rank: 2, name: "蜻蜓队长-小白君", avatar: "🧐", messages: 480, highlights: ["活跃群友", "分享八卦", "话题担当"], tags: ["吃瓜", "活跃", "话痨"] },
+            { rank: 3, name: "皇帝", avatar: "👑", messages: 320, highlights: ["群主", "麻将输钱", "发红包"], tags: ["群主", "土豪", "赌徒"] },
+            { rank: 4, name: "内向腼腆社恐...龙龙", avatar: "🐉", messages: 280, highlights: ["相亲王者", "蛋蛋后", "两套房"], tags: ["相亲达人", "年轻", "受欢迎"] },
+            { rank: 5, name: "小猪佩奇/汐染季沫", avatar: "🐷", messages: 260, highlights: ["相亲经历", "催婚话题"], tags: ["相亲", "催婚", "单身"] },
+            { rank: 6, name: "大宇/陈郅衡", avatar: "😎", messages: 240, highlights: ["不想努力了", "女朋友多"], tags: ["富二代", "情场高手", "躺平"] },
+            { rank: 7, name: "慢子", avatar: "🐢", messages: 220, highlights: ["炫瓜子上火", "奶茶被骂"], tags: ["吃货", "宅", "熬夜"] },
+            { rank: 8, name: "樱桃", avatar: "🍒", messages: 200, highlights: ["炸金花", "狗子视频", "返程抢票"], tags: ["赌博", "宠物", "吃货"] },
+        ];
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.15 }"
-        >
-          <h2 class="topic-title-cn">
-            4️⃣ 芊雨相亲记：一场高段位的情感博弈
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fas fa-user-friends"></i><i class="fas fa-comments-dollar"></i><i class="fas fa-heart-broken"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">QIAN YU'S BLIND DATE: A MASTERFUL GAME OF EMOTIONS</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">女主角：</span><div class="flex flex-wrap"><span class="participant-tag">芊雨（瘦29斤版）</span></div>
-            <span class="section-label mt-2">男主角：</span><div class="flex flex-wrap"><span class="participant-tag">深二代985前端男</span></div>
-             <span class="section-label mt-2">情感导师：</span><div class="flex flex-wrap"><span class="participant-tag">oi (公主)</span><span class="participant-tag">全体群友</span></div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.25 下午</span>
-          </div>
-          <p class="section-label mt-4">过程：</p>
-          <p class="content-text">
-            本周最具教学意义的情感实录。<strong class="text-cyber-magenta">@芊雨</strong>分享了她与一位条件优质（深二代、985、前端、20k、身高170+）的相亲对象的进展。男方表现积极，专程从福田到宝安为下次约会踩点。芊雨则计划在第三次约会时进行“宠爱意愿测试”——带他去买口红，并表示<strong class="text-cyber-cyan">“买了牵（手），没买就不会再理他了”</strong>。此言论引发群友热议，认为芊雨“好作啊”但又“好会啊”。她还透露，因双方有共同爱好（明日方舟），她甚至“说漏嘴”聊了些二次元梗，但对方并未被吓跑，反而很迎合。这场分享堪称一场教科书级的现代都市男女交往拉锯战。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次关于恋爱技巧与两性心理的生动公开课。芊雨的分享真实、大胆且充满了策略性，为群友们展示了在相亲关系中如何掌握主动、测试诚意。这种高段位的操作不仅娱乐性十足，也引发了群友对于“作”与“测试”的边界、以及金钱在亲密关系中作用的深度思考。
-          </p>
-        </motion.div>
+        // 金句
+        const goldenQuotes = [
+            { text: "男朋友今天不回你消息不要慌，今天初二可能去他老丈人家了", author: "群友刷屏", likes: 999 },
+            { text: "一群油腻男里面，冒出个龙龙，又高又瘦又清爽，年轻女孩子都喜欢吧", author: "蜻蜓队长", likes: 888 },
+            { text: "城里到底有谁在啊？", author: "程序员名场面", likes: 777 },
+            { text: "年年骂春晚，今年被春晚骂了", author: "李湘毅", likes: 666 },
+            { text: "半斤葡萄干，闹出一台戏；一把紫檀椅，镇住满堂亲", author: "双", likes: 555 },
+            { text: "肥水不流外人田，可偏偏找对象就是看不上群友", author: "随木", likes: 444 },
+            { text: "一龙四吃", author: "Deep", likes: 333 },
+            { text: "《一路向西2》主演金华", author: "小猪佩奇", likes: 222 },
+        ];
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            5️⃣ OOTD风云：马甲线 VS 程序员时尚
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-tshirt"></i><i class="fas fa-camera"></i><i class="fas fa-fire"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">OOTD SHOWDOWN: ABS VS. PROGRAMMER FASHION</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">核心展示者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">oi (公主)</span><span class="participant-tag">内向腼腆社恐... (龙)</span><span class="participant-tag">面如霜下雪 (佳乐)</span><span class="participant-tag">金华</span>
-            </div>
-             <span class="section-label mt-2">时尚评论员：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">全体群友</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">贯穿全周</span>
-          </div>
-          <p class="content-text">
-            本周的“每日穿搭”（OOTD）环节再次成为视觉焦点。由<strong class="text-cyber-cyan">@oi（公主）</strong>以一张身穿露脐装、马甲线清晰可见的照片引爆全场，其惊人的身材管理成果引得群友惊呼“看不出是生过小孩的”。随后，群内的男性成员也不甘示弱，<strong class="text-gray-100">@面如霜下雪（佳乐）</strong>和<strong class="text-cyber-magenta">@金华</strong>分别展示了他们典型的程序员穿搭，引发了关于“格子衫”与“冲锋衣”的经典调侃。而<strong class="text-gray-100">@内向腼腆社恐...（龙）</strong>则持续稳定地输出高质量网红美女图，成为群内的“赛博时尚搬运工”，极大丰富了群聊的视觉享受。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            社群活力与成员自我展示的重要窗口。从真实的个人健身成果，到对日常穿搭的分享与调侃，再到对网络美女的共同“云欣赏”，OOTD环节极大地拉近了成员间的距离。它不仅展现了群友们积极向上的生活态度，也以轻松幽默的方式巩固了程序员群体的身份认同。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            6️⃣ 技术时间：当HR也开始聊iFrame
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fab fa-vuejs"></i><i class="fab fa-react"></i><i class="fas fa-code"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">TECH TALK: WHEN HR STARTS DISCUSSING IFRAMES</p>
-          <hr class="card-hr" />
-          <div>
-             <span class="section-label">提问者&参与者：</span>
-             <div class="flex flex-wrap">
-              <span class="participant-tag">美式不加冰</span><span class="participant-tag">公主舔狗一号</span><span class="participant-tag">我 (双)</span><span class="participant-tag">李总</span><span class="participant-tag">Jane.W</span>
-             </div>
-             <span class="section-label mt-2">围观群众：</span>
-             <div class="flex flex-wrap">
-              <span class="participant-tag">全体群友</span>
-             </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.28 下午</span>
-          </div>
-          <p class="content-text">
-            本周的技术讨论由一个具体问题引爆。<strong class="text-cyber-cyan">@美式不加冰</strong>（后端）遇到了iFrame跨域无法传递Cookie的难题，向群内前端大佬求助。群友们迅速响应，<strong class="text-cyber-magenta">@公主舔狗一号</strong>提出了`postMessage`的解决方案，<strong class="text-gray-100">@我 (双)</strong>和<strong class="text-cyber-cyan">@李总</strong>则从同源策略和Nginx代理的角度进行分析。讨论延伸至前端桌面端技术（Electron）和后端在接口设计中的责任。最有趣的是，连HR<strong class="text-gray-100">@Jane.W</strong>都加入了关于“前端指哪打哪”的吐槽，让这场技术交流充满了跨岗位的共鸣与自嘲。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            群聊“技术交流”核心价值的体现。这场讨论不仅高效地解决了实际工作中的技术难题，也展现了群内前后端开发者之间协作与“battle”的日常。它证明了社群不仅是八卦和生活的集散地，更是专业知识分享和问题解决的可靠平台。
-          </p>
-        </motion.div>
+        // 时间线事件
+        const timelineEvents = [
+            { date: "02-13", day: "腊月廿六", events: ["群聊开始活跃", "红包雨活动讨论"] },
+            { date: "02-14", day: "腊月廿七", events: ["情人节520红包话题", "crush讨论"] },
+            { date: "02-15", day: "腊月廿八", events: ["健身话题", "天气讨论"] },
+            { date: "02-16", day: "腊月廿九", events: ["春运抢票", "返程准备"] },
+            { date: "02-17", day: "除夕", events: ["年夜饭时间讨论", "春晚吐槽", "除夕祝福红包"] },
+            { date: "02-18", day: "初一", events: ["拜年祝福", "麻将赌局", "春节档电影"] },
+            { date: "02-19", day: "初二", events: ["回娘家习俗讨论", "龙龙相亲大会", "催婚话题"] },
+            { date: "02-20", day: "初三", events: ["美式订婚喜讯", "金华泰国蜜月", "返程高峰"] },
+        ];
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-        >
-          <h2 class="topic-title-cn">
-            7️⃣ 职场众生相：卷王、告密者与摸鱼怪
-            <span class="fire-icon text-cyber-magenta ml-2">
-             <i class="fas fa-fish"></i><i class="fas fa-user-secret"></i><i class="fas fa-briefcase"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">OFFICE LIFE: THE GRIND, THE SNITCH, AND THE SLACKER</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">主演：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">oi (公主)</span><span class="participant-tag">蜻蜓队长-小白君🧐</span><span class="participant-tag">Jane.W</span><span class="participant-tag">全体打工人</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">贯穿全周</span>
-          </div>
-          <p class="content-text">
-            打工人的辛酸与智慧在本周集中爆发。<strong class="text-cyber-cyan">@oi</strong>公司的“告密者”同事，以“老板在时坐外面，老板不在进办公室”的做派，和故意比老板晚走的“卷王”行为，引发全群吐槽。HR<strong class="text-cyber-magenta">@Jane.W</strong>则抱怨被领导要求在临近下班时派发紧急任务，并需要亲自谈员工“退场”。而<strong class="text-gray-100">@蜻蜓队长-小白君🧐</strong>也吐槽公司楼下湘菜馆老板格局太小，因两碗免费藕汤得罪顾客。这些鲜活的职场案例，与“已到工位，家里的事...都可以找我聊”的摸鱼口号相映成趣，共同构成了当代职场浮世绘。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            群聊最具共鸣感的内容板块。这些碎片化的职场日常，是连接所有群成员身份认同的最强纽带。无论是对奇葩同事的吐槽，还是对加班文化的抱怨，都让每个“打工人”感同身受，在欢笑与无奈中找到了宝贵的集体归属感。
-          </p>
-        </motion.div>
+        // 热门表情包
+        const hotEmojis = ["🧧", "🧨", "🏮", "🎊", "🎉", "💰", "🐲", "🐉", "🔥", "😂"];
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.35 }"
-        >
-          <h2 class="topic-title-cn">
-            8️⃣ 相亲百态：当“直男”遇上“海王”
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fas fa-user-friends"></i><i class="fas fa-heart-broken"></i><i class="fas fa-comments"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">THE MANY FACES OF BLIND DATING: WHEN "STRAIGHT GUYS" MEET "SEA KINGS"</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">故事分享者：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">温华</span><span class="participant-tag">print:十二</span><span class="participant-tag">芊雨</span>
-            </div>
-            <span class="section-label mt-2">评论员：</span><div class="flex flex-wrap"><span class="participant-tag">全体群友</span></div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.26 下午</span>
-          </div>
-          <p class="content-text">
-            一场关于相亲奇葩经历的吐槽大会。<strong class="text-cyber-cyan">@温华</strong>分享了两次惨痛经历：一次是女方当面不说，背后却跟介绍人说他不主动；另一次更离谱，女方与他聊天期间，却在朋友圈晒出与正牌男友的合照，他通过王者荣耀的情侣关系才发现自己被“当马了”，险些接盘。而<strong class="text-cyber-magenta">@print:十二</strong>则分享了自己因过于“话痨”，反被女方误认为在PUA的哭笑不得经历。这些故事与<strong class="text-gray-100">@芊雨</strong>的高段位“测试”形成鲜明对比，展现了相亲市场的复杂与残酷。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            极具共鸣的“比惨大会”，让群内的单身男性找到了情感宣泄的出口。这些真实的相亲故事，揭示了沟通错位、信息不对称以及情感欺骗等常见问题。群友们的集体吐槽和分析，不仅充满了黑色幽默，也为彼此提供了宝贵的“避坑”指南。
-          </p>
-        </motion.div>
+        // 群数据统计
+        const groupStats = {
+            totalMessages: 15564,
+            totalUsers: 120,
+            activeUsers: 45,
+            avgMessagesPerDay: 1945,
+            peakHour: "20:00-23:00",
+            totalRedPackets: 50,
+            mostActiveDay: "02-17 除夕"
+        };
         
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.4 }"
-        >
-          <h2 class="topic-title-cn">
-            9️⃣ “薪”酸往事：当群聊开始谈论财富
-            <span class="fire-icon text-cyber-magenta ml-2">
-                <i class="fas fa-money-bill-wave"></i><i class="fas fa-chart-line"></i><i class="fas fa-sad-tear"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">MONEY MATTERS: WHEN THE GROUP TALKS ABOUT WEALTH</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">凡尔赛主角：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">oi (公主)</span><span class="participant-tag">金华</span><span class="participant-tag">公主舔狗一号</span>
-            </div>
-             <span class="section-label mt-2">被暴击对象：</span>
-             <div class="flex flex-wrap"><span class="participant-tag">随木</span><span class="participant-tag">全体吃土群友</span></div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.28 下午</span>
-          </div>
-          <p class="content-text">
-            本周的“贫富差距”展示环节尤为扎心。当大家还在讨论几千块月薪如何生存时，<strong class="text-cyber-cyan">@oi</strong>在被开除后淡定表示，自己名下有<strong class="text-gray-100">“150万存款+一套房”</strong>，并准备去南极和欧洲旅游，其父更是准备投资一家宠物公司让她“有事干”。与此同时，关于<strong class="text-cyber-magenta">@金华</strong>月薪5万、年终奖4个月、专利拿到手软的“传说”再次被提及，引得群友纷纷玩梗“平安首席前端架构师”。这些话题让<strong class="text-gray-100">@随木（娇姐）</strong>等群友大呼“球球了别聊钱了，我都穷得不想讲话了”，并引发了“恨一个月只有30天，不然我月薪也能过万”的集体复读。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次典型的社群凡尔赛与自嘲狂欢。它以戏谑的方式展现了成员间现实的经济差距，但并未引发真正的矛盾，反而通过集体复读和玩梗，将羡慕与自嘲转化为一种群体娱乐。这种轻松的氛围，是成熟社群面对敏感话题时高情商互动的体现。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            🔟 灵异故事会：从托梦到鬼压床
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-ghost"></i><i class="fas fa-bed"></i><i class="fas fa-book-dead"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">GHOST STORY NIGHT: FROM DREAM MESSAGES TO SLEEP PARALYSIS</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">主讲人：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">栗子</span><span class="participant-tag">灵魂写手</span><span class="participant-tag">oi (公主)</span>
-            </div>
-             <span class="section-label mt-2">听众：</span>
-            <div class="flex flex-wrap">
-                <span class="participant-tag">全体群友</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.26 下午</span>
-          </div>
-          <p class="content-text">
-             周五下午的摸鱼时间，群聊意外开启了“走进科学”模式。<strong class="text-cyber-magenta">@栗子</strong>分享了长辈去世后托梦说“棺材放反了，躺得不舒服”，家人挖开后发现果真如此的离奇故事。<strong class="text-gray-100">@灵魂写手</strong>也分享了长辈托梦要烧纸钱的经历。而<strong class="text-cyber-cyan">@oi（公主）</strong>则讲述了童年更惊悚的遭遇：不仅在家中玻璃反光里看到不存在的小孩跑过，还有一个毛主席铜像，无论她怎么从顶层挪到下层，第二天都会自动归位的“邪门”事件，最后还分享了外公去世后托梦要“陪她去国外”的温情故事。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一场满足了群体猎奇心理的“怪谈”分享会。这类介于科学与迷信之间的故事，天然具有极高的话题性和吸引力。它不仅为下午的摸鱼时光增添了刺激感，也让群友们分享了各自家庭文化中神秘的一面，是群聊内容多样性的有趣体现。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣1️⃣ “直男”的边界感：一场关于性与爱的思辨
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-venus-mars"></i><i class="fas fa-question-circle"></i><i class="fas fa-brain"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">A "STRAIGHT MAN'S" BOUNDARIES: A DEBATE ON SEX AND LOVE</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">主辩手：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">oi (公主)</span><span class="participant-tag">这不是我月薪三千该考虑的问题</span><span class="participant-tag">金华</span><span class="participant-tag">慢子</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.26 下午</span>
-          </div>
-          <p class="content-text">
-            一场由<strong class="text-cyber-cyan">@oi</strong>发起的思想实验。她提问：“如果一个男的长得和刘亦菲一模一样，声音也一样，除了有JJ，他不脱裤子给你口，你们（直男）可以吗？” 这个问题瞬间引爆了群内直男的“底层代码”。<strong class="text-gray-100">@金华</strong>、<strong class="text-cyber-cyan">@我 (双)</strong>等人坚决表示“不行，知道是男的就起鸡皮疙瘩”。然而<strong class="text-cyber-magenta">@这不是我月薪三千该考虑的问题</strong>却动摇了，反问“那他能发出刘亦菲的声音吗？”，被<strong class="text-gray-100">@慢子</strong>精准捕捉并调侃为“诚实的男孩子”。这场讨论充满了哲学思辨的乐趣。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次非常有趣的、关于性取向、性别认同和外貌吸引力的深度探讨。它以一个极端但巧妙的假设，探测了群友们（尤其是直男）对自己性向边界的认知。整个过程充满了爆笑的“灵魂拷问”和意想不到的回答，是群聊思想火花碰撞的典范。
-          </p>
-        </motion.div>
+        // App组件
+        function App() {
+            return (
+                <div className="min-h-screen pb-20">
+                    {/* 头部 */}
+                    <Header />
+                    
+                    {/* 主要内容 */}
+                    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+                        {/* 总览统计 */}
+                        <OverviewSection />
+                        
+                        {/* 时间线 */}
+                        <TimelineSection />
+                        
+                        {/* 话题卡片网格 */}
+                        <TopicsSection />
+                        
+                        {/* 两列布局 */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            {/* 左列 */}
+                            <div className="space-y-6">
+                                <ActiveUsersSection />
+                                <GoldenQuotesSection />
+                            </div>
+                            
+                            {/* 右列 */}
+                            <div className="space-y-6">
+                                <GroupStatsSection />
+                                <EmojisSection />
+                            </div>
+                        </div>
+                        
+                        {/* 喜讯公告 */}
+                        <GoodNewsSection />
+                        
+                        {/* 程序员专属 */}
+                        <ProgrammerSection />
+                        
+                        {/* 页脚 */}
+                        <Footer />
+                    </main>
+                </div>
+            );
+        }
         
-         <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.3 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣2️⃣ 娇姐的社交哲学：“阶段性朋友”引共鸣
-            <span class="fire-icon text-cyber-magenta ml-2">
-             <i class="fas fa-users-slash"></i><i class="fas fa-comment-dots"></i><i class="fas fa-hourglass-half"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">JIAO JIE'S PHILOSOPHY: "PHASED FRIENDS" RESONATES</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">哲学家：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">随木 (娇姐)</span>
-            </div>
-             <span class="section-label mt-2">共鸣者：</span>
-            <div class="flex flex-wrap">
-             <span class="participant-tag">我 (双)</span><span class="participant-tag">全体群友</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间段：</span>
-            <span class="content-text">11.25 晚上</span>
-          </div>
-          <p class="content-text">
-            周二晚间，群聊进入了难得的“贤者时间”。<strong class="text-cyber-cyan">@随木（娇姐）</strong>突然感慨：“个个有了对象之后，人跟死了一样，真没意思。我现在都不想和任何人交朋友，都是阶段性的，我不喜欢。” 这段发言精准地道出了成年人社交的普遍困境与无奈，瞬间引发了群友的强烈共鸣。<strong class="text-cyber-magenta">@我（双）</strong>对此进行了延伸，提出了“君子之交淡如水”和“降低期待值，当作搭子”的应对策略。这场讨论触及了社群关系的本质，引人深思。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一次由个人感慨引发的集体性深度思考。它超越了日常的插科打诨，触及了更深层次的情感与社交议题。娇姐的真诚发言，让许多群友看到了自己的影子，这种高度的情感共鸣，恰恰证明了线上社群在提供慰藉和群体认同方面不可替代的价值。
-          </p>
-        </motion.div>
-        
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.15 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣3️⃣ 游戏人生：从LOL上分到王者“甜蜜双排”
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-gamepad"></i><i class="fas fa-heart"></i><i class="fas fa-trophy"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">GAME OF LIFE: FROM LOL RANKING TO "SWEET DUO QUEUE"</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">游戏玩家：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">金华</span><span class="participant-tag">栗子</span><span class="participant-tag">吻如雪上霜</span><span class="participant-tag">面如霜下雪</span><span class="participant-tag">温华</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">贯穿全周</span>
-          </div>
-          <p class="content-text">
-            游戏是程序员永恒的“第二人生”。本周，<strong class="text-cyber-cyan">@金华</strong>的“峡谷两日游”成为其周末生活的代名词。他不仅自己沉迷上分，还因“要陪女友”，被群友调侃为“甜蜜双排”，并吐槽双排匹配机制“队友很菜，对面全是小号”。与此同时，<strong class="text-gray-100">@吻如雪上霜</strong>和<strong class="text-cyber-magenta">@栗子</strong>、<strong class="text-cyber-cyan">@面如霜下雪</strong>等人的开黑邀约也贯穿始终，从LOL到PUBG，再到王者荣耀。关于英雄选择（如建议栗子玩拉克丝）、段位（吻如雪上霜要上钻石）、以及游戏体验的讨论，构成了群聊放松和社交的重要组成部分。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            社群共同兴趣的集中体现。游戏不仅是群友们工作之余的娱乐方式，更是重要的社交媒介。通过一起开黑、讨论战术、分享战绩，成员间的关系得以拉近。金华从“撸铁猛男”到“陪玩奶狗”的转变，更是为群聊提供了源源不断的调侃素材。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.2 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣4️⃣ “疯四文学”与红包狂欢
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-drumstick-bite"></i><i class="fas fa-comments-dollar"></i><i class="fas fa-laugh-squint"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">CRAZY THURSDAY & RED PACKET CARNIVAL</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">段子手们：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">李三石</span><span class="participant-tag">美式不加冰</span><span class="participant-tag">全体群友</span>
-            </div>
-            <span class="section-label mt-2">红包菩萨：</span>
-             <div class="flex flex-wrap">
-                 <span class="participant-tag">oi (公主)</span><span class="participant-tag">灵魂写手</span><span class="participant-tag">我 (双)</span><span class="participant-tag">Royal</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">11.27 - 11.28</span>
-          </div>
-          <p class="content-text">
-            周四，群内再次上演了保留节目——“疯狂星期四”文案大赛。各种版本的“V我50”文案层出不穷，从韩语版、代码报错版到结婚请帖版，创意百出，充满了戏谑与解构的赛博狂欢。虽然KFC没吃到，但本周的红包雨却异常丰厚。尤其是周五，<strong class="text-cyber-cyan">@oi（公主）</strong>在被开除后，连发两个大红包庆祝“重获自由”，将气氛推向高潮。<strong class="text-gray-100">@我 (双)</strong>、新群友<strong class="text-cyber-magenta">@Royal</strong>、<strong class="text-gray-100">@灵魂写手</strong>也纷纷慷慨解囊，让群聊充满了“谢谢老板”的欢声笑语。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            社群仪式感与凝聚力的重要来源。KFC文案大赛是群聊文化的一部分，而红包则是最直接、最有效的情绪放大器和关系润滑剂。公主的“自由红包”将个人的人生转折点，转化为一场全员参与的集体喜悦，完美诠释了社群的分享与共情精神。
-          </p>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 20 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.5, delay: 0.25 }"
-        >
-          <h2 class="topic-title-cn">
-            1️⃣5️⃣ “我真的不想努力了”：大宇哥的每日祈愿
-            <span class="fire-icon text-cyber-magenta ml-2">
-              <i class="fas fa-bed"></i><i class="fas fa-pray"></i><i class="fas fa-redo-alt"></i>
-            </span>
-          </h2>
-          <p class="topic-title-en">"I DON'T WANT TO WORK HARD": BROTHER DA YU'S DAILY WISH</p>
-          <hr class="card-hr" />
-          <div>
-            <span class="section-label">许愿人：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">大宇</span>
-            </div>
-             <span class="section-label mt-2">捧哏：</span>
-            <div class="flex flex-wrap">
-              <span class="participant-tag">蜻蜓队长-小白君🧐</span><span class="participant-tag">全体群友</span>
-            </div>
-          </div>
-          <div class="mt-4">
-            <span class="section-label">时间：</span>
-            <span class="content-text">每日多次</span>
-          </div>
-          <p class="content-text">
-            本周，群内最具仪式感的行为艺术再次上演。<strong class="text-cyber-cyan">@大宇</strong>几乎每天都会在群里准时或不定时地发出他标志性的三连祈愿：<strong class="text-cyber-magenta">“求求你们”</strong>、<strong class="text-gray-100">“我真的”</strong>、<strong class="text-cyber-cyan">“不想努力了”</strong>。这一行为已成为群内一个心照不宣的梗。群友们也形成了默契的互动模式，从最初的“大宇哥怎么了”，到如今的“大宇哥带带我”、“大宇哥养我们吧”。<strong class="text-cyber-magenta">@蜻蜓队长-小白君🧐</strong>更是精准吐槽：“你不想努力了？你不想发更有钱，给群友们娶一个大宇嫂吗？” 这场每日上演的互动短剧，充满了喜感与一丝“打工人”的真实心酸。
-          </p>
-          <p class="section-label mt-4">评价：</p>
-          <p class="evaluation-text">
-            一个成功的社群“梗文化”案例。它将个人的情绪表达，转化为一场全员参与的互动游戏。大宇的“祈愿”成为了群友们表达“想躺平”集体心声的扩音器，而大家默契的“捧哏”则极大地增强了群聊的趣味性和内部认同感，是群聊文化生命力的体现。
-          </p>
-        </motion.div>
-      </div>
-
-      <!-- Other Highlights -->
-       <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.15 }"
-      >
-        <h3 class="topic-title-cn text-cyber-cyan">本周其他高光时刻</h3>
-        <p class="topic-title-en">OTHER HIGHLIGHTS OF THE WEEK</p>
-        <hr class="card-hr" />
-        <ul class="list-disc list-inside space-y-3 content-text">
-            <li><strong>香港大火：</strong>周中，香港大埔住宅楼发生重大火灾，群友们持续关注新闻进展，从最初的几十人到最终上百人遇难，令人唏嘘。</li>
-            <li><strong>小白的“饭囧”：</strong><strong class="text-cyber-cyan">@蜻蜓队长-小白君🧐</strong>分享了午餐奇遇，因同事点了藕汤被店家当众“教育”，引发了关于服务业“格局”的讨论。</li>
-            <li><strong>吸毒记录封存争议：</strong>南通发布的一则关于“吸毒记录封存”的新规在群内引发巨大争议，群友们担心这会变相为吸毒人员“开绿灯”，并联想到是否有“公子哥”涉毒的内幕。</li>
-            <li><strong>佳乐“被踢”风波：</strong>周五晚，<strong class="text-cyber-magenta">@皇帝</strong>因<strong class="text-gray-100">@面如霜下雪（佳乐）</strong>的无边界感玩笑而动怒，将其踢出群聊，后经<strong class="text-cyber-cyan">@李总</strong>调解重新加回，上演了一出社群管理的微型情景剧。</li>
-        </ul>
-      </motion.div>
-
-      <!-- 群聊热门词云 -->
-      <motion.div
-        class="bento-card"
-        :initial="{ opacity: 0, y: 30 }"
-        :while-in-view="{ opacity: 1, y: 0 }"
-        :transition="{ duration: 0.6, delay: 0.15 }"
-      >
-        <h3 class="topic-title-cn text-cyber-cyan">本周热门词云</h3>
-        <p class="topic-title-en">THIS WEEK'S HOT WORDS</p>
-        <div class="mt-4 flex flex-wrap justify-center items-center">
-          <span class="keyword-tag text-lg">公主</span>
-          <span class="keyword-tag">瓜</span>
-          <span class="keyword-tag">老板</span>
-          <span class="keyword-tag text-lg">被开</span>
-          <span class="keyword-tag">红包</span>
-          <span class="keyword-tag">结婚</span>
-          <span class="keyword-tag">孩子</span>
-          <span class="keyword-tag text-lg">怀孕</span>
-          <span class="keyword-tag">金华</span>
-          <span class="keyword-tag">公司</span>
-          <span class="keyword-tag">好看</span>
-          <span class="keyword-tag text-lg">相亲</span>
-          <span class="keyword-tag">嘉丽</span>
-          <span class="keyword-tag">工资</span>
-          <span class="keyword-tag">游戏</span>
-          <span class="keyword-tag">ootd</span>
-          <span class="keyword-tag">娇姐</span>
-          <span class="keyword-tag">上班</span>
-          <span class="keyword-tag">摸鱼</span>
-          <span class="keyword-tag">妹子</span>
-          <span class="keyword-tag">深圳</span>
-          <span class="keyword-tag">照片</span>
-          <span class="keyword-tag">帅</span>
-        </div>
-        <div class="mt-3 text-xs text-gray-500 text-center">* 根据本周聊天内容高频词汇生成（已过滤常见停用词）。</div>
-      </motion.div>
-
-      <!-- Topic Emotional Flow -->
-      <div class="grid lg:grid-cols-3 gap-8">
-        <motion.div
-            class="bento-card lg:col-span-2"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.2 }"
-        >
-            <h3 class="topic-title-cn mb-1 text-cyber-cyan">
-                本周话题情感流
-            </h3>
-            <p class="topic-title-en">EMOTIONAL SPECTRUM ANALYSIS</p>
-            <div class="mt-5 space-y-6">
-                <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-cyber-cyan"><i class="fas fa-laugh-beam"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-cyber-cyan">八卦 & 狂欢</div>
+        // 头部组件
+        function Header() {
+            return (
+                <motion.header 
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="relative overflow-hidden py-12 px-4"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent"></div>
+                    
+                    <div className="relative max-w-4xl mx-auto text-center">
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-pink-500/20 border border-cyan-500/30 mb-6"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></span>
+                            <span className="text-cyan-400 text-sm font-medium">2026年春节特别版</span>
+                        </motion.div>
+                        
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4"
+                        >
+                            <span className="bg-gradient-to-r from-cyan-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent text-glow">
+                                深圳程序员交流群
+                            </span>
+                        </motion.h1>
+                        
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                            className="text-2xl sm:text-3xl font-bold text-pink-400 text-glow-pink mb-4"
+                        >
+                            🧧 春节群聊周报 🧧
+                        </motion.h2>
+                        
+                        <motion.p 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                            className="text-gray-400 text-lg"
+                        >
+                            时间范围：2026年2月13日 - 2月20日（除夕至初三）
+                        </motion.p>
+                        
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.6 }}
+                            className="flex flex-wrap justify-center gap-4 mt-6"
+                        >
+                            <div className="tag">
+                                <i className="fa-solid fa-comments mr-2"></i>
+                                15,564 条消息
+                            </div>
+                            <div className="tag tag-pink">
+                                <i className="fa-solid fa-fire mr-2"></i>
+                                24 个热门话题
+                            </div>
+                            <div className="tag tag-green">
+                                <i className="fa-solid fa-users mr-2"></i>
+                                120 位群友
+                            </div>
+                        </motion.div>
                     </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">吃瓜群众的集体盛宴</h4>
-                        <p class="content-text mt-1">本周的情感高潮无疑是由<strong class="text-cyber-cyan">公主分享的“舅甥孽缘”瓜</strong>所引爆的。群友们化身福尔摩斯，对聊天记录进行逐帧解读，整个过程充满了发现“华点”的惊喜和对扭曲人性的震惊与嘲讽。紧接着，<strong class="text-gray-100">公主自己的“被裁”大戏</strong>更是将气氛推向顶峰，当她宣布拿到N+1.5赔偿并潇洒离场时，群聊瞬间化为庆祝的海洋，红包与“恭喜”齐飞，展现了集体吃瓜与共情的极致快感。</p>
+                </motion.header>
+            );
+        }
+        
+        // 总览统计
+        function OverviewSection() {
+            const stats = [
+                { label: "总消息数", value: "15,564", icon: "fa-comments", color: "cyan" },
+                { label: "热门话题", value: "24", icon: "fa-fire", color: "pink" },
+                { label: "活跃用户", value: "45", icon: "fa-users", color: "green" },
+                { label: "红包雨", value: "50+", icon: "fa-red-envelope", color: "yellow" },
+            ];
+            
+            return (
+                <motion.section 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-4"
+                >
+                    {stats.map((stat, index) => (
+                        <motion.div
+                            key={stat.label}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.8 + index * 0.1 }}
+                            className="bento-card p-6 text-center"
+                        >
+                            <div className={`text-3xl mb-2 ${stat.color === 'cyan' ? 'text-cyan-400' : stat.color === 'pink' ? 'text-pink-400' : stat.color === 'green' ? 'text-green-400' : 'text-yellow-400'}`}>
+                                <i className={`fa-solid ${stat.icon}`}></i>
+                            </div>
+                            <div className="text-2xl sm:text-3xl font-bold text-white mb-1">{stat.value}</div>
+                            <div className="text-gray-400 text-sm">{stat.label}</div>
+                        </motion.div>
+                    ))}
+                </motion.section>
+            );
+        }
+        
+        // 时间线
+        function TimelineSection() {
+            return (
+                <motion.section 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9 }}
+                    className="bento-card p-6"
+                >
+                    <h3 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-timeline"></i>
+                        春节八日时间线
+                    </h3>
+                    
+                    <div className="relative">
+                        <div className="absolute left-4 top-0 bottom-0 w-0.5 timeline-line"></div>
+                        
+                        <div className="space-y-4">
+                            {timelineEvents.map((item, index) => (
+                                <motion.div 
+                                    key={item.date}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 1 + index * 0.1 }}
+                                    className="relative pl-10"
+                                >
+                                    <div className="absolute left-2 top-1 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-400 to-pink-400 border-2 border-gray-900"></div>
+                                    
+                                    <div className="flex flex-wrap items-start gap-2">
+                                        <span className="tag text-xs">{item.date}</span>
+                                        <span className="tag tag-pink text-xs">{item.day}</span>
+                                        <div className="flex flex-wrap gap-2 mt-2 w-full">
+                                            {item.events.map((event, i) => (
+                                                <span key={i} className="text-gray-300 text-sm">• {event}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.section>
+            );
+        }
+        
+        // 话题卡片网格
+        function TopicsSection() {
+            const [filter, setFilter] = useState('all');
+            
+            const filteredTopics = filter === 'all' ? topics : 
+                filter === 'hot' ? topics.filter(t => t.heat >= 85) :
+                topics.filter(t => t.heat < 85);
+            
+            return (
+                <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2 }}
+                >
+                    <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                        <h3 className="text-2xl font-bold text-cyan-400 flex items-center gap-2">
+                            <i className="fa-solid fa-fire-flame-curved"></i>
+                            春节热门话题 (24个)
+                        </h3>
+                        
+                        <div className="flex gap-2">
+                            <button 
+                                onClick={() => setFilter('all')}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === 'all' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/50' : 'bg-gray-800 text-gray-400 border border-gray-700'}`}
+                            >
+                                全部
+                            </button>
+                            <button 
+                                onClick={() => setFilter('hot')}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === 'hot' ? 'bg-pink-500/20 text-pink-400 border border-pink-500/50' : 'bg-gray-800 text-gray-400 border border-gray-700'}`}
+                            >
+                                🔥 爆款
+                            </button>
+                            <button 
+                                onClick={() => setFilter('normal')}
+                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${filter === 'normal' ? 'bg-green-500/20 text-green-400 border border-green-500/50' : 'bg-gray-800 text-gray-400 border border-gray-700'}`}
+                            >
+                                热议
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <AnimatePresence mode="popLayout">
+                            {filteredTopics.map((topic, index) => (
+                                <motion.div
+                                    key={topic.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="bento-card p-5 cursor-pointer group"
+                                >
+                                    <div className="flex items-start justify-between mb-3">
+                                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${topic.color === 'pink' ? 'bg-pink-500/20 text-pink-400' : topic.color === 'cyan' ? 'bg-cyan-500/20 text-cyan-400' : topic.color === 'green' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
+                                            <i className={`fa-solid ${topic.icon}`}></i>
+                                        </div>
+                                        <div className="flex items-center gap-1 text-xs">
+                                            <i className="fa-solid fa-fire text-orange-400"></i>
+                                            <span className={topic.heat >= 90 ? 'text-red-400 font-bold' : topic.heat >= 80 ? 'text-orange-400' : 'text-yellow-400'}>
+                                                {topic.heat}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 className="font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                                        {topic.title}
+                                    </h4>
+                                    
+                                    <p className="text-gray-400 text-sm mb-3 line-clamp-2">
+                                        {topic.desc}
+                                    </p>
+                                    
+                                    <div className="flex flex-wrap gap-1">
+                                        {topic.highlights.slice(0, 2).map((h, i) => (
+                                            <span key={i} className="text-xs px-2 py-1 rounded bg-gray-800 text-gray-400">
+                                                {h}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                </motion.section>
+            );
+        }
+        
+        // 活跃用户
+        function ActiveUsersSection() {
+            return (
+                <div className="bento-card p-6">
+                    <h3 className="text-xl font-bold text-pink-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-crown"></i>
+                        话痨TOP榜单
+                    </h3>
+                    
+                    <div className="space-y-4">
+                        {activeUsers.map((user, index) => (
+                            <motion.div 
+                                key={user.rank}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 1.5 + index * 0.1 }}
+                                className="flex items-center gap-4 p-3 rounded-xl bg-gray-800/50 hover:bg-gray-800 transition-colors"
+                            >
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold ${user.rank <= 3 ? 'bg-gradient-to-r from-cyan-400 to-pink-400 text-gray-900' : 'bg-gray-700 text-gray-400'}`}>
+                                    {user.rank}
+                                </div>
+                                
+                                <div className="text-2xl">{user.avatar}</div>
+                                
+                                <div className="flex-1 min-w-0">
+                                    <div className="font-medium text-white truncate">{user.name}</div>
+                                    <div className="flex flex-wrap gap-1 mt-1">
+                                        {user.tags.slice(0, 2).map((tag, i) => (
+                                            <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-gray-700 text-gray-400">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                <div className="text-right">
+                                    <div className="text-lg font-bold text-cyan-400">{user.messages}</div>
+                                    <div className="text-xs text-gray-500">条消息</div>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
-                 <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-cyber-magenta"><i class="fas fa-baby"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-cyber-magenta">焦虑 & 温情</div>
-                    </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">人生新阶段的喜与忧</h4>
-                        <p class="content-text mt-1">在八卦的喧嚣之外，一股关于<strong class="text-cyber-magenta">婚育话题的温情与焦虑</strong>暗流涌动。<strong class="text-gray-100">@栗子</strong>自曝喜讯，引发了群内一场关于备孕、孕期反应、宠物去留的大讨论。过来人<strong class="text-cyber-cyan">@康哥</strong>、<strong class="text-gray-100">@瑞秋</strong>的经验分享，与准妈妈们的期待和担忧交织在一起。这种对人生大事的探讨，充满了真实生活的质感，让群聊在虚拟空间中承载了现实世界的温情与支持，展现了社群成熟与有爱的一面。</p>
+            );
+        }
+        
+        // 金句
+        function GoldenQuotesSection() {
+            return (
+                <div className="bento-card p-6">
+                    <h3 className="text-xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-quote-left"></i>
+                        本周金句
+                    </h3>
+                    
+                    <div className="space-y-4">
+                        {goldenQuotes.map((quote, index) => (
+                            <motion.div 
+                                key={index}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 2 + index * 0.1 }}
+                                className="p-4 rounded-xl bg-gradient-to-r from-cyan-500/5 to-pink-500/5 border-l-4 border-cyan-400"
+                            >
+                                <p className="text-gray-200 mb-2">"{quote.text}"</p>
+                                <div className="flex items-center justify-between text-sm">
+                                    <span className="text-gray-500">—— {quote.author}</span>
+                                    <span className="text-pink-400">
+                                        <i className="fa-solid fa-heart mr-1"></i>
+                                        {quote.likes}
+                                    </span>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
-                 <div class="flex items-start">
-                    <div class="flex-shrink-0 w-16 text-center">
-                        <div class="text-3xl text-gray-400"><i class="fas fa-briefcase"></i></div>
-                        <div class="mt-1 text-sm font-orbitron text-gray-400">共鸣 & 自嘲</div>
+            );
+        }
+        
+        // 群数据统计
+        function GroupStatsSection() {
+            return (
+                <div className="bento-card p-6">
+                    <h3 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-chart-line"></i>
+                        群数据统计
+                    </h3>
+                    
+                    <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">总消息数</span>
+                            <span className="text-white font-bold">{groupStats.totalMessages.toLocaleString()}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">群总人数</span>
+                            <span className="text-white font-bold">{groupStats.totalUsers}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">活跃用户</span>
+                            <span className="text-white font-bold">{groupStats.activeUsers}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">日均消息</span>
+                            <span className="text-white font-bold">{groupStats.avgMessagesPerDay.toLocaleString()}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">活跃时段</span>
+                            <span className="text-cyan-400 font-bold">{groupStats.peakHour}</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">红包总数</span>
+                            <span className="text-pink-400 font-bold">{groupStats.totalRedPackets}+</span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                            <span className="text-gray-400">最活跃日</span>
+                            <span className="text-yellow-400 font-bold">{groupStats.mostActiveDay}</span>
+                        </div>
                     </div>
-                    <div class="ml-4">
-                        <h4 class="font-bold text-lg text-gray-200">“打工人”的日常与反抗</h4>
-                        <p class="content-text mt-1">作为社群的底色，<strong class="text-gray-100">对“打工人”身份的共鸣与自嘲</strong>贯穿始终。从对“告密者”同事的集体鄙视，到对临下班派活、周末加班的无奈吐槽，再到对“疯狂星期四”和“我不想努力了”的玩梗狂欢，无不体现着群体在面对职场压力时的共同心声。公主的成功“反杀”，更是为所有“打工人”提供了一次酣畅淋漓的“云报仇”体验，强化了群体的身份认同与集体归属感。</p>
+                    
+                    <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border border-cyan-500/20">
+                        <div className="text-sm text-gray-400 mb-2">消息活跃度</div>
+                        <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
+                            <motion.div 
+                                initial={{ width: 0 }}
+                                animate={{ width: '85%' }}
+                                transition={{ delay: 2.5, duration: 1 }}
+                                className="h-full progress-bar"
+                            ></motion.div>
+                        </div>
+                        <div className="text-right text-xs text-cyan-400 mt-1">85% 较上周提升</div>
                     </div>
                 </div>
-            </div>
-        </motion.div>
-
-        <motion.div
-            class="bento-card"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.25 }"
-        >
-          <h3 class="topic-title-cn text-cyber-cyan">🧐 本周人间清醒</h3>
-          <p class="topic-title-en">MOST SOBER MIND</p>
-          <div class="mt-6 text-center">
-            <p class="stat-number-large" style="font-size: 3rem; color: #f472b6;">慢子</p>
-          </div>
-          <p class="content-text mt-4">
-            在“舅甥孽缘”引发全群对男女双方动机进行复杂揣测时，久未露面的<strong class="text-cyber-magenta">@慢子</strong>一语中的：<strong class="text-cyber-cyan">“就男的硬舔啊，女的想要钱啊。”</strong> 这句话如手术刀般精准地剖开了事件的核心，瞬间终结了所有冗余的分析。她的发言摒弃了道德评判，直指人性中最本质的欲望与动机，展现了惊人的洞察力与概括能力。这份清醒与通透，堪称本周“最佳瓜情分析师”。
-          </p>
-        </motion.div>
-      </div>
-
-      <!-- Top Speakers & Night Owls -->
-      <div class="grid lg:grid-cols-3 gap-8">
-        <motion.div
-            class="bento-card lg:col-span-2"
-            :initial="{ opacity: 0, y: 30 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.6, delay: 0.2 }"
-        >
-            <h3 class="topic-title-cn mb-1 text-cyber-cyan">
-                本周话痨 <span class="font-normal text-xl text-gray-200">TOP 8</span>
-            </h3>
-            <p class="topic-title-en">MOST ACTIVE SPEAKERS OF THE WEEK</p>
-            <ul class="mt-5 space-y-4">
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-crown mr-2 text-yellow-400"></i> 这不是我月薪三千该考虑的问题</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">1400+</span>
+            );
+        }
+        
+        // 热门表情
+        function EmojisSection() {
+            return (
+                <div className="bento-card p-6">
+                    <h3 className="text-xl font-bold text-green-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-face-smile"></i>
+                        热门表情包
+                    </h3>
+                    
+                    <div className="flex flex-wrap gap-4 justify-center">
+                        {hotEmojis.map((emoji, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{ delay: 2.5 + index * 0.1, type: "spring" }}
+                                whileHover={{ scale: 1.3, rotate: 10 }}
+                                className="text-4xl cursor-pointer"
+                            >
+                                {emoji}
+                            </motion.div>
+                        ))}
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 100%"></div></div>
-                </li>
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-star mr-2 text-cyan-400"></i> 栗子</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">980+</span>
+                    
+                    <div className="mt-6 p-4 rounded-xl bg-gray-800/50 text-center">
+                        <div className="text-2xl mb-2">🐲</div>
+                        <div className="text-cyan-400 font-bold">龙年吉祥</div>
+                        <div className="text-gray-500 text-sm">本群年度吉祥物</div>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 70.0%"></div></div>
-                </li>
-                <li class="group">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-lg text-gray-200"><i class="fas fa-medal mr-2 text-pink-400"></i> 【八方来财】努力成为健身摄影律师</span>
-                        <span class="font-orbitron text-2xl text-cyber-cyan font-bold">950+</span>
+                </div>
+            );
+        }
+        
+        // 喜讯公告
+        function GoodNewsSection() {
+            return (
+                <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 3 }}
+                    className="bento-card p-6 bg-gradient-to-r from-pink-500/10 to-cyan-500/10 border-pink-500/30"
+                >
+                    <div className="flex items-center gap-2 mb-6">
+                        <span className="text-2xl">🎉</span>
+                        <h3 className="text-xl font-bold text-pink-400">喜讯公告栏</h3>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 67.8%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">oi (公主)</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">900+</span>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <motion.div 
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 rounded-xl bg-pink-500/10 border border-pink-500/20"
+                        >
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="text-3xl">💍</span>
+                                <div>
+                                    <div className="font-bold text-white">美式不加冰</div>
+                                    <div className="text-pink-400 text-sm">2月22日 初六 订婚</div>
+                                </div>
+                            </div>
+                            <p className="text-gray-400 text-sm">恭喜美式订婚！群友纷纷送上祝福！</p>
+                        </motion.div>
+                        
+                        <motion.div 
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/20"
+                        >
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="text-3xl">✈️</span>
+                                <div>
+                                    <div className="font-bold text-white">大宇(金华)</div>
+                                    <div className="text-cyan-400 text-sm">泰国度蜜月</div>
+                                </div>
+                            </div>
+                            <p className="text-gray-400 text-sm">金华偷偷去泰国度蜜月，群友调侃看人妖</p>
+                        </motion.div>
+                        
+                        <motion.div 
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 rounded-xl bg-green-500/10 border border-green-500/20"
+                        >
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="text-3xl">💘</span>
+                                <div>
+                                    <div className="font-bold text-white">龙龙</div>
+                                    <div className="text-green-400 text-sm">相亲大会收获满满</div>
+                                </div>
+                            </div>
+                            <p className="text-gray-400 text-sm">相亲大会70男VS10女，龙龙收获4个女生微信！</p>
+                        </motion.div>
+                        
+                        <motion.div 
+                            whileHover={{ scale: 1.02 }}
+                            className="p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20"
+                        >
+                            <div className="flex items-center gap-3 mb-2">
+                                <span className="text-3xl">🏆</span>
+                                <div>
+                                    <div className="font-bold text-white">本群</div>
+                                    <div className="text-yellow-400 text-sm">春节活跃度创新高</div>
+                                </div>
+                            </div>
+                            <p className="text-gray-400 text-sm">春节期间消息量突破15000条，创历史新高！</p>
+                        </motion.div>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 64.3%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">金华</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">750+</span>
+                </motion.section>
+            );
+        }
+        
+        // 程序员专属
+        function ProgrammerSection() {
+            return (
+                <motion.section
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 3.2 }}
+                    className="bento-card p-6"
+                >
+                    <h3 className="text-xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
+                        <i className="fa-solid fa-code"></i>
+                        程序员专属版块
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                            <div className="text-2xl mb-2">📱</div>
+                            <h4 className="font-bold text-white mb-2">技术分享</h4>
+                            <ul className="text-sm text-gray-400 space-y-1">
+                                <li>• Node.js业务合并教程</li>
+                                <li>• React.FC写法更新</li>
+                                <li>• QoderWork AI Agent</li>
+                                <li>• GPT代充便宜方案</li>
+                            </ul>
+                        </div>
+                        
+                        <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                            <div className="text-2xl mb-2">💻</div>
+                            <h4 className="font-bold text-white mb-2">开发工具</h4>
+                            <ul className="text-sm text-gray-400 space-y-1">
+                                <li>• Gemini 3.1 Pro发布</li>
+                                <li>• 前端又要死了</li>
+                                <li>• Mac配置少开发爽</li>
+                                <li>• Codex无限注册</li>
+                            </ul>
+                        </div>
+                        
+                        <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
+                            <div className="text-2xl mb-2">🏠</div>
+                            <h4 className="font-bold text-white mb-2">深圳生活</h4>
+                            <ul className="text-sm text-gray-400 space-y-1">
+                                <li>• 福田租房4000起步</li>
+                                <li>• 罗湖便宜停车难</li>
+                                <li>• 返程高铁票难抢</li>
+                                <li>• 深圳遍地黄金</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 53.6%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">蜻蜓队长-小白君🧐</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">720+</span>
+                    
+                    <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-cyan-500/10 to-pink-500/10 border border-cyan-500/20">
+                        <div className="flex items-center gap-2 mb-2">
+                            <i className="fa-solid fa-terminal text-cyan-400"></i>
+                            <span className="text-cyan-400 font-mono">console.log("新年祝福")</span>
+                        </div>
+                        <code className="text-sm text-gray-400 block">
+                            {`// 2026年春节程序员祝福
+if (newYear === true && bugs === false) {
+  salary *= 1.5;
+  happiness++;
+  console.log("龙年大吉，代码无Bug！");
+}`}
+                        </code>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 51.4%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">流星🌠</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">660+</span>
+                </motion.section>
+            );
+        }
+        
+        // 页脚
+        function Footer() {
+            return (
+                <motion.footer
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 3.5 }}
+                    className="text-center py-8"
+                >
+                    <div className="text-gray-500 text-sm mb-4">
+                        深圳程序员交流群 · 春节特别周报
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 47.1%"></div></div>
-                </li>
-                <li>
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="text-base text-gray-300">随木</span>
-                        <span class="font-orbitron text-xl text-cyber-cyan font-bold">610+</span>
+                    <div className="flex justify-center gap-4 text-gray-600 text-sm">
+                        <span>📊 数据来源：群聊记录</span>
+                        <span>🤖 生成时间：2026年2月</span>
                     </div>
-                    <div class="speaker-bar-bg"><div class="speaker-bar-fill" style="width: 43.5%"></div></div>
-                </li>
-            </ul>
-            <div class="mt-4 text-xs text-gray-500">* 发言数量为本周（11.24 - 11.30）大致统计值。</div>
-        </motion.div>
-
-        <motion.div
-          class="bento-card"
-          :initial="{ opacity: 0, y: 30 }"
-          :while-in-view="{ opacity: 1, y: 0 }"
-          :transition="{ duration: 0.6, delay: 0.35 }"
-        >
-          <h3 class="topic-title-cn text-cyber-cyan">🦉 本周熬夜冠军 🦉</h3>
-          <p class="topic-title-en">LATEST NIGHT OWLS OF THE WEEK</p>
-          <ul class="mt-5 space-y-4">
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-400"></i>1. 三 (11.29)</span>
-              <span class="text-gray-400 font-semibold">02:02:42</span>
-            </li>
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-500/80"></i>2. 蜻蜓队长-小白君🧐 (11.29)</span>
-              <span class="text-gray-400 font-semibold">01:24:12</span>
-            </li>
-            <li class="flex items-center justify-between p-3 bg-gray-800/50 rounded-lg">
-              <span class="text-lg text-gray-200 font-medium"><i class="fas fa-moon mr-2 text-indigo-600/70"></i>3. 大宇 (11.27)</span>
-              <span class="text-gray-400 font-semibold">01:40:19</span>
-            </li>
-          </ul>
-          <div class="mt-4 text-xs text-gray-500">* 根据本周记录的最后发言时间统计。</div>
-        </motion.div>
-      </div>
-
-    </div>
-
-    <script>
-      // Framer Motion UMD script will automatically initialize animations
-      // based on the motion attributes in the HTML.
-      document.addEventListener('DOMContentLoaded', () => {
-        const cards = document.querySelectorAll('.bento-card');
-        cards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', `${x}px`);
-            card.style.setProperty('--y', `${y}px`);
-          });
-        });
-      });
+                </motion.footer>
+            );
+        }
+        
+        // 渲染App
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
-  </body>
+</body>
 </html>
